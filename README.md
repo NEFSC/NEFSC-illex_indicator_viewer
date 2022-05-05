@@ -3,7 +3,7 @@
 <img src="https://github.com/khyde/SquidSquad/blob/main/images/SquidSquadV1.png?raw=true" alt="graphical logo" width=200 height=200 align="right">
 
 # NEFSC *Illex* Indicator Viewer
-This repository is for the development and management of the *Illex* Indicator Viewer created by the Northeast Squid Squad. The *Illex* Indicator Viewer serves two purposes, the first of which is to display near-real-time oceanographic conditions in the Northwest Atlantic. Secondly, this report will serve as a living document in which to record weekly observations on current oceanographic featuers and fishing condition from experts in the region.  
+This repository is for the development and management of the *Illex* Indicator Viewer created by the Northeast Squid Squad. The *Illex* Indicator Viewer serves two purposes, the first of which is to display near-real-time oceanographic conditions in the Northwest Atlantic. Secondly, this report will serve as a living document in which to record weekly observations on current oceanographic features and fishing condition from experts in the region.  
 
 
 
