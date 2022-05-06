@@ -91,9 +91,9 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 
 ## Week 18 (May 2-8)
 **Chlorophyll**
-![](/Users/sarah.salois/Documents/github/khyde/SquidSquad/images/chl_0505.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/chl_0505.png)
 **Salinity (Pioneer Array, *in-situ* data)**
-![](/Users/sarah.salois/Documents/github/khyde/SquidSquad/images/pa_0502.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/pa_0502.png)
 
 ***
 *** 
@@ -129,7 +129,7 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 
 ::: {class='col-md-6'}
 **JCC April 27, 2022**
-![](/Users/sarah.salois/Documents/github/khyde/SquidSquad/images/jc0427.jpg)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0427.jpg)
 
 :::
 ::::
@@ -143,13 +143,13 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 
 ::: {class='col-md-6'}
 **JCC April 11, 2022**
-![](/Users/sarah.salois/Documents/github/khyde/SquidSquad/images/jc_0411.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0411.png)
 :::
 
 ::: {class='col-md-6'}
 
 **JCC April 13, 2022**
-![](/Users/sarah.salois/Documents/github/khyde/SquidSquad/images/jc_0413.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0413.png)
 
 :::
 ::::
@@ -177,12 +177,12 @@ offshore
 
 ::: {class='col-md-6'}
 **JCC April 06, 2022**
-![](/Users/sarah.salois/Documents/github/khyde/SquidSquad/images/jc_0406.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0406.png)
 :::
 
 ::: {class='col-md-6'}
 **JCC April 08, 2022**
-![](/Users/sarah.salois/Documents/github/khyde/SquidSquad/images/jc_0408.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0408.png)
 :::
 ::::
 AG: (4/6/22) There is one WCR on the shelf break and a large streamer along the
@@ -198,7 +198,7 @@ it and then down along the GS crest's leading edge.
 60W in the coming week!
 
 **April Salinity Time Series (Pioneer Array, *in-situ* data)**
-![](/Users/sarah.salois/Documents/github/khyde/SquidSquad/images/pa_0422.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/pa_0422.png)
 
 ***
 # General Information
@@ -210,12 +210,12 @@ it and then down along the GS crest's leading edge.
 [Major Canyons](https://portal.midatlanticocean.org/visualize/#x=-74.00&y=39.00&z=7&logo=true&controls=true&dls%5B%5D=true&dls%5B%5D=1&dls%5B%5D=3944&basemap=ocean&themes%5Bids%5D%5B%5D=28&tab=active&legends=false&layers=true)
 
 
-![](/Users/sarah.salois/Documents/github/khyde/SquidSquad/images/major_canyons.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/general_info/major_canyons.png)
 
 ## Bathymetry 2021 Fishing Season
 ***
 
-![Bathymetry 2021 Fishing Season](/Users/sarah.salois/Documents/github/khyde/SquidSquad/images/ft_locs_depth-with_bathy.png)
+![Bathymetry 2021 Fishing Season](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/general_info/ft_locs_depth-with_bathy.png)
 
 
 ## NAFO subareas 
@@ -359,12 +359,12 @@ Glen Gawarkiewicz
 
 ::: {class='col-md-6'}
 **JCC: July 23 2021**
-![](/Users/sarah.salois/Documents/github/khyde/SquidSquad/images/jc_72321.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_72321.png)
 :::
   
 ::: {class='col-md-6'}
 **JCC: July 26 2021**
-![](/Users/sarah.salois/Documents/github/khyde/SquidSquad/images/jc_72621.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_72621.png)
 :::
 ::::
 
@@ -373,14 +373,14 @@ Glen Gawarkiewicz
 ::: {class='col-md-6'}
 
 **JCC: August 2 2021**
-![](/Users/sarah.salois/Documents/github/khyde/SquidSquad/images/jc_8221.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_8221.png)
 
 :::
 
 ::: {class='col-md-6'}
 
 **JCC: August 4 2021**
-![](/Users/sarah.salois/Documents/github/khyde/SquidSquad/images/jc_8421.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_8421.png)
 
 :::
 ::::
@@ -403,7 +403,7 @@ features more like a warm blob. Could it be a new marine heat wave?
 
 
 **In-situ Salinity time series for the  month of July 2021 (from Pioneer Array)**
-![](/Users/sarah.salois/Documents/github/khyde/SquidSquad/images/pa_0721.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/pa_0721.png)
 
 Glen noted: "About a week ago there was a big drop (nearly 1 psu) in salinity at
 the inshore Pioneer Array mooring at 7 m depth. This is indicative of a big
