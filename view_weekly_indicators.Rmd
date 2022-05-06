@@ -78,8 +78,11 @@ contents in the upper left hand corner of this page.
 The plots below contain mapped images of Sea Surface Temperature (SST) and
 Chlorophyll A (CHL) and the associated frontal dynamics for both. Additionally, 
 you will find the Jennifer Clark charts for this week. 
-```{r, fig.width = 6}
-rundate <- "0505" # pull from weekly folder 'runweek'
+```{r, fig.width = 6, eval = FALSE}
+# This bit is an updated way to add in .png's, hopefully use to automate
+# Need to decide on naming scheme and folder allocation
+rundate <- "0505" 
+# or maybe we could pull from weekly folder 'runweek'
 # here::here("images/desired.png") # gets path 
 # here::here("images/chl/chl_0505.png") # gets path 
 #knitr::include_graphics(here::here("images/chl/chl_0505.png"))
@@ -104,8 +107,21 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
   +
 
 ***
+Trial run : 
+```{r, eval=FALSE}
+# This works in chunk but wont knit **
+jc_weekly <- list.files(here::here('images/jc_charts'), 
+                        pattern = '.png', 
+                        full.names = TRUE)
+knitr::include_graphics(jc_weekly)
+```
 
+```{r, eval=FALSE}
+# This works in chunk but wont knit **
 
+knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_charts/jc_0427.jpg')))
+
+```
 
 
 ## Week 17 (April 25 - May 1)
@@ -115,16 +131,6 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 ::: {class='col-md-6'}
 **JCC April 25, 2022**
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0425.jpg)
-```{r}
-jc_weekly <- list.files(here::here('images/jc_charts'), 
-                        pattern = '.png', 
-                        full.names = TRUE)
-knitr::include_graphics(jc_weekly)
-
-knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_charts/jc_0427.jpg')))
-
-```
-
 :::
 
 ::: {class='col-md-6'}
