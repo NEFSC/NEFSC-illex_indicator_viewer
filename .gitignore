@@ -1,2 +1,7 @@
-
+# .* need to be more specific 
+_*
+# R project stuff
 .Rproj.user
+.Rhistory
+.RData
+.Ruserdata
