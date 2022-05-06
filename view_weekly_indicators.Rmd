@@ -21,7 +21,8 @@ library(ggplot2)
 library(cowplot)
 library(patchwork)
 library(flexdashboard)
-                      #,fig.path = "/images/" )
+library(here)
+#,fig.path = "/images/" )
 # knitr::opts_knit$set(base.dir = 'C:/Users/sarah.salois/Desktop/github/khyde/SquidSquad/',
 #                    base.url = "/")
 # knitr::include_graphics(paste0(getwd(), "/images/ft_locs_depth-with_bathy.png"))
@@ -80,8 +81,9 @@ you will find the Jennifer Clark charts for this week.
 ```{r, fig.width = 6}
 rundate <- "0505" # pull from weekly folder 'runweek'
 # here::here("images/desired.png") # gets path 
-knitr::include_graphics(here::here("images/chl_0505.png"))
-knitr::include_graphics(here::here(paste0("images/chl_", rundate, ".png")))
+# here::here("images/chl/chl_0505.png") # gets path 
+#knitr::include_graphics(here::here("images/chl/chl_0505.png"))
+knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 
 ```
 
@@ -228,9 +230,15 @@ reg$long = (360 - reg$long)*-1
 
 
 ```{r, nafo subareas, message = FALSE, warning = FALSE}
-wd = ('C:/Users/sarah.salois/Documents/github/khyde/SquidSquad')
+wd =  here::here('shapefiles/')
 nafo_shbr <- readOGR(wd,'NAFO_SHELFBREAK', verbose = FALSE)
 inshr <- nafo_shbr[nafo_shbr@data$SUBAREA %in% c('NAFO_5ZE_INSHORE', 'NAFO_5ZW_INSHORE','NAFO_6A_INSHORE', 'NAFO_6B_INSHORE','NAFO_6C_INSHORE'),]
+```
+
+
+```{r}
+
+
 
 # path = '/nadata/PROJECTS/IDL_PROJECTS/ILLEX_INDICATORS/R_SCRIPTS/SALINITY/RASTERS/WEEKLY'
 # bricks <- list.files(path = path,
@@ -246,7 +254,11 @@ sal_222m <-  raster::extract(rtmp, inshr, weights = FALSE,
                              fun = mean, na.rm = TRUE) 
 #sal_222m[1:5]
 
+
+
+
 ```
+
 
 
 ```{r}
