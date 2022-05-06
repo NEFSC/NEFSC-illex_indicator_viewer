@@ -84,6 +84,7 @@ rundate <- "0505" # pull from weekly folder 'runweek'
 # here::here("images/chl/chl_0505.png") # gets path 
 #knitr::include_graphics(here::here("images/chl/chl_0505.png"))
 knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
+# Another way to include images
 
 ```
 
@@ -113,7 +114,16 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 
 ::: {class='col-md-6'}
 **JCC April 25, 2022**
-![](/Users/sarah.salois/Documents/github/khyde/SquidSquad/images/jc_0425.jpg)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0425.jpg)
+```{r}
+jc_weekly <- list.files(here::here('images/jc_charts'), 
+                        pattern = '.png', 
+                        full.names = TRUE)
+knitr::include_graphics(jc_weekly)
+
+knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_charts/jc_0427.jpg')))
+
+```
 
 :::
 
@@ -236,9 +246,10 @@ inshr <- nafo_shbr[nafo_shbr@data$SUBAREA %in% c('NAFO_5ZE_INSHORE', 'NAFO_5ZW_I
 ```
 
 
-```{r}
+```{r, eval = FALSE}
 
-
+# This chunk will extract data across NAFO_SHELFBREAK to get mean values 
+# for each subarea
 
 # path = '/nadata/PROJECTS/IDL_PROJECTS/ILLEX_INDICATORS/R_SCRIPTS/SALINITY/RASTERS/WEEKLY'
 # bricks <- list.files(path = path,
@@ -249,12 +260,10 @@ inshr <- nafo_shbr[nafo_shbr@data$SUBAREA %in% c('NAFO_5ZE_INSHORE', 'NAFO_5ZW_I
 # btmp@data@names <- as.numeric(c(1:52))
 # tmp2 <- subset(tmp, week == weeks[j])
 # rtmp = raster::subset(btmp, which(btmp@data@names == weeks[j]))
-rtmp <- raster('test_inshore.tif')
-sal_222m <-  raster::extract(rtmp, inshr, weights = FALSE,
-                             fun = mean, na.rm = TRUE) 
-#sal_222m[1:5]
-
-
+# rtmp <- raster('test_inshore.tif')
+# sal_222m <-  raster::extract(rtmp, inshr, weights = FALSE,
+#                              fun = mean, na.rm = TRUE) 
+# #sal_222m[1:5]
 
 
 ```
