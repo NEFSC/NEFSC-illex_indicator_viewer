@@ -98,6 +98,15 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 **Salinity (Pioneer Array, *in-situ* data)**
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202219_SAL.png)
 
+
+
+
+
+**Mean Salinity (Pioneer Array, *in-situ* data)**
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/A_2021-2022-SAL-CENTRAL.png)
+
+
+
 ***
 *** 
 * Notes:
