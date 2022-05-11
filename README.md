@@ -8,7 +8,7 @@ This repository is for the development and management of the *Illex* Indicator V
 
 <a href="https://nefsc.github.io/NEFSC-illex_indicator-viewer/view_weekly_indicators.html" target="_blank"> NEFSC Illex Indicator Viewer </a>
 
-<a href="https://ssalois1.github.io/preliminary_results/index.html" target="_blank"> Test </a>
+<a href="https://ssalois1.github.io/preliminary_results/index.html" target="_blank"> Test1 </a>
 
 <a href="https://nefsc.github.io/NEFSC-illex_indicator-viewer/view_weekly_indicators.html" target="_blank"> Test </a>
 
