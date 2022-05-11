@@ -15,6 +15,8 @@ output:
 knitr::opts_chunk$set(echo = TRUE,
                       message = FALSE, 
                       warning = FALSE)
+knitr::opts_chunk$set(dev="png")
+
 library(rgdal)
 library(raster)
 library(ggplot2)
@@ -95,7 +97,7 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 ## Week 19 (May 2-8)
 **Chlorophyll**
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/chl_0505.png)
-**Salinity (Pioneer Array, CENTRAL)**
+**Mean Salinity (Pioneer Array, CENTRAL)**
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202219-SAL-CENTRAL.png)
 
 
@@ -109,7 +111,7 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 
 
 
-**Mean Salinity (Pioneer Array, *in-situ* data)**
+**YTD : Mean Salinity (Pioneer Array, w/2021 reference)**
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/A_2021-2022-SAL-CENTRAL.png)
 
 ***
@@ -144,12 +146,12 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 
 ::: {class='col-md-6'}
 **JCC April 25, 2022**
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0425.jpg)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0425.png)
 :::
 
 ::: {class='col-md-6'}
 **JCC April 27, 2022**
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0427.jpg)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0427.png)
 
 :::
 ::::
@@ -235,10 +237,13 @@ it and then down along the GS crest's leading edge.
 ```
 
 
-## Bathymetry 2021 Fishing Season
+## Fishing depths 2021 Fishing Season
 ***
 
-![Bathymetry 2021 Fishing Season](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/general_info/ft_locs_depth-with_bathy.png)
+The figure below highlights the 100 meter isobath and associated fishing 
+depths throughout the 2021 season. 
+
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/general_info/ft_locs_depth-with_bathy.png)
 
 
 ## NAFO subareas 
