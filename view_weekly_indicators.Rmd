@@ -77,7 +77,7 @@ contents in the upper left hand corner of this page.
 
 The plots below contain mapped images of Sea Surface Temperature (SST) and
 Chlorophyll A (CHL) and the associated frontal dynamics for both. Additionally, 
-you will find the Jennifer Clark charts for this week. 
+you will find the Jenifer Clark charts for this week. 
 ```{r, fig.width = 6, eval = FALSE}
 # This bit is an updated way to add in .png's, hopefully use to automate
 # Need to decide on naming scheme and folder allocation
