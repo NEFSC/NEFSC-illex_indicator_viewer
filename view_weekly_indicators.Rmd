@@ -92,11 +92,11 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 ```
 
 
-## Week 18 (May 2-8)
+## Week 19 (May 2-8)
 **Chlorophyll**
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/chl_0505.png)
 **Salinity (Pioneer Array, *in-situ* data)**
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/pa_0502.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202219_SAL.png)
 
 ***
 *** 
@@ -216,7 +216,10 @@ it and then down along the GS crest's leading edge.
 [Major Canyons](https://portal.midatlanticocean.org/visualize/#x=-74.00&y=39.00&z=7&logo=true&controls=true&dls%5B%5D=true&dls%5B%5D=1&dls%5B%5D=3944&basemap=ocean&themes%5Bids%5D%5B%5D=28&tab=active&legends=false&layers=true)
 
 
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/general_info/major_canyons.png)
+```{r, eval = FALSE}
+# ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/general_info/major_canyons.png)
+```
+
 
 ## Bathymetry 2021 Fishing Season
 ***
