@@ -95,17 +95,22 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 ## Week 19 (May 2-8)
 **Chlorophyll**
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/chl_0505.png)
-**Salinity (Pioneer Array, *in-situ* data)**
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202219_SAL.png)
+**Salinity (Pioneer Array, CENTRAL)**
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202219-SAL-CENTRAL.png)
 
 
+
+**Mean Salinity (Pioneer Array, INSHORE)**
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202219-SAL-INSH.png)
+
+
+**Mean Salinity (Pioneer Array, OFFSHORE)**
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202219-SAL-OFFSH.png)
 
 
 
 **Mean Salinity (Pioneer Array, *in-situ* data)**
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/A_2021-2022-SAL-CENTRAL.png)
-
-
 
 ***
 *** 
