@@ -9,7 +9,7 @@ This repository is for the development and management of the *Illex* Indicator V
 <a href="https://nefsc.github.io/NEFSC-illex_indicator-viewer/view_weekly_indicators.html" target="_blank"> NEFSC Illex Indicator Viewer </a>
 
 
-<a href="https://nefsc.github.io/NEFSC/NEFSC-illex_indicator-viewer/view_weekly_indicators.html" target="_blank"> NEFSC Illex Indicator Viewer2 </a>
+<a href="https://nefsc.github.io/NEFSC-illex_indicator_viewer/view_weekly_indicators.html" target="_blank"> NEFSC Illex Indicator Viewer2 </a>
 
 
 ## NOAA Disclaimer
