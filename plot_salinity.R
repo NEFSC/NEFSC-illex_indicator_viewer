@@ -60,7 +60,7 @@ p2 <- pa_insh_22 %>%
   geom_point(aes(fill = 'darkblue'),pch = 21, size = 3,colour = 'black') +
   geom_hline(yintercept = as.numeric(ann_sal_insh[1,2]), 
              lty = 2, col = 'darkblue', lwd = 1) +
-  labs(title = 'Week 19, 2022', subtitle ='May 01- 07') +
+  labs(title = 'Week 18, 2022', subtitle ='May 01- 07') +
   ylab('Salinity') + 
   xlab('Date') +
   scale_fill_discrete(guide='none') +
@@ -121,7 +121,7 @@ p2 <- pa_offsh_22 %>%
   geom_point(aes(fill = 'darkblue'),pch = 21, size = 3,colour = 'black') +
   geom_hline(yintercept = as.numeric(ann_sal_offsh[1,2]), 
              lty = 2, col = 'darkblue', lwd = 1) +
-  labs(title = 'Week 19, 2022', subtitle ='May 01- 07') +
+  labs(title = 'Week 18, 2022', subtitle ='May 01- 07') +
   ylab('Salinity') + 
   xlab('Date') +
   scale_fill_discrete(guide='none') +
@@ -175,7 +175,7 @@ p2 <- pa_22_ts %>%
   geom_point(aes(fill = 'darkblue'),pch = 21, size = 3,colour = 'black') +
   geom_hline(yintercept = as.numeric(ann_sal[2,2]), 
              lty = 2, col = 'darkblue', lwd = 1) +
-  labs(title = 'Week 19, 2022', subtitle ='May 01- 07') +
+  labs(title = 'Week 18, 2022', subtitle ='May 01- 07') +
   ylab('Salinity') + 
   xlab('Date') +
   scale_fill_discrete(guide='none') +
@@ -363,7 +363,7 @@ p2 <- pa_22_ts %>%
   geom_point(aes(fill = 'darkblue'),pch = 21, size = 3,colour = 'black') +
   geom_hline(yintercept = as.numeric(ann_sal[2,2]), 
              lty = 2, col = 'darkblue', lwd = 1) +
-  labs(title = 'Week 19, 2022', subtitle ='May 01- 07') +
+  labs(title = 'Week 18, 2022', subtitle ='May 01- 07') +
   ylab('Salinity') + 
   xlab('Date') +
   scale_fill_discrete(guide='none') +
