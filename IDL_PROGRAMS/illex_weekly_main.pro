@@ -146,27 +146,42 @@
         
         CASE PRODS[N] OF
           'CHLOR_A': SCLR = 'TOMATO'
-          'SST': SCLR = 'MAGENTA'
+          'SST': SCLR = 'YELLOW'
         ENDCASE
         
         FOR F=0, N_ELEMENTS(FILES)-1 DO BEGIN
           FP = PARSE_IT(FILES[F],/ALL)
           PNGFILE = DIR_OUT + REPLACE(FP.NAME +'.PNG',FP.MAP,MP)
           
-          IF ~FILE_MAKE(FILE,PNGFILE,OVERWRITE=OVERWRITE,VERBOSE=VERBOSE) THEN CONTINUE
+          IF ~FILE_MAKE(FILES[F],PNGFILE,OVERWRITE=OVERWRITE,VERBOSE=VERBOSE) THEN CONTINUE
 
           PER = PERIOD_2STRUCT(FP.PERIOD)
-          TXT = 'Week ' + STRMID(PER.PERIOD,7,2) + ': ' + STRMID(PER.DATE_START,0,8) + ' - ' + STRMID(PER.DATE_END,0,8)
-          W = WINDOW(DIMENSIONS=IMG_DIMS)
-          PRODS_2PNG, FILES[F],PAL=VERSTR.PROD_INFO.CHLOR_A.PAL, SPROD=VERSTR.PROD_INFO.CHLOR_A.PROD_SCALE, ADD_BATHY=200,$
+          TXT = 'Week ' + STRMID(PER.PERIOD,6,2) + ': ' + STRMID(PER.DATE_START,0,8) + ' - ' + STRMID(PER.DATE_END,0,8)
+          
+          IF PRODS[N] EQ 'SST' THEN BEGIN
+            CASE PER.MONTH_START OF 
+              '01': PSCL = 'SST_0_30'
+              '02': PSCL = 'SST_0_30'
+              '03': PSCL = 'SST_0_30'
+              '04': PSCL = 'SST_5_30'
+              '05': PSCL = 'SST_5_30'
+              '06': PSCL = 'SST_10_30'
+              '07': PSCL = 'SST_10_30'
+              '08': PSCL = 'SST_15_30'
+              '09': PSCL = 'SST_15_30'
+              '10': PSCL = 'SST_10_30'
+              '11': PSCL = 'SST_5_30'
+              '12': PSCL = 'SST_5_30'
+            ENDCASE  
+          ENDIF ELSE PSCL = PSTR.PROD_SCALE
+          
+          W = WINDOW(DIMENSIONS=IMG_DIMS,/BUFFER)
+          PRODS_2PNG, FILES[F],PAL=PSTR.PAL, SPROD=PSCL, ADD_BATHY=200,$
             DIR_OUT=DIR_OUT, MAPP=MP, /ADD_CB, ADD_TXT=TXT, TXT_ALIGN=0.50, TXT_POS=[0.275,0.96], BUFFER=1, RESOLUTION=300, /CURRENT
           SY = SYMBOL(X*XX,Y*YY,SYMBOL='CIRCLE',/DEVICE, /SYM_FILLED, SYM_COLOR=SCLR, SYM_SIZE=0.65)
           
           W.SAVE, PNGFILE, RESOLUTION=300
           W.CLOSE
-          STOP  
-          
-          
           
   
         ENDFOR
