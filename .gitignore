@@ -8,4 +8,4 @@ _*
 .project
 .DS*
 *.csv
-**/W_20220*.PNG
+*/**/W_20220*.PNG
