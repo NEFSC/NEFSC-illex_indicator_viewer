@@ -173,13 +173,26 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 
 ```
 
+# April
+***
 
 ## Week 17 (April 24 - April 30)
+:::: {class='fluid-row'}
+
+::: {class='col-md-6'}
+**Sea Surface Temperature**
+
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202217-MUR-V04.1-NES-SST-STATS.png)
+:::
+
+::: {class='col-md-6'}
 
 **Chlorophyll**
 
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202217-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS-.png){width=65%}
-
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202217-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS-.png)
+:::
+::::
+***
 :::: {class='fluid-row'}
 
 ::: {class='col-md-6'}
@@ -194,13 +207,21 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 :::
 ::::
 
-# April
-***
-
 ## Week 16 (April 17 - April 23)
+**Sea Surface Temperature**
+:::: {class='fluid-row'}
+
+::: {class='col-md-6'}
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202216-MUR-V04.1-NES-SST-STATS.png)
+:::
+::: {class='col-md-6'}
+
 **Chlorophyll**
 
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202216-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS-.png){width=65%}
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202216-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS-.png)
+:::
+::::
+***
 
 ## Week 15 (April 10 - April 16)
 
@@ -289,20 +310,19 @@ processors. Colors correspond to Paul Rago's qualitative measures of system stat
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/general_info/wts_by_state.png)
 
-The figure below parses out the same information (mean body weight) for each week across individual fishing fleets. Here, Wet boats refer to vessels with refrigerated sea water or ice holds.
-:::: {class='fluid-row'}
 
-::: {class='col-md-6'}
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/general_info/wts_by_fleet.png)
-:::
+Here we can see the spread across years by fleet. 
 
-::: {class='col-md-6'}
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/general_info/wts_by_flt_yr.png) 
 
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/general_info/wts_by_flt_yr.png)
 
-:::
-::::
 
+The figures below parses out the same information (mean body weight) for each 
+week across individual fishing fleets. Here, Wet boats refer to vessels with 
+refrigerated sea water or ice holds.
+
+
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/general_info/wt_box_wk.png)
 
 
 
@@ -311,7 +331,7 @@ The figure below parses out the same information (mean body weight) for each wee
 
 The figure below highlights the 100 meter isobath and associated fishing depths throughout the 2021 season. 
 
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/general_info/ft_locs_depth-with_bathy.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/general_info/ft_locs_depth-with_bathy.png){width = 75%}
 
 
 ## NAFO subareas 
