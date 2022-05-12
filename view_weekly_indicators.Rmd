@@ -140,16 +140,16 @@ AG: Two WCRs in our region -- both connected to the Gulf Stream with individual 
 ***
 ***
 **Mean Salinity (Pioneer Array, CENTRAL)**
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202219-SAL-CENTRAL.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202218-SAL-CENTRAL.png)
 
 
 
 **Mean Salinity (Pioneer Array, INSHORE)**
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202219-SAL-INSH.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202218-SAL-INSHORE.png)
 
 
 **Mean Salinity (Pioneer Array, OFFSHORE)**
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202219-SAL-OFFSH.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202218-SAL-OFFSHORE.png)
 
 
 
