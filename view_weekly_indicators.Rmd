@@ -93,10 +93,45 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 
 ```
 
+## Week 20 (May 8 - May 14)
+
+:::: {class='fluid-row'}
+
+::: {class='col-md-6'}
+**JCC May 09, 2022**
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0509.png)
+:::
+
+::: {class='col-md-6'}
+**JCC May 11, 2022**
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0511.png)
+
+:::
+::::
 
 ## Week 19 (May 2-8)
 **Chlorophyll**
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/chl_0505.png)
+
+
+:::: {class='fluid-row'}
+
+::: {class='col-md-6'}
+**JCC May 04, 2022**
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0504.png)
+:::
+
+::: {class='col-md-6'}
+**JCC May 06, 2022**
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0506.png)
+
+:::
+::::
+
+AG: Notes two WCRs in our region -- both connected to the Gulf Stream with individual Squid bridges or streamers.
+
+
+
 **Mean Salinity (Pioneer Array, CENTRAL)**
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202219-SAL-CENTRAL.png)
 
@@ -114,17 +149,9 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 **YTD : Mean Salinity (Pioneer Array, w/2021 reference)**
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/A_2021-2022-SAL-CENTRAL.png)
 
-***
-*** 
-* Notes:
 
-  + 
-  + 
-  +
-
-***
-Trial run : 
 ```{r, eval=FALSE}
+# Trial run : 
 # This works in chunk but wont knit **
 jc_weekly <- list.files(here::here('images/jc_charts'), 
                         pattern = '.png', 
@@ -236,12 +263,37 @@ it and then down along the GS crest's leading edge.
 # 
 ```
 
+## Body weight trends across years
+***
+
+A quick look at the average body weight data from 1997 through 2019. The data
+were derived via subsamples collected from landings from various Illex 
+processors. Colors correspond to Paul Rago's qualitative measures of system state, where green indicates  a 'Good' year, pink an 'Average' year and blue a 'Poor' year. 
+
+
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/general_info/wts_by_state.png)
+
+The figure below parses out the same information (mean body weight) for each week across individual fishing fleets. Here, Wet boats refer to vessels with refrigerated sea water or ice holds.
+:::: {class='fluid-row'}
+
+::: {class='col-md-6'}
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/general_info/wts_by_fleet.png)
+:::
+
+::: {class='col-md-6'}
+
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/general_info/wts_by_flt_yr.png)
+
+:::
+::::
+
+
+
 
 ## Fishing depths 2021 Fishing Season
 ***
 
-The figure below highlights the 100 meter isobath and associated fishing 
-depths throughout the 2021 season. 
+The figure below highlights the 100 meter isobath and associated fishing depths throughout the 2021 season. 
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/general_info/ft_locs_depth-with_bathy.png)
 
