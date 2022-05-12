@@ -1,15 +1,15 @@
 ---
 title: "Weekly Indicators"
 subtitle: "Fishing season 2022"
-output:  
+output:
  html_document:
     code_fold: hide
     toc: true
     toc_depth: 2
     toc_float: true
     number_sections: false
-
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,
@@ -93,7 +93,7 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 
 ```
 
-## Week 20 (May 8 - May 14)
+## Week 19 (May 8 - May 14)
 
 :::: {class='fluid-row'}
 
@@ -103,35 +103,42 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 :::
 
 ::: {class='col-md-6'}
+
 **JCC May 11, 2022**
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0511.png)
 
 :::
 ::::
 
-## Week 19 (May 2-8)
+AG: Two WCRs in our region -- both connected to the Gulf Stream with individual Squid bridges or streamers.
+***
+
+## Week 18 (May 1-7)
+
 **Chlorophyll**
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/chl_0505.png)
+
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/chl_0505.png){width=65%}
 
 
 :::: {class='fluid-row'}
 
 ::: {class='col-md-6'}
+
 **JCC May 04, 2022**
+
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0504.png)
 :::
 
 ::: {class='col-md-6'}
+
 **JCC May 06, 2022**
+
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0506.png)
 
 :::
 ::::
-
-AG: Notes two WCRs in our region -- both connected to the Gulf Stream with individual Squid bridges or streamers.
-
-
-
+***
+***
 **Mean Salinity (Pioneer Array, CENTRAL)**
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202219-SAL-CENTRAL.png)
 
@@ -167,7 +174,11 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 ```
 
 
-## Week 17 (April 25 - May 1)
+## Week 17 (April 24 - April 30)
+
+**Chlorophyll**
+
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202217-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS-.png){width=65%}
 
 :::: {class='fluid-row'}
 
@@ -186,7 +197,12 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 # April
 ***
 
-## Week 15 (April 11 - April 17)
+## Week 16 (April 17 - April 23)
+**Chlorophyll**
+
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202216-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS-.png){width=65%}
+
+## Week 15 (April 10 - April 16)
 
 :::: {class='fluid-row'}
 
@@ -220,7 +236,7 @@ AM: Lots going on out there to keep track of as we inch closer to squid season.
 No signs of squid yet, other than some large ones in the bellies of tuna 
 offshore
 
-## Week 14 (April 4 - April 10)
+## Week 14 (April 3 - April 9)
 
 :::: {class='fluid-row'}
 
