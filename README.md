@@ -6,18 +6,6 @@
 This repository is for the development and management of the *Illex* Indicator Viewer created by the Northeast Squid Squad. The *Illex* Indicator Viewer serves two purposes, the first of which is to display near-real-time oceanographic conditions in the Northwest Atlantic. Secondly, this report will serve as a living document in which to record weekly observations on current oceanographic features and fishing condition from experts in the region.  
 
 
-<a href="https://nefsc.github.io/NEFSC-illex_indicator-viewer/view_weekly_indicators.html" target="_blank"> NEFSC Illex Indicator Viewer </a>
-
-<a href="https://ssalois1.github.io/preliminary_results/index.html" target="_blank"> Test1 </a>
-
-<a href="https://nefsc.github.io/NEFSC/NEFSC-illex_indicator-viewer/view_weekly_indicators.html" target="_blank"> Test </a>
-
-[Viewer] (https://github.com/NEFSC/NEFSC-illex_indicator-viewer/blob/main/view_weekly_indicators.html)
-
-[Viewer] (https://github.com/NEFSC/NEFSC-illex_indicator-viewer/raw/main/view_weekly_indicators.html)
-
-<a href="https://nefsc.github.io/NEFSC-illex_indicator_viewer/view_weekly_indicators.html" target="_blank"> NEFSC Illex Indicator Viewer2 </a>
-
 
 ## NOAA Disclaimer
 This repository is a scientific product and is not official communication of the National Oceanic and Atmospheric Administration, or the United States Department of Commerce. All NOAA GitHub project code is provided on an ‘as is’ basis and the user assumes responsibility for its use. Any claims against the Department of Commerce or Department of Commerce bureaus stemming from the use of this GitHub project will be governed by all applicable Federal law. Any reference to specific commercial products, processes, or services by service mark, trademark, manufacturer, or otherwise, does not constitute or imply their endorsement, recommendation or favoring by the Department of Commerce. The Department of Commerce seal and logo, or the seal and logo of a DOC bureau, shall not be used in any manner to imply endorsement of any commercial product or activity by DOC or the United States Government.
