@@ -137,20 +137,21 @@ AG: Two WCRs in our region -- both connected to the Gulf Stream with individual 
 
 :::
 ::::
-***
-***
+
+
+:::: {class='fluid-row'}
+::: {class='col-md-6'}
 **Mean Salinity (Pioneer Array, CENTRAL)**
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202218-SAL-CENTRAL.png)
-
-
-
+:::
+::: {class='col-md-6'}
 **Mean Salinity (Pioneer Array, INSHORE)**
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202218-SAL-INSHORE.png)
-
+:::
+::::
 
 **Mean Salinity (Pioneer Array, OFFSHORE)**
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202218-SAL-OFFSHORE.png)
-
 
 
 **YTD : Mean Salinity (Pioneer Array, w/2021 reference)**
@@ -176,10 +177,12 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 # April
 ***
 
-## Week 17 (April 24 - April 30)
-:::: {class='fluid-row'}
 
+## Week 17 (April 24 - April 30)
+
+:::: {class='fluid-row'}
 ::: {class='col-md-6'}
+
 **Sea Surface Temperature**
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202217-MUR-V04.1-NES-SST-STATS.png)
@@ -192,28 +195,27 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202217-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS-.png)
 :::
 ::::
-***
-:::: {class='fluid-row'}
 
+:::: {class='fluid-row'}
 ::: {class='col-md-6'}
+
 **JCC April 25, 2022**
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0425.png)
 :::
-
 ::: {class='col-md-6'}
 **JCC April 27, 2022**
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0427.png)
-
 :::
 ::::
 
 ## Week 16 (April 17 - April 23)
-**Sea Surface Temperature**
 :::: {class='fluid-row'}
-
 ::: {class='col-md-6'}
+**Sea Surface Temperature**
+
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202216-MUR-V04.1-NES-SST-STATS.png)
 :::
+
 ::: {class='col-md-6'}
 
 **Chlorophyll**
@@ -221,22 +223,18 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202216-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS-.png)
 :::
 ::::
-***
 
 ## Week 15 (April 10 - April 16)
 
 :::: {class='fluid-row'}
-
 ::: {class='col-md-6'}
 **JCC April 11, 2022**
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0411.png)
 :::
-
 ::: {class='col-md-6'}
 
 **JCC April 13, 2022**
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0413.png)
-
 :::
 ::::
 
