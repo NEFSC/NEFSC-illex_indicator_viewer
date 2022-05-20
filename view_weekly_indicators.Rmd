@@ -94,23 +94,41 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 ```
 ## Week 20 (May 15 - May 21)
 
+
 :::: {class='fluid-row'}
 
 ::: {class='col-md-6'}
+
 **Sea Surface Temperature**
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202220-MUR-V04.1-NES-SST-STATS.png){width=55%}
+
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202220-MUR-V04.1-NES-SST-STATS_WHALE.png)
 :::
 
 ::: {class='col-md-6'}
+
 **Chlorophyll**
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202220-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS.png){width=55%}
+
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202220-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS.png)
 :::
 ::::
 
 
-**Mean Salinity (Pioneer Array, OFFSHORE)**
+
+
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202220-SAL-OFFSHORE.png)
 
+
+**NOTES** 
+
++ AS: May be another shingle forming, keep an eye in coming weeks 
++ Many North Atlantic Right whales located On the NE edge of Grand Banks 
+(on the GOM side)
++ Whales not expected in that region
++ Oceanographic conditions that may be aggregating the whales? 
+  + Increased flow at bifurcation point at Northern part of channel
+  + Increased food availability here? 
+
++ No *Illex* present in Hudson or Norfolk canyons 
 
 
 ## Week 19 (May 8 - May 14)
@@ -441,7 +459,7 @@ ggplot() +
 
 
 ```{r, canyons, eval = FALSE}
-# wd = ('C:/Users/sarah.salois/Documents/github/khyde/SquidSquad')
+# wd = ('C:/Users/sarah.salois/Documents/shape_files')
 # canyons <- readOGR(wd, 'major_canyons')
 # # reproject data
 # # Transform units from UTC (meters) to LatLon (decimal degrees)
