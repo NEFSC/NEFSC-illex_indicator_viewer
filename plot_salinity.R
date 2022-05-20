@@ -104,7 +104,7 @@ ann_sal_offsh <- pa_offsh_22_ts %>%
 p1 <- pa_offsh_22 %>%
   ggplot(aes(x = date, y = msal)) +
   geom_line(lwd = 1.4, color = 'darkblue') +
-  geom_point(aes(fill = 'darkblue'),pch=21,size=3,colour='black') +
+  geom_point(aes(fill = 'darkblue'),pch = 19, size = 1.2,colour = 'darkblue') +
   geom_hline(yintercept = as.numeric(ann_sal_offsh[1,2]), 
              lty = 2, col = 'darkblue', lwd = 1) +
   labs(title = 'Salinity: Offshore Surface Mooring: Near Surface', 
@@ -112,8 +112,14 @@ p1 <- pa_offsh_22 %>%
                          round(max(pa_offsh_22$pressure),2), ' M, Mean:', 
                          round(mean(pa_offsh_22$pressure),2), ' M')) +
   ylab('Salinity') +
+  xlab('Date') +
   scale_fill_discrete(guide='none') +
-  theme_minimal()
+  theme_minimal()+
+  theme(axis.title.x = element_text(size = 15),
+        axis.title.y = element_text(size = 15),
+        axis.text = element_text(size = 15)) +
+  ecodata::theme_ts()
+
 
 p2 <- pa_offsh_22 %>%
   ggplot(aes(x = date, y = msal)) +
@@ -121,13 +127,14 @@ p2 <- pa_offsh_22 %>%
   geom_point(aes(fill = 'darkblue'),pch = 21, size = 3,colour = 'black') +
   geom_hline(yintercept = as.numeric(ann_sal_offsh[1,2]), 
              lty = 2, col = 'darkblue', lwd = 1) +
-  labs(title = 'Week 18, 2022', subtitle ='May 01- 07') +
+  labs(title = 'Week 20, 2022', subtitle ='May 15- 21') + # Change date 
   ylab('Salinity') + 
   xlab('Date') +
   scale_fill_discrete(guide='none') +
-  scale_x_date(limit=c(as.Date('2022-05-08'), 
-                       as.Date('2022-05-14'))) +
-  theme_minimal()
+  scale_x_date(limit=c(as.Date('2022-05-15'), # Change date range
+                       as.Date('2022-05-21'))) +
+  theme_minimal() + 
+  ecodata::theme_ts()
 
 (plot_spacer() + p2) /  (p1)
 
