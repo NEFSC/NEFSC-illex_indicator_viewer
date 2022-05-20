@@ -92,9 +92,31 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 # Another way to include images
 
 ```
+## Week 20 (May 15 - May 21)
+
+:::: {class='fluid-row'}
+
+::: {class='col-md-6'}
+**Sea Surface Temperature**
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202220-MUR-V04.1-NES-SST-STATS.png){width=55%}
+:::
+
+::: {class='col-md-6'}
+**Chlorophyll**
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202220-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS.png){width=55%}
+:::
+::::
+
+
+**Mean Salinity (Pioneer Array, OFFSHORE)**
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202220-SAL-OFFSHORE.png)
+
+
 
 ## Week 19 (May 8 - May 14)
+
 **Sea Surface Temperature**
+
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202219-MUR-V04.1-NES-SST-STATS.png){width=55%}
 
 :::: {class='fluid-row'}

@@ -71,7 +71,7 @@ p2 <- pa_insh_22 %>%
 (plot_spacer() + p2) /  (p1)
 
 # Offshore
-pa_offsh_22 <- read.csv('PIONEER_OFFSHORE_SURFACE_2022.csv')
+pa_offsh_22 <- read.csv('PIONEER_OFFSHORE_SURFACE_2022.csv') # 
 pa_offsh_22 <- pa_offsh_22[-1,]
 pa_offsh_22$date <- ymd_hms(pa_offsh_22$time)
 pa_offsh_22 <- pa_offsh_22 %>%
@@ -100,7 +100,7 @@ pa_offsh_22_ts <- pa_offsh_22 %>%
 ann_sal_offsh <- pa_offsh_22_ts %>%
   dplyr::group_by(year) %>%
   summarise(mean_sal = mean(msal))
-
+#### USED THIS FOR VIEWER #####
 p1 <- pa_offsh_22 %>%
   ggplot(aes(x = date, y = msal)) +
   geom_line(lwd = 1.4, color = 'darkblue') +
@@ -125,8 +125,8 @@ p2 <- pa_offsh_22 %>%
   ylab('Salinity') + 
   xlab('Date') +
   scale_fill_discrete(guide='none') +
-  scale_x_date(limit=c(as.Date('2022-05-01'), 
-                       as.Date('2022-05-07'))) +
+  scale_x_date(limit=c(as.Date('2022-05-08'), 
+                       as.Date('2022-05-14'))) +
   theme_minimal()
 
 (plot_spacer() + p2) /  (p1)
