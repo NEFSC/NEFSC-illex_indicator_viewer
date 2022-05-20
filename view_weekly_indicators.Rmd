@@ -158,13 +158,16 @@ AG: Two WCRs in our region -- both connected to the Gulf Stream with individual 
 ## Week 18 (May 1-7)
 :::: {class='fluid-row'}
 ::: {class='col-md-6'}
+
 **Sea Surface Temperature**
+
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202218-MUR-V04.1-NES-SST-STATS.png)
 :::
 ::: {class='col-md-6'}
+
 **Chlorophyll**
 
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202218-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS.png){width=65%}
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202218-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS.png)
 :::
 ::::
 
@@ -177,13 +180,11 @@ AG: Two WCRs in our region -- both connected to the Gulf Stream with individual 
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0504.png)
 :::
-
 ::: {class='col-md-6'}
 
 **JCC May 06, 2022**
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0506.png)
-
 :::
 ::::
 
