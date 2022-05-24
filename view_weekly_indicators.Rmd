@@ -24,6 +24,8 @@ library(cowplot)
 library(patchwork)
 library(flexdashboard)
 library(here)
+library(vembedr) # maybe use this if ember does not work 
+library(embedr) # this is for embed_video
 #,fig.path = "/images/" )
 # knitr::opts_knit$set(base.dir = 'C:/Users/sarah.salois/Desktop/github/khyde/SquidSquad/',
 #                    base.url = "/")
@@ -92,6 +94,39 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 # Another way to include images
 
 ```
+## Week 21 (May 22 - May 28)
+
+
+
+**2 Week SST animation w/webm in R chunk, 5 fps **
+```{r, eval=TRUE, width = 12, height = 10}
+
+
+embed_video(here::here('images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm'))
+
+## to embed right in doc not chunk
+# 
+
+# <img src='/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.mp4' type="video/mp4"/>
+# 
+# **SST animation w/webm, 5 fps **
+# 
+# <img src='/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm' type="video/webm"/>
+```
+
+
+**2 week SST animation w/webm in html, 5 fps **
+
+<video width="500" height="500" controls>
+  <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm" type="video/webm">
+</video>
+
+**One month SST animation w/webm in html, 5 fps **
+
+<video width="500" height="500" controls>
+  <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/DD_20220420_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm" type="video/webm">
+</video>
+
 ## Week 20 (May 15 - May 21)
 
 
