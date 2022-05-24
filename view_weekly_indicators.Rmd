@@ -104,6 +104,14 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 
 embed_video(here::here('images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm'))
 
+```
+
+**One Month SST animation w/webm in R chunk, 5 fps **
+
+
+```{r}
+embed_video(here::here('images/animations/DD_20220420_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm'))
+
 ## to embed right in doc not chunk
 # 
 
@@ -126,6 +134,8 @@ embed_video(here::here('images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES
 <video width="500" height="500" controls>
   <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/DD_20220420_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm" type="video/webm">
 </video>
+
+***
 
 ## Week 20 (May 15 - May 21)
 
