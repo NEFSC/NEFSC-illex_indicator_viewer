@@ -96,30 +96,16 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 ```
 ## Week 21 (May 22 - May 28)
 
+```{r, eval=FALSE}
 
-
-**2 Week SST animation w/webm in R chunk, 5 fps **
-```{r, eval=TRUE, width = 12, height = 10}
-
-
-embed_video(here::here('images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm'))
+# 2 Week SST animation w/webm in R chunk, 5 fps 
+# embed_video(here::here('images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm'))
 
 ```
 
-**One Month SST animation w/webm in R chunk, 5 fps **
-
-
-```{r}
-embed_video(here::here('images/animations/DD_20220420_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm'))
-
-## to embed right in doc not chunk
-# 
-
-# <img src='/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.mp4' type="video/mp4"/>
-# 
-# **SST animation w/webm, 5 fps **
-# 
-# <img src='/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm' type="video/webm"/>
+```{r, eval = FALSE}
+# One month SST animation w/webm in R chunk, 5 fps 
+# embed_video(here::here('images/animations/DD_20220420_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm'))
 ```
 
 
@@ -135,7 +121,13 @@ embed_video(here::here('images/animations/DD_20220420_20220520-MUR-V04.1-1KM-NES
   <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/DD_20220420_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm" type="video/webm">
 </video>
 
-***
+
+
+**JCC May 23, 2022**
+
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0523.png)
+
+
 
 ## Week 20 (May 15 - May 21)
 
@@ -159,6 +151,22 @@ embed_video(here::here('images/animations/DD_20220420_20220520-MUR-V04.1-1KM-NES
 
 
 
+:::: {class='fluid-row'}
+::: {class='col-md-6'}
+
+**JCC May 18, 2022**
+
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0518.png)
+:::
+::: {class='col-md-6'}
+
+**JCC May 20, 2022**
+
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0520.png)
+:::
+::::
+
+***
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202220-SAL-OFFSHORE.png)
 
