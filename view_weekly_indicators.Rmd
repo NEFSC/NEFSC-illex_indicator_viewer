@@ -140,7 +140,7 @@ embed_video(here::here('images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES
 **2 week SST animation**
 
 <video width="500" height="500" controls>
-  <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm" type="video/webm">
+  <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/DD_20220514_20220527-MUR-V04.1-1KM-NES-SST-FPS_3.webm" type="video/webm">
 </video>
 
 *video credit: Kim Hyde*
@@ -201,6 +201,14 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 :::
 ::::
 *image credit: Kim Hyde*
+
+**2 week SST animation**
+
+<video width="500" height="500" controls>
+  <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm" type="video/webm">
+</video>
+
+*video credit: Kim Hyde*
 
 ### Mesoscale features
 
