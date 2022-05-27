@@ -136,18 +136,20 @@ embed_video(here::here('images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES
 ```
 
 
-**2 week SST animation courtesy of Kim Hyde**
+**2 week SST animation**
 
 <video width="500" height="500" controls>
   <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm" type="video/webm">
 </video>
 
+*video credit: Kim Hyde*
 
 ### Mesoscale features
 
 **JCC May 23, 2022**
 
-![image credit: Jenifer Clark](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220523.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220523.png)
+*image credit: Jenifer Clark*
 
 ### Weekly Catch 
 
@@ -163,6 +165,8 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
                                           rundate, "_QM.png")))
   
 ```
+
+*image credit: Andy Jones, Daniel Hocking*
 
 ### Salinity
 
@@ -207,6 +211,7 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 **JCC May 20, 2022**
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220520.png)
+*image credit: Jenifer Clark*
 
 
 ### Salinity
@@ -251,6 +256,7 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 
 :::
 ::::
+*image credit: Jenifer Clark*
 
 ### Salinity
 
@@ -295,6 +301,8 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220506.png)
 :::
 ::::
+*image credit: Jenifer Clark*
+
 
 ### Salinity 
 
@@ -374,6 +382,8 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220427.png)
 :::
 ::::
+*image credit: Jenifer Clark*
+
 ### Salinity
 
 ### Notes
@@ -422,6 +432,9 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220413.png)
 :::
 ::::
+*image credit: Jenifer Clark*
+
+
 ### Salinity
 
 ### Notes
@@ -460,6 +473,7 @@ offshore
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220408.png)
 :::
 ::::
+*image credit: Jenifer Clark*
 
 ### Salinity
 
@@ -489,9 +503,7 @@ it and then down along the GS crest's leading edge.
 [Major Canyons](https://portal.midatlanticocean.org/visualize/#x=-74.00&y=39.00&z=7&logo=true&controls=true&dls%5B%5D=true&dls%5B%5D=1&dls%5B%5D=3944&basemap=ocean&themes%5Bids%5D%5B%5D=28&tab=active&legends=false&layers=true)
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/general_info/aggCPUEplot_canyons.png)
-```{r, eval = FALSE}
-# 
-```
+*image credit: Brooke Lowman*
 
 ## Body weight trends across years
 ***
@@ -525,6 +537,7 @@ refrigerated sea water or ice holds.
 The figure below highlights the 100 meter isobath and associated fishing depths throughout the 2021 season. 
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/general_info/ft_locs_depth-with_bathy.png){width = 75%}
+*image credit: Kim Hyde*
 
 
 ## NAFO subareas 
@@ -693,6 +706,7 @@ Glen Gawarkiewicz
 
 :::
 ::::
+*image credit: Jenifer Clark*
 
 Avijit noted: Temperature along the shelfbreak
 (from SNE to south of Georges Bank) was about 75F on 7/23/21, increases to
@@ -713,6 +727,7 @@ features more like a warm blob. Could it be a new marine heat wave?
 
 **In-situ Salinity time series for the  month of July 2021 (from Pioneer Array)**
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/pa_0721.png)
+*image credit: Glen Gawarkiewicz*
 
 Glen noted: "About a week ago there was a big drop (nearly 1 psu) in salinity at
 the inshore Pioneer Array mooring at 7 m depth. This is indicative of a big
