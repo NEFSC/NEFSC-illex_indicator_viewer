@@ -5,7 +5,7 @@ output:
  html_document:
     code_fold: hide
     toc: true
-    toc_depth: 2
+    toc_depth: 3
     toc_float: true
     number_sections: false
 ---
@@ -14,8 +14,9 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE,
                       message = FALSE, 
-                      warning = FALSE)
-knitr::opts_chunk$set(dev="png")
+                      warning = FALSE,
+                      knitr.duplicate.label = "allow")
+#knitr::opts_chunk$set(dev="png", options(knitr.duplicate.label = "allow"))
 
 library(rgdal)
 library(raster)
@@ -83,6 +84,7 @@ The plots below contain mapped images of Sea Surface Temperature (SST) and
 Chlorophyll A (CHL) and the associated frontal dynamics for both. Additionally, 
 you will find the Jenifer Clark charts for this week. 
 ```{r, fig.width = 6, eval = FALSE}
+#```{r, figures-side, fig.show="hold", out.width="50%"}
 # This bit is an updated way to add in .png's, hopefully use to automate
 # Need to decide on naming scheme and folder allocation
 rundate <- "0505" 
@@ -96,9 +98,9 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 ```
 ## Week 21 (May 22 - May 28)
 
+### Oceanographic indicators
 
 :::: {class='fluid-row'}
-
 ::: {class='col-md-6'}
 
 **Sea Surface Temperature**
@@ -114,64 +116,68 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 :::
 ::::
 
-:::: {class='fluid-row'}
+```{r, figures-chlside, fig.show="hold", out.width="50%"}
+par(mar = c(4, 4, .1, .1))
 
-::: {class='col-md-6'}
+rundate <- '202221'
 
-**CHL**
-
-:::
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202221-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS.png)
-::: {class='col-md-6'}
-**CHL ANOMALY**
-
-:::
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202221-WEEK_21_1998_2021-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-ANOM.png)
-::::
+knitr::include_graphics(here::here(paste0("images/chl/W_", rundate, "-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS.png")))
+                        
+knitr::include_graphics(here::here(paste0("images/chl/W_", rundate, "-WEEK_21_1998_2021-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-ANOM.png")))
+                        
+```
 
 
-
-
-```{r, eval=FALSE}
-
+```{r, eval=FALSE,  out.width="100%"}
+# This is too small - html is better viewing
 # 2 Week SST animation w/webm in R chunk, 5 fps 
-# embed_video(here::here('images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm'))
+embed_video(here::here('images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm'))
 
 ```
 
-```{r, eval = FALSE}
-# One month SST animation w/webm in R chunk, 5 fps 
-# embed_video(here::here('images/animations/DD_20220420_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm'))
-```
 
-
-**2 week SST animation w/webm in html, 5 fps**
+**2 week SST animation courtesy of Kim Hyde**
 
 <video width="500" height="500" controls>
   <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm" type="video/webm">
 </video>
 
-**One month SST animation w/webm in html, 5 fps**
 
-<video width="500" height="500" controls>
-  <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/DD_20220420_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm" type="video/webm">
-</video>
-
-
+### Mesoscale features
 
 **JCC May 23, 2022**
 
-![image credit: Jenifer Clark](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0523.png)
+![image credit: Jenifer Clark](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220523.png)
+
+### Weekly Catch 
+
+```{r, figures-catchside, fig.show="hold", out.width="50%"}
+par(mar = c(4, 4, .1, .1))
+
+rundate <- '202221'
+
+knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
+                                          rundate, "_SF.png")))
+                        
+knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
+                                          rundate, "_QM.png")))
+  
+```
+
+### Salinity
 
 
-**Study Fleet *Illex* Catch YTD  May 26, 2022**
 
-![image credit: Andy Jones](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/study_fleet/W_202221_SF.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202221_SAL_OFFSHORE.png)
 
 
+### Notes
+
++ GG & AS: Shingle starting to wrap around WCR - possible squid bridge connection 
 
 ## Week 20 (May 15 - May 21)
 
+### Oceanographic indicators
 
 :::: {class='fluid-row'}
 
@@ -190,22 +196,24 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 :::
 ::::
 
+### Mesoscale features
 
 
 **JCC May 18, 2022**
 
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0518.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220518.png)
 
 
 **JCC May 20, 2022**
 
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0520.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220520.png)
 
+
+### Salinity
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202220-SAL-OFFSHORE.png)
 
-
-**NOTES** 
+### Notes 
 
 + AS: May be another shingle forming, keep an eye in coming weeks 
 + Many North Atlantic Right whales located On the NE edge of Grand Banks 
@@ -220,29 +228,41 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 
 ## Week 19 (May 8 - May 14)
 
+### Oceanographic indicators
+
 **Sea Surface Temperature**
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202219-MUR-V04.1-NES-SST-STATS.png){width=55%}
+
+
+### Mesoscale features
 
 :::: {class='fluid-row'}
 
 ::: {class='col-md-6'}
 **JCC May 09, 2022**
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0509.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220509.png)
 :::
 
 ::: {class='col-md-6'}
 
 **JCC May 11, 2022**
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0511.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220511.png)
 
 :::
 ::::
 
-AG: Two WCRs in our region -- both connected to the Gulf Stream with individual Squid bridges or streamers.
+### Salinity
+
+### Notes
++ AG: Two WCRs in our region -- both connected to the Gulf Stream with individual Squid bridges or streamers.
+
 ***
 
 ## Week 18 (May 1-7)
+
+### Oceanographic indicators
+
 :::: {class='fluid-row'}
 ::: {class='col-md-6'}
 
@@ -258,6 +278,7 @@ AG: Two WCRs in our region -- both connected to the Gulf Stream with individual 
 :::
 ::::
 
+### Mesoscale features 
 
 :::: {class='fluid-row'}
 
@@ -265,15 +286,17 @@ AG: Two WCRs in our region -- both connected to the Gulf Stream with individual 
 
 **JCC May 04, 2022**
 
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0504.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220504.png)
 :::
 ::: {class='col-md-6'}
 
 **JCC May 06, 2022**
 
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0506.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220506.png)
 :::
 ::::
+
+### Salinity 
 
 
 :::: {class='fluid-row'}
@@ -311,11 +334,15 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 
 ```
 
+### Notes
+
+
 # April
 ***
 
-
 ## Week 17 (April 24 - April 30)
+
+### Oceanographic indicators
 
 :::: {class='fluid-row'}
 ::: {class='col-md-6'}
@@ -333,19 +360,28 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 :::
 ::::
 
+
+### Mesoscale features
+
 :::: {class='fluid-row'}
 ::: {class='col-md-6'}
 
 **JCC April 25, 2022**
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0425.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220425.png)
 :::
 ::: {class='col-md-6'}
 **JCC April 27, 2022**
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0427.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220427.png)
 :::
 ::::
+### Salinity
+
+### Notes
 
 ## Week 16 (April 17 - April 23)
+
+### Oceanographic indicators
+
 :::: {class='fluid-row'}
 ::: {class='col-md-6'}
 **Sea Surface Temperature**
@@ -361,20 +397,34 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 :::
 ::::
 
+### Mesoscale features
+
+### Salinity
+
+### Notes
+
+
 ## Week 15 (April 10 - April 16)
+
+### Oceanographic indicators
+
+
+### Mesoscale features
 
 :::: {class='fluid-row'}
 ::: {class='col-md-6'}
 **JCC April 11, 2022**
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0411.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220411.png)
 :::
 ::: {class='col-md-6'}
 
 **JCC April 13, 2022**
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0413.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220413.png)
 :::
 ::::
+### Salinity
 
+### Notes
 AG: Things are heating up with really warm GS water closing in on the shelf 
 break near 67W! 
 
@@ -394,18 +444,26 @@ offshore
 
 ## Week 14 (April 3 - April 9)
 
+### Oceanographic indicators
+
+
+### Mesoscale features 
 :::: {class='fluid-row'}
 
 ::: {class='col-md-6'}
 **JCC April 06, 2022**
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0406.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220406.png)
 :::
 
 ::: {class='col-md-6'}
 **JCC April 08, 2022**
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0408.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220408.png)
 :::
 ::::
+
+### Salinity
+
+### Notes
 AG: (4/6/22) There is one WCR on the shelf break and a large streamer along the
 MAB shelf. A lot of activity to the east of the Ring-meander set up at 65W. 
 
@@ -457,7 +515,7 @@ week across individual fishing fleets. Here, Wet boats refer to vessels with
 refrigerated sea water or ice holds.
 
 
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/general_info/wt_box_wk.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/general_info/W_wt_box.png)
 
 
 
@@ -610,12 +668,12 @@ Glen Gawarkiewicz
 
 ::: {class='col-md-6'}
 **JCC: July 23 2021**
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_72321.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20210723.png)
 :::
   
 ::: {class='col-md-6'}
 **JCC: July 26 2021**
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_72621.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20210726.png)
 :::
 ::::
 
@@ -624,14 +682,14 @@ Glen Gawarkiewicz
 ::: {class='col-md-6'}
 
 **JCC: August 2 2021**
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_8221.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20210802.png)
 
 :::
 
 ::: {class='col-md-6'}
 
 **JCC: August 4 2021**
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_8421.png)
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20210804.png)
 
 :::
 ::::
