@@ -69,11 +69,13 @@
     VER = VERSION[V]
     
     ; ===> Make the project directories
-    DIR_VER = !S.ILLEX_INDICATOR_VIEWER + VER + SL
-    DNAME = 'DIR_'  + ['FILES','EXTRACTS','PNGS','COMPOSITES']                        ; The tag name for the directory in the structure
-    DIRS  = DIR_VER + ['FILES','EXTRACTS','PNGS','COMPOSITES'] + SL  ; The actual directory name
+    DIR_PRO = !S.ILLEX_INDICATOR_VIEWER
+    DIR_VER = DIR_PRO + VER + SL
+    DIRNAMES = ['FILES','EXTRACTS','PNGS','ANIMATIONS','COMPOSITES'] 
+    DNAME = 'DIR_'  + DIRNAMES                                                                      ; The tag name for the directory in the structure
+    DIRS  = DIR_VER + DIRNAMES + SL                                                                 ; The actual directory name
     DIR_TEST, DIRS                                                                                  ; Make the output directories if they don't already exist
-    DSTR = CREATE_STRUCT('DIR_VERSION',DIR_VER)                                                     ; Create the directory structure
+    DSTR = CREATE_STRUCT('DIR_PROJECT',DIR_PRO,'DIR_VERSION',DIR_VER)                               ; Create the directory structure
     FOR D=0, N_ELEMENTS(DIRS)-1 DO DSTR=CREATE_STRUCT(DSTR,DNAME[D],DIRS[D])                        ; Add each directory to the structure
 
     ; ===> Get the VERSION specific product information
@@ -132,9 +134,24 @@
     PSTR = []
     FOR P=0, N_ELEMENTS(PRODS)-1 DO BEGIN
       SPROD = PRODS[P]
+      ATITLE = ''
+      MONTH_SCALE = []
       CASE SPROD OF
-        'CHLOR_A':  BEGIN & DTSET=CHL_DATASET & TPSET=CHL_TEMP & SPROD=SPROD+'-'+CHL_ALG & DWLPROD='CHL1' & PTAG='MED'   & PSCALE='CHLOR_A_0.01_10' & PAL='PAL_NAVY_GOLD'  & ASCALE='RATIO'    & APAL='PAL_BLUEGREEN_ORANGE' & END
-        'SST':      BEGIN & DTSET=SST_DATASET & TPSET=SST_TEMP & SPROD=SPROD             & DWLPROD='' & PTAG='AMEAN' & PSCALE='SST_0_30'       & PAL='PAL_BLUE_RED'   & ASCALE='DIF_-5_5' & APAL='PAL_ANOM_BWR'    & END
+        'CHLOR_A':  BEGIN & DTSET=CHL_DATASET & TPSET=CHL_TEMP & SPROD=SPROD+'-'+CHL_ALG & DWLPROD='CHL1' & PTAG='MED'   & PSCALE='CHLOR_A_0.01_10' & PAL='PAL_NAVY_GOLD'  & ASCALE='RATIO'    & APAL='PAL_BLUEGREEN_ORANGE' & ATITLE='Chlorophyll Anomaly (Ratio)' & END
+        'SST':      BEGIN & DTSET=SST_DATASET & TPSET=SST_TEMP & SPROD=SPROD             & DWLPROD='' & PTAG='AMEAN' & PSCALE='SST_0_30'       & PAL='PAL_BLUERED'   & ASCALE='DIF_-5_5' & APAL='PAL_SUNSHINE_DIF' & ATITLE='SST Anomaly ' + UNITS('SST',/NO_NAME) 
+                            MONTH_SCALE = CREATE_STRUCT('MO1', 'SST_0_30',$
+                                                      'M02', 'SST_0_30',$
+                                                      'M03', 'SST_0_30',$
+                                                      'M04', 'SST_5_30',$
+                                                      'M05', 'SST_5_30',$
+                                                      'M06', 'SST_10_30',$
+                                                      'M07', 'SST_10_30',$
+                                                      'M08', 'SST_15_30',$
+                                                      'M09', 'SST_15_30',$
+                                                      'M10', 'SST_10_30',$
+                                                      'M11', 'SST_5_30',$
+                                                      'M12', 'SST_5_30') 
+          END        
         'GRAD_CHL': BEGIN & DTSET=GRADCHL_DATASET & TPSET=GS_TEMP & SPROD=SPROD+'-'+GCHL_ALG & DWLPROD='' & PTAG='' & PSCALE='' & PAL='' & ASCALE='' & APAL='' & END
         'GRAD_SST': BEGIN & DTSET=GRADSST_DATASET & TPSET=GC_TEMP & SPROD=SPROD+'-'+GSST_ALG & DWLPROD='' & PTAG='' & PSCALE='' & PAL='' & ASCALE='' & APAL='' & END
         'MICRO_PERCENTAGE': BEGIN & DTSET=PSZ_DATASET & TPSET=PSZ_TEMP & SPROD=SPROD+'-'+PSZ_ALG & TPROD=SPROD                  & PTAG='AMEAN' & PSCALE='NUM_0.0_1.0'    & PAL='PAL_DEFAULT'    & GSCALE=PSCALE            & GPAL='PAL_DEFAULT' & ASCALE='DIF_-5_5' & IMSCALE='NUM_0_0.8' & APAL='PAL_BLUEGREEN_ORANGE' & END
@@ -145,8 +162,9 @@
         'PICO':             BEGIN & DTSET=PSZ_DATASET & TPSET=PSZ_TEMP & SPROD=SPROD+'-'+PSZ_ALG & TPROD=SPROD                  & PTAG='MED'   & PSCALE='CHLOR_A_0.1_30' & PAL='PAL_NAVY_GOLD'  & GSCALE='CHLOR_A_0.03_3'  & GPAL='PAL_DEFAULT' & ASCALE='DIF_-5_5' & IMSCALE='CHLOR_A_0.01_10' & APAL='PAL_BLUEGREEN_ORANGE' & END
 
       ENDCASE ; SPROD
-      STR = CREATE_STRUCT('DATASET',DTSET,'TEMP_DATASET',TPSET,'PROD',SPROD,'DOWNLOAD_PROD',DWLPROD,'PLOT_TAG',PTAG,'PROD_SCALE',PSCALE,'PAL',PAL,'ANOM_SCALE',ASCALE,'ANOM_PAL',APAL)
-      PSTR = CREATE_STRUCT(PSTR,PRODS[P],STR)
+      STR = CREATE_STRUCT('DATASET',DTSET,'TEMP_DATASET',TPSET,'PROD',SPROD,'DOWNLOAD_PROD',DWLPROD,'PLOT_TAG',PTAG,'PROD_SCALE',PSCALE,'PAL',PAL,'ANOM_SCALE',ASCALE,'ANOM_PAL',APAL,'ANOM_TITLE',ATITLE)
+      IF MONTH_SCALE NE [] THEN STR = CREATE_STRUCT(STR,'MONTH_SCALE',MONTH_SCALE)
+      PSTR = CREATE_STRUCT(PSTR,PRODS[P],STR) 
     ENDFOR ; PRODS
     STR = CREATE_STRUCT('VERSION',VER,'INFO',ISTR,'DIRS',DSTR,'PROD_INFO',PSTR)
     IF N_ELEMENTS(VERSION) EQ 1 THEN RETURN, STR
