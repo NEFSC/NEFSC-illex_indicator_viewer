@@ -9,7 +9,9 @@ library(patchwork)
 
 # Note:
 # 1 decibar [dbar] = 1 meter sea water [msw]
-# Inshore
+
+
+#--- Inshore ---# 
 pa_insh_22 <- read.csv('PIONEER_INSHORE_SURFACE_2022.csv')
 pa_insh_22 <- pa_insh_22[-1,]
 pa_insh_22$date <- ymd_hms(pa_insh_22$time)
@@ -70,11 +72,12 @@ p2 <- pa_insh_22 %>%
 
 (plot_spacer() + p2) /  (p1)
 
-# Offshore
-pa_offsh_22 <- read.csv('PIONEER_OFFSHORE_SURFACE_2022.csv') # 
-pa_offsh_22 <- pa_offsh_22[-1,]
-pa_offsh_22$date <- ymd_hms(pa_offsh_22$time)
-pa_offsh_22 <- pa_offsh_22 %>%
+# ---- Offshore ----# 
+pa_offsh_22 <- read.csv('PIONEER_OFFSHORE_SURFACE_2022.csv') # updated weekly 
+pa_offsh_22 <- pa_offsh_22[-1,] # remove row of metadata
+pa_offsh_22$date <- ymd_hms(pa_offsh_22$time) # convert to date
+# adjust / add columns to create time steps of interest
+pa_offsh_22 <- pa_offsh_22 %>% 
   mutate(year = year(date),
          month = month(date),
          week = week(date), 
@@ -84,20 +87,24 @@ pa_offsh_22 <- pa_offsh_22 %>%
          pressure = as.numeric(pressure),
          temperature = as.numeric(temperature)) %>%
   as.data.frame()
+# Calculate daily mean 
 pa_offsh_22 <- pa_offsh_22 %>%
   group_by(date) %>%
   mutate(msal = mean(salinity))
-hist(pa_offsh_22$pressure)
+# Details about depth associated with the OFFSHORE instrument
+hist(pa_offsh_22$pressure) # view histogram of depth 
 length(unique(pa_offsh_22$pressure));mean(pa_offsh_22$pressure)
 min(pa_offsh_22$pressure);median(pa_offsh_22$pressure);max(pa_offsh_22$pressure)
-pa_offsh_22_ts <- pa_offsh_22 %>%
-  dplyr::group_by(year, month, week) %>%
-  dplyr::summarise(msal = mean(na.omit(salinity)), 
-                   mden = mean(density),
-                   mdepth = mean(pressure),
-                   mtmp = mean(temperature))
+# Calculate annual mean to add as reference point in figures
+# pa_offsh_22_ts <- pa_offsh_22 %>%
+#   dplyr::group_by(year, month, week) %>%
+#   dplyr::summarise(msal = mean(na.omit(salinity)),
+#                    mden = mean(density),
+#                    mdepth = mean(pressure),
+#                    mtmp = mean(temperature))
 
-ann_sal_offsh <- pa_offsh_22_ts %>%
+# Calculate annual mean to add as reference point in figures
+ann_sal_offsh <- pa_offsh_22 %>%
   dplyr::group_by(year) %>%
   summarise(mean_sal = mean(msal))
 #### USED THIS FOR VIEWER #####
@@ -111,9 +118,9 @@ p1 <- pa_offsh_22 %>%
        subtitle = paste0('Depth:', round(min(pa_offsh_22$pressure),2),':', 
                          round(max(pa_offsh_22$pressure),2), ' M, Mean:', 
                          round(mean(pa_offsh_22$pressure),2), ' M')) +
-  ylab('Salinity') +
+  ylab('Mean Salinity') +
   xlab('Date') +
-  scale_fill_discrete(guide='none') +
+  scale_fill_discrete(guide = 'none') +
   theme_minimal()+
   theme(axis.title.x = element_text(size = 15),
         axis.title.y = element_text(size = 15),
@@ -127,18 +134,19 @@ p2 <- pa_offsh_22 %>%
   geom_point(aes(fill = 'darkblue'),pch = 21, size = 3,colour = 'black') +
   geom_hline(yintercept = as.numeric(ann_sal_offsh[1,2]), 
              lty = 2, col = 'darkblue', lwd = 1) +
-  labs(title = 'Week 20, 2022', subtitle ='May 15- 21') + # Change date 
-  ylab('Salinity') + 
+  labs(title = 'Week 21, 2022', subtitle ='May 22- 28') + # Change date 
+  ylab('Mean Salinity') + 
   xlab('Date') +
   scale_fill_discrete(guide='none') +
-  scale_x_date(limit=c(as.Date('2022-05-15'), # Change date range
-                       as.Date('2022-05-21'))) +
+  scale_x_date(limit=c(as.Date('2022-05-22'), # Change date range
+                       as.Date('2022-05-28'))) +
   theme_minimal() + 
   ecodata::theme_ts()
-
+# Save figure to correct folder 
+png(file = here::here('images/salinity/W_202221_SAL_OFFSHORE.png')) ## Change name, also directory
 (plot_spacer() + p2) /  (p1)
-
-# Central 
+dev.off()
+# ---- Central ----- # 
 pa_22 <- read.csv('PIONEER_PMCO_CTD_2022.csv')
 pa_22 <- pa_22[-1,]
 pa_22$date <- ymd_hms(pa_22$time)
