@@ -96,6 +96,42 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 ```
 ## Week 21 (May 22 - May 28)
 
+
+:::: {class='fluid-row'}
+
+::: {class='col-md-6'}
+
+**Sea Surface Temperature**
+
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202221-MUR-V04.1-NES-SST-STATS.png)
+
+:::
+
+::: {class='col-md-6'}
+
+**SST Anomaly**
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202221-WEEK_21_2003_2021-MUR-V04.1-NES-SST-ANOM.png)
+:::
+::::
+
+:::: {class='fluid-row'}
+
+::: {class='col-md-6'}
+
+**CHL**
+
+:::
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202221-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS.png)
+::: {class='col-md-6'}
+**CHL ANOMALY**
+
+:::
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202221-WEEK_21_1998_2021-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-ANOM.png)
+::::
+
+
+
+
 ```{r, eval=FALSE}
 
 # 2 Week SST animation w/webm in R chunk, 5 fps 
@@ -109,13 +145,13 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 ```
 
 
-**2 week SST animation w/webm in html, 5 fps **
+**2 week SST animation w/webm in html, 5 fps**
 
 <video width="500" height="500" controls>
   <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm" type="video/webm">
 </video>
 
-**One month SST animation w/webm in html, 5 fps **
+**One month SST animation w/webm in html, 5 fps**
 
 <video width="500" height="500" controls>
   <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/DD_20220420_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm" type="video/webm">
@@ -125,7 +161,12 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 
 **JCC May 23, 2022**
 
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0523.png)
+![image credit: Jenifer Clark](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0523.png)
+
+
+**Study Fleet *Illex* Catch YTD  May 26, 2022**
+
+![image credit: Andy Jones](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/study_fleet/W_202221_SF.png)
 
 
 
@@ -151,22 +192,15 @@ knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
 
 
 
-:::: {class='fluid-row'}
-::: {class='col-md-6'}
-
 **JCC May 18, 2022**
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0518.png)
-:::
-::: {class='col-md-6'}
+
 
 **JCC May 20, 2022**
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_0520.png)
-:::
-::::
 
-***
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202220-SAL-OFFSHORE.png)
 
