@@ -126,6 +126,7 @@ knitr::include_graphics(here::here(paste0("images/chl/W_", rundate, "-GLOBCOLOUR
 knitr::include_graphics(here::here(paste0("images/chl/W_", rundate, "-WEEK_21_1998_2021-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-ANOM.png")))
                         
 ```
+*image credit: Kim Hyde*
 
 
 ```{r, eval=FALSE,  out.width="100%"}
@@ -199,6 +200,7 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202220-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS.png)
 :::
 ::::
+*image credit: Kim Hyde*
 
 ### Mesoscale features
 
@@ -238,6 +240,7 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 **Sea Surface Temperature**
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202219-MUR-V04.1-NES-SST-STATS.png){width=55%}
+*image credit: Kim Hyde*
 
 
 ### Mesoscale features
@@ -283,6 +286,7 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202218-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS.png)
 :::
 ::::
+*image credit: Kim Hyde*
 
 ### Mesoscale features 
 
@@ -367,6 +371,7 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202217-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS-.png)
 :::
 ::::
+*image credit: Kim Hyde*
 
 
 ### Mesoscale features
@@ -406,6 +411,7 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202216-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS-.png)
 :::
 ::::
+*image credit: Kim Hyde*
 
 ### Mesoscale features
 
