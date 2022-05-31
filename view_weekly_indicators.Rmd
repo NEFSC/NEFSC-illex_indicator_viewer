@@ -83,22 +83,53 @@ contents in the upper left hand corner of this page.
 The plots below contain mapped images of Sea Surface Temperature (SST) and
 Chlorophyll A (CHL) and the associated frontal dynamics for both. Additionally, 
 you will find the Jenifer Clark charts for this week. 
-```{r, fig.width = 6, eval = FALSE}
-#```{r, figures-side, fig.show="hold", out.width="50%"}
-# This bit is an updated way to add in .png's, hopefully use to automate
-# Need to decide on naming scheme and folder allocation
-rundate <- "0505" 
-# or maybe we could pull from weekly folder 'runweek'
-# here::here("images/desired.png") # gets path 
-# here::here("images/chl/chl_0505.png") # gets path 
-#knitr::include_graphics(here::here("images/chl/chl_0505.png"))
-knitr::include_graphics(here::here(paste0("images/chl/chl_", rundate, ".png")))
-# Another way to include images
 
-```
-## Week 21 (May 22 - May 28)
+## Week 22 (May 29 - June 4)
+***
 
 ### Oceanographic indicators
+***
+
+### Mesoscale features
+***
+
+**JCC May 30, 2022**
+
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220530.png)
+
+Key observations: 
+
++ A significant warming all along the shelf break. 
++ **Gulf Stream** is reaching **79F**
++ **Slope** is at **68-70F**
++ **Shelf** is between **62-65F** 
++ **Georges Bank** is much cooler at **48F**. 
++ A band of 55-56F water is penetrating from the Northeast in to the 
+  slope region (**blue water**) as well.
+
+
+### Weekly catch 
+***
+
+### Salinity 
+***
+
+### Notes
+***
+
+JM - NCOM observations:  
+
++ Most of the surface transport seems to be from the shelf to the slope sea 
+  rather than from the Gulf-Stream/Slope Sea to the Shelf
++ There has been a persistent (*weeks to month*) meander set up with 
+  South- South Eastward current in the same location - along the line 
+  from Rhode Island to Bermuda 
+
+## Week 21 (May 22 - May 28)
+***
+
+### Oceanographic indicators
+***
 
 :::: {class='fluid-row'}
 ::: {class='col-md-6'}
@@ -146,13 +177,15 @@ embed_video(here::here('images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES
 *video credit: Kim Hyde*
 
 ### Mesoscale features
+***
 
 **JCC May 23, 2022**
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220523.png)
 *image credit: Jenifer Clark*
 
-### Weekly Catch 
+### Weekly catch 
+***
 
 ```{r, figures-catchside, fig.show="hold", out.width="50%"}
 par(mar = c(4, 4, .1, .1))
@@ -170,8 +203,7 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 *image credit: Andy Jones, Daniel Hocking*
 
 ### Salinity
-
-
+***
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202221_SAL_OFFSHORE.png)
 
@@ -179,10 +211,14 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 ### Notes
 
 + GG & AS: Shingle starting to wrap around WCR - possible squid bridge connection 
++ Some boats went looking for Illex around the eddies at 65W and 72W last week,
+  but didn’t find much
 
 ## Week 20 (May 15 - May 21)
+***
 
 ### Oceanographic indicators
+***
 
 :::: {class='fluid-row'}
 
@@ -211,7 +247,7 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 *video credit: Kim Hyde*
 
 ### Mesoscale features
-
+***
 
 **JCC May 18, 2022**
 
@@ -242,9 +278,10 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 
 
 ## Week 19 (May 8 - May 14)
+***
 
 ### Oceanographic indicators
-
+***
 **Sea Surface Temperature**
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202219-MUR-V04.1-NES-SST-STATS.png){width=55%}
@@ -252,7 +289,7 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 
 
 ### Mesoscale features
-
+***
 :::: {class='fluid-row'}
 
 ::: {class='col-md-6'}
@@ -270,15 +307,19 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 *image credit: Jenifer Clark*
 
 ### Salinity
-
+***
 ### Notes
+***
+
 + AG: Two WCRs in our region -- both connected to the Gulf Stream with individual Squid bridges or streamers.
 
 ***
 
 ## Week 18 (May 1-7)
+***
 
 ### Oceanographic indicators
+***
 
 :::: {class='fluid-row'}
 ::: {class='col-md-6'}
@@ -297,6 +338,7 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 *image credit: Kim Hyde*
 
 ### Mesoscale features 
+***
 
 :::: {class='fluid-row'}
 
@@ -317,7 +359,7 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 
 
 ### Salinity 
-
+***
 
 :::: {class='fluid-row'}
 ::: {class='col-md-6'}
@@ -355,12 +397,13 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 ```
 
 ### Notes
-
+***
 
 # April
 ***
 
 ## Week 17 (April 24 - April 30)
+***
 
 ### Oceanographic indicators
 
@@ -402,6 +445,7 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 ### Notes
 
 ## Week 16 (April 17 - April 23)
+***
 
 ### Oceanographic indicators
 
@@ -429,6 +473,7 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 
 
 ## Week 15 (April 10 - April 16)
+***
 
 ### Oceanographic indicators
 
@@ -470,6 +515,7 @@ No signs of squid yet, other than some large ones in the bellies of tuna
 offshore
 
 ## Week 14 (April 3 - April 9)
+***
 
 ### Oceanographic indicators
 
