@@ -96,16 +96,16 @@ you will find the Jenifer Clark charts for this week.
 **JCC May 30, 2022**
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220530.png)
+*image credit: Jenifer Clark*
 
-Key observations: 
-
-+ A significant warming all along the shelf break. 
-+ **Gulf Stream** is reaching **79F**
-+ **Slope** is at **68-70F**
-+ **Shelf** is between **62-65F** 
-+ **Georges Bank** is much cooler at **48F**. 
-+ A band of 55-56F water is penetrating from the Northeast in to the 
-  slope region (**blue water**) as well.
+> Key observations:
+>
+> + Significant warming all along the shelf break 
+> + **Gulf Stream** is reaching **79F**
+> + **Slope** is at **68-70F**
+> + **Shelf** is between **62-65F** 
+> + **Georges Bank** is much cooler at **48F**. 
+> + A band of 55-56F water is penetrating from the Northeast in to the   slope region (**blue water**) as well.
 
 
 ### Weekly catch 
@@ -124,6 +124,13 @@ JM - NCOM observations:
 + There has been a persistent (*weeks to month*) meander set up with 
   South- South Eastward current in the same location - along the line 
   from Rhode Island to Bermuda 
+
+GG :
+
++ Incredibly rich submesoscale field over the slope right now
++ Shelf water is extending further offshore than usual between 70 and 73,5 W
++ There is a long thin shingle of Gulf Stream water North of the main core. Lots of small eddies that carry water from the shelf and from the Gulf Stream.
++ One interesting note - the big Warm Core Ring to the southeast of Georges Bank, has a shelf streamer wrapped almost entirely around it. But to the west of the shelf streamer it still seems like there is warm Gulf Stream water carried north towards the shelf.
 
 ## Week 21 (May 22 - May 28)
 ***
@@ -211,7 +218,7 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 ### Notes
 
 + GG & AS: Shingle starting to wrap around WCR - possible squid bridge connection 
-+ Some boats went looking for Illex around the eddies at 65W and 72W last week,
++ AM: Some boats went looking for Illex around the eddies at 65W and 72W last week,
   but didn’t find much
 
 ## Week 20 (May 15 - May 21)
