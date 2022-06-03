@@ -146,6 +146,210 @@ p2 <- pa_offsh_22 %>%
 png(file = here::here('images/salinity/W_202221_SAL_OFFSHORE.png')) ## Change name, also directory
 (plot_spacer() + p2) /  (p1)
 dev.off()
+
+# ---- Upstream Offshore ----# 
+up_off_22 <- read.csv('PIONEER_UPSTREAM_OFFSHORE_2022.csv') # updated weekly 
+up_off_22 <- up_off_22[-1,] # remove row of metadata
+up_off_21 <- read.csv('PIONEER_UPSTREAM_OFFSHORE_2021.csv') # updated weekly 
+up_off_21 <- up_off_21[-1,] # remove row of metadata
+
+# ---- Central Offshore ----# 
+c_off_22 <- read.csv('PIONEER_CENTRAL_OFFSHORE_2022.csv') # updated weekly 
+c_off_22 <- c_off_22[-1,] # remove row of metadata
+c_off_21 <- read.csv('PIONEER_CENTRAL_OFFSHORE_2021.csv') # updated weekly 
+c_off_21 <- c_off_21[-1,] # remove row of metadata
+c_off_22$date <- ymd_hms(c_off_22$time) # convert to date
+c_off_21$date <- ymd_hms(c_off_21$time) # convert to date
+
+# adjust / add columns to create time steps of interest
+# 2022
+c_off_22 <- c_off_22 %>% 
+  mutate(year = year(date),
+         month = month(date),
+         week = week(date), 
+         day = day(date),
+         date = as.Date(date),
+         density = as.numeric(density), 
+         pressure = as.numeric(pressure),
+         temperature = as.numeric(temperature), 
+         depth = as.numeric(depth)) %>%
+  as.data.frame()
+# 2021
+c_off_21 <- c_off_21 %>% 
+  mutate(year = year(date),
+         month = month(date),
+         week = week(date), 
+         day = day(date),
+         date = as.Date(date),
+         density = as.numeric(density), 
+         pressure = as.numeric(pressure),
+         temperature = as.numeric(temperature), 
+         depth = as.numeric(depth)) %>%
+  as.data.frame()
+
+# Calculate daily mean at 100 meter depth
+# 2022
+c_off_22_100m <- c_off_22 %>% # range is -128 to -26
+  dplyr::filter(depth > -102 & depth < -98) %>%
+  group_by(date) %>%
+  mutate(msal = mean(salinity), 
+         mtmp = mean(temperature))
+# 2021
+c_off_21_100m <- c_off_21 %>%
+  dplyr::filter(depth > -102 & depth < -98 & month == c(1:5)) %>%
+  group_by(date) %>%
+  mutate(msal = mean(salinity), 
+         mtmp = mean(temperature))
+
+
+# Plot
+coeff <- 10
+
+ggplot(c_off_22_100m, aes(x=date)) +
+  geom_line(aes(y=msal), size=2, color=priceColor) + 
+  geom_line(aes(y=mtmp), size=2, color=temperatureColor) +
+    scale_y_continuous(
+    # Features of the first axis
+    name = "Mean Salinity",
+    # Add a second axis and specify its features
+    sec.axis = sec_axis(~., name="Mean Temperature (Celsius °)")) + 
+    theme_ipsum() +
+    theme(axis.title.y = element_text(color = priceColor, size=13),
+    axis.title.y.right = element_text(color = temperatureColor, size=13)) +
+    ggtitle("Offshore Surface Mooring: Near Surface")
+c0_100m_21 <- c_off_21_100m %>%
+  group_by(week) %>%
+  mutate(msal = mean(salinity), 
+         mtmp = mean(temperature))
+c0_100m_22 <- c_off_22_100m %>%
+  group_by(week) %>%
+  mutate(msal = mean(salinity), 
+         mtmp = mean(temperature))
+# TEMPERATURE
+ggplot() +
+  geom_line(data = c0_100m_22, aes(x = week, y = mtmp), 
+            size=2, color = 'brown') + 
+  geom_line(data = c0_100m_21, aes(x = week, y = mtmp), 
+            size=2, color = 'darkblue') +
+  labs(title = 'Temperature: Central Offshore Profiler Mooring', 
+       subtitle = paste0('Mean Depth : ', round(mean(c0_100m_22$depth),2))) +
+  ylab('Mean Salinity') +
+  xlab('Week') +
+  scale_color_manual(values = tcols, name = "Years") +
+  theme_minimal() + 
+  ecodata::theme_ts()
+
+# SALINITY 
+scols <- c(
+  '2022' = "grey60",
+  '2021' = "blue"
+)
+ggplot() +
+  geom_line(data = c0_100m_22, aes(x = week, y = msal), 
+            size=2, color = 'brown') + 
+  geom_line(data = c0_100m_21, aes(x = week, y = msal), 
+            size=2, color = 'darkblue') +
+  labs(title = 'Salinity: Central Offshore Profiler Mooring', 
+       subtitle = paste0('Mean Depth : ', round(mean(c0_100m_22$depth),2))) +
+  ylab('Mean Salinity') +
+  xlab('Week') +
+  scale_color_manual(values = scols, name = "Years")
+  theme_minimal() + 
+  ecodata::theme_ts()
+
+# Add temperature - ** look for bottom from offshore
+# Value used to transform the data
+coeff <- .4
+
+# A few constants
+temperatureColor <- "#69b3a2"
+temperatureColor <- "#69b3a2"
+priceColor <- rgb(0.2, 0.6, 0.9, 1)
+
+ggplot(c_off_22_100m, aes(x=date)) +
+  
+  geom_line(aes(y=msal), size=2, color=priceColor) + 
+  geom_line(aes(y=mtmp / coeff), size=2, color=temperatureColor) +
+  
+  scale_y_continuous(
+    
+    # Features of the first axis
+    name = "Mean Salinity",
+    
+    # Add a second axis and specify its features
+    sec.axis = sec_axis(~.*coeff, name="Mean Temperature (Celsius °)")
+  ) + 
+  
+  theme_ipsum() +
+  
+  theme(
+    axis.title.y = element_text(color = priceColor, size=13),
+    axis.title.y.right = element_text(color = temperatureColor, size=13)
+  ) +
+  
+  ggtitle("Offshore Surface Mooring: Near Surface")
+
+
+# This one does not change the axis using coeff because temp is lower than sal
+ggplot(pa_offsh_22, aes(x=date)) +
+  
+  geom_line(aes(y=msal), size=2, color=priceColor) + 
+  geom_line(aes(y=temperature), size=2, color=temperatureColor) +
+  
+  scale_y_continuous(
+    
+    # Features of the first axis
+    name = "Mean Salinity",
+    
+    # Add a second axis and specify its features
+    sec.axis = sec_axis(~., name="Mean Temperature (Celsius °)")
+  ) + 
+  
+  theme_ipsum() +
+  
+  theme(
+    axis.title.y = element_text(color = priceColor, size=13),
+    axis.title.y.right = element_text(color = temperatureColor, size=13)
+  ) +
+  
+  ggtitle("Offshore Surface Mooring: Near Surface")
+
+
+coeff = 1
+
+ggplot(c0_100m_22, aes(x=date)) +
+  
+  stat_count(aes(y=mtmp), geom = "bar", size=.1,
+            fill=temperatureColor, color="black", alpha=.4) + 
+  geom_line( aes(y=msal), size=2, color=priceColor) +
+  
+  scale_y_continuous(
+    
+    # Features of the first axis
+    name = "Salinity)",
+    
+    # Add a second axis and specify its features
+    sec.axis = sec_axis(~., name="Temperature (Celsius °)")
+  ) + 
+  
+  theme_ipsum() +
+  
+  theme(
+    axis.title.y = element_text(color = temperatureColor, size=13),
+    axis.title.y.right = element_text(color = priceColor, size=13)
+  ) +
+  
+  ggtitle("Central")
+
+
+
+
+
+
+
+
+
+
 # ---- Central ----- # 
 pa_22 <- read.csv('PIONEER_PMCO_CTD_2022.csv')
 pa_22 <- pa_22[-1,]
