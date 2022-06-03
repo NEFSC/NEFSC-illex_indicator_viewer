@@ -134,12 +134,12 @@ p2 <- pa_offsh_22 %>%
   geom_point(aes(fill = 'darkblue'),pch = 21, size = 3,colour = 'black') +
   geom_hline(yintercept = as.numeric(ann_sal_offsh[1,2]), 
              lty = 2, col = 'darkblue', lwd = 1) +
-  labs(title = 'Week 21, 2022', subtitle ='May 22- 28') + # Change date 
+  labs(title = 'Week 22, 2022', subtitle ='May 29- June 4') + # Change date 
   ylab('Mean Salinity') + 
   xlab('Date') +
   scale_fill_discrete(guide='none') +
-  scale_x_date(limit=c(as.Date('2022-05-22'), # Change date range
-                       as.Date('2022-05-28'))) +
+  scale_x_date(limit=c(as.Date('2022-05-29'), # Change date range
+                       as.Date('2022-05-30'))) +
   theme_minimal() + 
   ecodata::theme_ts()
 # Save figure to correct folder 
