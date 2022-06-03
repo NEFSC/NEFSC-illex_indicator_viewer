@@ -89,7 +89,39 @@ you will find the Jenifer Clark charts for this week.
 
 ### Oceanographic indicators
 ***
+SST and SST anomaly
+```{r, fig.show="hold", out.width="50%"}
+par(mar = c(4, 4, .1, .1))
 
+rundate <- '202222'
+
+knitr::include_graphics(here::here(paste0("images/sst/W_", rundate, "-MUR-V04.1-NES-SST-STATS.png")))
+                        
+knitr::include_graphics(here::here(paste0("images/sst/W_", rundate, "-WEEK_22_2002_2021-MUR-V04.1-NES-SST-ANOM.png")))
+                        
+```
+
+CHL and CHL anomaly
+```{r, fig.show="hold", out.width="50%"}
+par(mar = c(4, 4, .1, .1))
+
+rundate <- '202222'
+
+knitr::include_graphics(here::here(paste0("images/chl/W_", rundate, "-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS.png")))
+                        
+knitr::include_graphics(here::here(paste0("images/chl/W_", rundate, "-WEEK_22_1998_2021-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-ANOM.png")))
+                        
+```
+*image credit: Kim Hyde*
+
+
+**2 week SST animation**
+
+<video width="500" height="500" controls>
+  <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/V2022_ANIMATIONS_SST_DD_20220521_20220603-MUR-V04.1-1KM-NES-SST-FPS_3.webm" type="video/webm">
+</video>
+
+*video credit: Kim Hyde*
 ### Mesoscale features
 ***
 
@@ -116,13 +148,15 @@ par(mar = c(4, 4, .1, .1))
 
 rundate <- '202222'
 
-# knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
-#                                           rundate, "_SF.png")))
+ knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
+                                          rundate, "_SF.png")))
                         
 knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
                                           rundate, "_QM.png")))
   
 ```
+*image credit: Andy Jones, Daniel Hocking*
+
 
 ### Salinity 
 ***
