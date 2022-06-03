@@ -11,31 +11,10 @@ output:
 ---
 
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE,
-                      message = FALSE, 
-                      warning = FALSE,
-                      knitr.duplicate.label = "allow")
-#knitr::opts_chunk$set(dev="png", options(knitr.duplicate.label = "allow"))
 
-library(rgdal)
-library(raster)
-library(ggplot2)
-library(cowplot)
-library(patchwork)
-library(flexdashboard)
-library(here)
-library(vembedr) # maybe use this if ember does not work 
-library(embedr) # this is for embed_video
-#,fig.path = "/images/" )
-# knitr::opts_knit$set(base.dir = 'C:/Users/sarah.salois/Desktop/github/khyde/SquidSquad/',
-#                    base.url = "/")
-# knitr::include_graphics(paste0(getwd(), "/images/ft_locs_depth-with_bathy.png"))
 
-```
 
-```{r, eval = FALSE}
-
+```r
 # define paths
 #base.dir <- 'https://github.com/khyde/SquidSquad.git'
 base.dir <- 'C:/Users/sarah.salois/Desktop/github/khyde/SquidSquad/'
@@ -55,7 +34,6 @@ paste0(base.url, fig.path)
 
 
 # <div style="display: flex;">
-
 ```
 
 ![](/Users/sarah.salois/Documents/github/khyde/SquidSquad/images/SquidSquadV1.png){width=20%}
@@ -90,7 +68,8 @@ you will find the Jenifer Clark charts for this week.
 ### Oceanographic indicators
 ***
 SST and SST anomaly
-```{r, fig.show="hold", out.width="50%"}
+
+```r
 par(mar = c(4, 4, .1, .1))
 
 rundate <- '202222'
@@ -98,22 +77,22 @@ rundate <- '202222'
 knitr::include_graphics(here::here(paste0("images/sst/W_", rundate, "-MUR-V04.1-NES-SST-STATS.png")))
                         
 knitr::include_graphics(here::here(paste0("images/sst/W_", rundate, "-WEEK_22_2002_2021-MUR-V04.1-NES-SST-ANOM.png")))
-                        
 ```
+
+<img src="C:/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202222-MUR-V04.1-NES-SST-STATS.png" width="50%" /><img src="C:/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202222-WEEK_22_2002_2021-MUR-V04.1-NES-SST-ANOM.png" width="50%" />
 
 Sea Level Anomaly and Geostrophic velocity 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/ssh/W_202222_SLA.png)
-```{r, eval = FALSE}
 
+```r
 rundate <- '202222'
 
 knitr::include_graphics(here::here(paste0("images/ssh/W_", rundate, "_SLA.png")))
-                        
-                        
 ```
 
 CHL and CHL anomaly
-```{r, fig.show="hold", out.width="50%"}
+
+```r
 par(mar = c(4, 4, .1, .1))
 
 rundate <- '202222'
@@ -121,8 +100,9 @@ rundate <- '202222'
 knitr::include_graphics(here::here(paste0("images/chl/W_", rundate, "-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS.png")))
                         
 knitr::include_graphics(here::here(paste0("images/chl/W_", rundate, "-WEEK_22_1998_2021-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-ANOM.png")))
-                        
 ```
+
+<img src="C:/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202222-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS.png" width="50%" /><img src="C:/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202222-WEEK_22_1998_2021-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-ANOM.png" width="50%" />
 *image credit: Kim Hyde*
 
 
@@ -154,7 +134,8 @@ knitr::include_graphics(here::here(paste0("images/chl/W_", rundate, "-WEEK_22_19
 ### Weekly catch 
 ***
 
-```{r, figures-catchside2, fig.show="hold", out.width="50%"}
+
+```r
 par(mar = c(4, 4, .1, .1))
 
 rundate <- '202222'
@@ -164,8 +145,9 @@ rundate <- '202222'
                         
 knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
                                           rundate, "_QM.png")))
-  
 ```
+
+<img src="C:/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/study_fleet/W_202222_SF.png" width="50%" /><img src="C:/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/study_fleet/W_202222_QM.png" width="50%" />
 *image credit: Andy Jones, Daniel Hocking*
 
 
@@ -214,7 +196,8 @@ GG :
 :::
 ::::
 
-```{r, figures-chlside, fig.show="hold", out.width="50%"}
+
+```r
 par(mar = c(4, 4, .1, .1))
 
 rundate <- '202221'
@@ -222,16 +205,17 @@ rundate <- '202221'
 knitr::include_graphics(here::here(paste0("images/chl/W_", rundate, "-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS.png")))
                         
 knitr::include_graphics(here::here(paste0("images/chl/W_", rundate, "-WEEK_21_1998_2021-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-ANOM.png")))
-                        
 ```
+
+<img src="C:/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202221-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS.png" width="50%" /><img src="C:/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202221-WEEK_21_1998_2021-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-ANOM.png" width="50%" />
 *image credit: Kim Hyde*
 
 
-```{r, eval=FALSE,  out.width="100%"}
+
+```r
 # This is too small - html is better viewing
 # 2 Week SST animation w/webm in R chunk, 5 fps 
 embed_video(here::here('images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm'))
-
 ```
 
 
@@ -254,7 +238,8 @@ embed_video(here::here('images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES
 ### Weekly catch 
 ***
 
-```{r, figures-catchside, fig.show="hold", out.width="50%"}
+
+```r
 par(mar = c(4, 4, .1, .1))
 
 rundate <- '202221'
@@ -264,8 +249,9 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
                         
 knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
                                           rundate, "_QM.png")))
-  
 ```
+
+<img src="C:/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/study_fleet/W_202221_SF.png" width="50%" /><img src="C:/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/study_fleet/W_202221_QM.png" width="50%" />
 
 *image credit: Andy Jones, Daniel Hocking*
 
@@ -447,7 +433,8 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/A_2021-2022-SAL-CENTRAL.png)
 
 
-```{r, eval=FALSE}
+
+```r
 # Trial run : 
 # This works in chunk but wont knit **
 jc_weekly <- list.files(here::here('images/jc_charts'), 
@@ -456,11 +443,11 @@ jc_weekly <- list.files(here::here('images/jc_charts'),
 knitr::include_graphics(jc_weekly)
 ```
 
-```{r, eval=FALSE}
+
+```r
 # This works in chunk but wont knit **
 
 knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_charts/jc_0427.jpg')))
-
 ```
 
 ### Notes
@@ -673,7 +660,8 @@ The figure below highlights the 100 meter isobath and associated fishing depths 
 This shape file depicts a range of 20 meters inshore of the shelf break
 (200m isobath)
 
-```{r, echo == FALSE, results ='hide', message = FALSE, warning = FALSE}
+
+```r
 library(mapdata) # dist2isobath
 library(marmap)  # getNOAA.bathy
 ## bring in bathymetry data from marmap package
@@ -688,15 +676,16 @@ reg$long = (360 - reg$long)*-1
 
 
 
-```{r, nafo subareas, message = FALSE, warning = FALSE}
+
+```r
 wd =  here::here('shapefiles/')
 nafo_shbr <- readOGR(wd,'NAFO_SHELFBREAK', verbose = FALSE)
 inshr <- nafo_shbr[nafo_shbr@data$SUBAREA %in% c('NAFO_5ZE_INSHORE', 'NAFO_5ZW_INSHORE','NAFO_6A_INSHORE', 'NAFO_6B_INSHORE','NAFO_6C_INSHORE'),]
 ```
 
 
-```{r, eval = FALSE}
 
+```r
 # This chunk will extract data across NAFO_SHELFBREAK to get mean values 
 # for each subarea
 
@@ -713,13 +702,12 @@ inshr <- nafo_shbr[nafo_shbr@data$SUBAREA %in% c('NAFO_5ZE_INSHORE', 'NAFO_5ZW_I
 # sal_222m <-  raster::extract(rtmp, inshr, weights = FALSE,
 #                              fun = mean, na.rm = TRUE) 
 # #sal_222m[1:5]
-
-
 ```
 
 
 
-```{r}
+
+```r
 ggplot() + 
   geom_polygon(data = reg, aes(x=long, y = lat, group = group), 
                color = "gray20", fill = "wheat3") +
@@ -741,10 +729,13 @@ ggplot() +
   theme_minimal()
 ```
 
+<img src="view_weekly_indicators_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 
 
-```{r, canyons, eval = FALSE}
+
+
+```r
 # wd = ('C:/Users/sarah.salois/Documents/shape_files')
 # canyons <- readOGR(wd, 'major_canyons')
 # # reproject data
@@ -773,23 +764,12 @@ ggplot() +
 # canyons@polygons@coords
 # canyons$long = (360 - canyons$long)*-1 
 # extent(canyons_WGS84)
-
 ```
 
 
 
 
-```{r, echo = FALSE, messages = FALSE, eval = FALSE}
-# Canyon projection wrong (see longitude) - fix and add to previous figure
 
-ggplot() +
-  geom_polygon(data = mjr_canyons, aes(x = long, y = lat, 
-                                 group= group, fill = id), 
-                                 color = 'black') +
-  scale_fill_discrete(name ='Canyons',
-                         labels = c('Hudson', 'Wilmington', 'Norfolk')) +
-  theme_minimal()
-```
 
 # 2021 Case Study
 
@@ -896,20 +876,11 @@ the last trip from larger to smaller.
 
 
 
-```{r echo = FALSE, results = 'asis', eval = FALSE}
-# Below is a table which highlights the mean values for Bottom Temperature, 
-# Salinity across the shelf break, broken up into 5 NAFO subareas of interest, 
-# 5zE, 5zW, 6A, 6B, 6C
 
 
 
-library(knitr)
-kable(mtcars[1:5, ], caption = "Sub-surface features across time")
-# Create a dataframe with BT, Salinity across each zone for years of interest
-```
 
-
-```{r, eval = FALSE}
+```r
 jc_img <- system.file('jc_0425.jpg', 'jc0427.jpg', package = "cowplot")
 plot_grid(
   p + theme(legend.position = c(1, 1), legend.justification = c(1, 1)),
@@ -924,12 +895,12 @@ p2 <- ggdraw() +
   draw_image('C:/Users/sarah.salois/Documents/github/khyde/SquidSquad/images/jc0427.jpg', 
              scale = 1.0)
 plot_grid(p1, p2)
-
 ```
 
 
 
-```{r, eval = FALSE}
+
+```r
 # Would need to play around with image / grid size, not as flexible as columns
 p1 <- ggdraw() + draw_image('C:/Users/sarah.salois/Documents/github/khyde/SquidSquad/images/M_201606-MUR-V04.1-NES-SST-STATS-MEAN.png', scale = 1.0)
 p2 <- ggdraw() + draw_image('C:/Users/sarah.salois/Documents/github/khyde/SquidSquad/images/M_201603-OCCCI-V5.0-NES-CHLOR_A-CCI-STATS-STD.png', scale = 1.0)
@@ -940,8 +911,8 @@ p4 <- ggdraw() + draw_image('C:/Users/sarah.salois/Documents/github/khyde/SquidS
 plot_grid(p1, p2, p3, p4)
 ```
 
-```{r, eval = FALSE}
+
+```r
 # Another way to include images
 # knitr::include_graphics('C:/Users/sarah.salois/Documents/github/khyde/SquidSquad/images/M_201606-MUR-V04.1-NES-SST-STATS-MEAN.png')
-
 ```
