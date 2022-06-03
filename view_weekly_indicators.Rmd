@@ -101,6 +101,17 @@ knitr::include_graphics(here::here(paste0("images/sst/W_", rundate, "-WEEK_22_20
                         
 ```
 
+Sea Level Anomaly and Geostrophic velocity 
+
+```{r}
+
+rundate <- '202222'
+
+knitr::include_graphics(here::here(paste0("images/ssh/W_", rundate, "_SLA.png")))
+                        
+                        
+```
+
 CHL and CHL anomaly
 ```{r, fig.show="hold", out.width="50%"}
 par(mar = c(4, 4, .1, .1))
