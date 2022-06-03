@@ -102,8 +102,8 @@ knitr::include_graphics(here::here(paste0("images/sst/W_", rundate, "-WEEK_22_20
 ```
 
 Sea Level Anomaly and Geostrophic velocity 
-
-```{r}
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/ssh/W_202222_SLA.png)
+```{r, eval = FALSE}
 
 rundate <- '202222'
 
