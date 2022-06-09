@@ -88,13 +88,14 @@
         MAP_OUT  = 'NES'                                                                            ; The map to be used for any plots
         SHPFILE  = 'NAFO_SHELFBREAK_40KM'                                 ; The shapefile for any data extractions or image outlines
         PRODS = ['CHLOR_A','SST','GRAD_CHL','GRAD_SST','MICRO','NANO','PICO',['MICRO','NANO','PICO']+'_PERCENTAGE']
-        DOWNLOAD_PRODS = ['CHLOR_A','SST']
+        DOWNLOAD_PRODS = ['CHLOR_A','SST','SEALEVEL']
         PNG_PRODS = ['CHLOR_A','SST']
         PNG_PERIODS = ['W']
         EXTRACT_PRODS = ['CHLOR_A','SST','MICRO','NANO','PICO',['MICRO','NANO','PICO']+'_PERCENTAGE']
         EXTRACT_PERIODS = ['W','WEEK','M','MONTH']
         CHL_DATASET = 'GLOBCOLOUR' & CHL_ALG = 'GSM' & CHL_TEMP = 'GLOBCOLOUR'
         SST_DATASET  = 'MUR' 
+        SLA_DATASET = 'CMES' & SLA_TEMP = 'CMES'
         GRADCHL_DATASET = 'GLOBCOLOUR' & GC_TEMP='GLOBCOLOUR' & GCHL_ALG = 'BOA'
         GRADSST_DATASET = 'MUR' & GS_TEMP='GLOBCOLOUR' & GSST_ALG = 'BOA'
         PSZ_DATASET = 'OCCCI' & PSZ_TEMP = ''
@@ -152,6 +153,7 @@
                                                       'M11', 'SST_5_30',$
                                                       'M12', 'SST_5_30') 
           END        
+        'SEALEVEL': BEGIN & DTSET=SLA_DATASET & TPSET=SLA_TEMP & SPROD=SPROD & DWLPROD='' & PTAG='' & PSCALE='' & PAL='' & ASCALE='' & APAL='' & END
         'GRAD_CHL': BEGIN & DTSET=GRADCHL_DATASET & TPSET=GS_TEMP & SPROD=SPROD+'-'+GCHL_ALG & DWLPROD='' & PTAG='' & PSCALE='' & PAL='' & ASCALE='' & APAL='' & END
         'GRAD_SST': BEGIN & DTSET=GRADSST_DATASET & TPSET=GC_TEMP & SPROD=SPROD+'-'+GSST_ALG & DWLPROD='' & PTAG='' & PSCALE='' & PAL='' & ASCALE='' & APAL='' & END
         'MICRO_PERCENTAGE': BEGIN & DTSET=PSZ_DATASET & TPSET=PSZ_TEMP & SPROD=SPROD+'-'+PSZ_ALG & TPROD=SPROD                  & PTAG='AMEAN' & PSCALE='NUM_0.0_1.0'    & PAL='PAL_DEFAULT'    & GSCALE=PSCALE            & GPAL='PAL_DEFAULT' & ASCALE='DIF_-5_5' & IMSCALE='NUM_0_0.8' & APAL='PAL_BLUEGREEN_ORANGE' & END
