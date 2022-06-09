@@ -82,14 +82,20 @@
   
     CASE DSET OF
       'GLOBCOLOUR': DWLD_GLOBCOLOUR, DATERANGE=DTR, PRODS=DPROD
-      'MUR': BEGIN & DWLD_MUR_SST,DATERANGE=DTR & END
-        
+      'MUR':  DWLD_MUR_SST,DATERANGE=DTR 
+      'CMES': DWLD_CMES_SEALEVEL,DTR   
     ENDCASE
     DSETS = [DSETS,DSET]
   ENDFOR
     
     
+    ; https://emolt.org/emoltdata/emolt_QCed_telemetry_and_wified.csv - EMOLT data
     
+    ; python -m motuclient --motu https://nrt.cmems-du.eu/motu-web/Motu --service-id SEALEVEL_GLO_PHY_L4_NRT_OBSERVATIONS_008_046-TDS --product-id dataset-duacs-nrt-global-merged-allsat-phy-l4 --longitude-min -82.5 --longitude-max -51.5 --latitude-min 22.5 --latitude-max 48.5 --date-min "2022-05-01 00:00:00" --date-max "2022-06-03 00:00:00" --variable adt --variable crs --variable lat_bnds --variable lon_bnds --variable sla --variable ugos --variable vgos --out-dir /Users/kimberly.hyde/nadata/DATASETS/CMES/SEALEVEL_NRT/L4/NC/ --out-name test --user khyde --pwd qbq-REH0dyb_nkv5xyx
 
+;   ; python -m motuclient --motu https://nrt.cmems-du.eu/motu-web/Motu --service-id SEALEVEL_GLO_PHY_L4_NRT_OBSERVATIONS_008_046-TDS --product-id dataset-duacs-nrt-global-merged-allsat-phy-l4 --longitude-min -82.5 --longitude-max -51.5 --latitude-min 22.5 --latitude-max 48.5 --date-min "2022-05-01 00:00:00" --date-max "2022-06-03 00:00:00" --variable adt --variable crs --variable lat_bnds --variable lon_bnds --variable sla --variable ugos --variable vgos --out-dir /Users/kimberly.hyde/nadata/DATASETS/CMES/SEALEVEL_NRT/L4/NC/ --out-name test --user khyde --pwd qbq-REH0dyb_nkv5xyx
+
+
+; wget --user khyde --password qbq-REH0dyb_nkv5xyx "ftp://nrt.cmems-du.eu/Core/SEALEVEL_GLO_PHY_L4_NRT_OBSERVATIONS_008_046/dataset-duacs-nrt-global-merged-allsat-phy-l4/2022/06/nrt_global_allsat_phy_l4_20220603_20220603.nc"
 
 END ; ***************** End of ILLEX_WEEKLY_DOWNLOADS *****************
