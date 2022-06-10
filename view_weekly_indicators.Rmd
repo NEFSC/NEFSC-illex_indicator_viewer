@@ -111,12 +111,19 @@ knitr::include_graphics(here::here(paste0("images/chl/W_", rundate, "-WEEK_23_19
 #### 2 week SST animation
 
 <video width="500" height="500" controls>
-  <source src="/Users/sarah.salois/Documents/github/ssalois1/V2022_ANIMATIONS_SST_DD_20220528_20220610-MUR-V04.1-1KM-NES-SST-FPS_3.webm" type="video/webm">
+  <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/V2022_ANIMATIONS_SST_DD_20220528_20220610-MUR-V04.1-1KM-NES-SST-FPS_3.webm" type="video/webm">
 </video>
 
 #### Sea Level Anomaly and Geostrophic velocity
 
 
+```{r, fig.show="hold", out.width="50%"}
+
+knitr::include_graphics(here::here(paste0("images/ssh/W_202220607_SLA.jpg")))
+                        
+knitr::include_graphics(here::here(paste0("images/ssh/W_20220609_SLA.jpg")))
+                        
+```
 
 #### Bottom Temperature from [EMOLT](http://emolt.org/telemetry.html) dataset
 
@@ -135,6 +142,17 @@ knitr::include_graphics(here::here(paste0("images/bottom_temp/W_", rundate2, "_b
 
 #### Salinity
 
+```{r, fig.show="hold", out.width="50%"}
+
+rundate1 = '202223'
+rundate2 = '202223'
+
+knitr::include_graphics(here::here(paste0("images/salinity/W_", rundate1, 
+"_sal_temp_UO.png")))
+                        
+knitr::include_graphics(here::here(paste0("images/salinity/W_", rundate2, "_sal_temp_co.png")))
+                        
+```
 
 ### Mesoscale features
 ***
