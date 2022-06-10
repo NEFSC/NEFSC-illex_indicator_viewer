@@ -74,22 +74,129 @@ contents in the upper left hand corner of this page.
 ***
 
 
+# June
+***
+
+## Week 23 (June 5 - June 11)
+***
+
+### Oceanographic indicators
+***
+
+#### SST and SST anomaly
+```{r, fig.show="hold", out.width="50%"}
+par(mar = c(4, 4, .1, .1))
+
+rundate <- '202223'
+
+knitr::include_graphics(here::here(paste0("images/sst/W_", rundate, "-MUR-V04.1-NES-SST-STATS.png")))
+
+knitr::include_graphics(here::here(paste0("images/sst/W_", rundate, "-WEEK_23_2002_2021-MUR-V04.1-NES-SST-ANOM.png")))
+
+```
+
+
+#### CHL and CHL anomaly
+```{r, fig.show="hold", out.width="50%"}
+par(mar = c(4, 4, .1, .1))
+
+rundate <- '202223'
+
+knitr::include_graphics(here::here(paste0("images/chl/W_", rundate, "-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS.png")))
+
+knitr::include_graphics(here::here(paste0("images/chl/W_", rundate, "-WEEK_23_1998_2021-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-ANOM.png")))
+```
+*image credit: Kim Hyde*
+
+#### 2 week SST animation
+
+<video width="500" height="500" controls>
+  <source src="/Users/sarah.salois/Documents/github/ssalois1/V2022_ANIMATIONS_SST_DD_20220528_20220610-MUR-V04.1-1KM-NES-SST-FPS_3.webm" type="video/webm">
+</video>
+
+#### Sea Level Anomaly and Geostrophic velocity
+
+
+
+#### Bottom Temperature from [EMOLT](http://emolt.org/telemetry.html) dataset
+
+```{r, fig.show="hold", out.width="50%"}
+
+rundate1 = '202223'
+rundate2 = '202123'
+
+knitr::include_graphics(here::here(paste0("images/bottom_temp/W_", rundate1, 
+"_bt.jpg")))
+                        
+knitr::include_graphics(here::here(paste0("images/bottom_temp/W_", rundate2, "_bt.png")))
+                        
+```
+
+
+#### Salinity
+
+
+### Mesoscale features
+***
+#### JCC June 06, 2022
+
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220606.png)
+#### JCC June 08 2022
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220608.png)
+*image credit: Jenifer Clark*
+
+
+
+
+### Weekly Catch
+***
+```{r, fig.show="hold", out.width="50%"}
+par(mar = c(4, 4, .1, .1))
+
+rundate <- '202223'
+
+# knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
+#                                           rundate, "_SF.png")))
+                        
+knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
+                                          rundate, "_QM.png")))
+  
+```
+
+
+
+### Notes 
+***
+
+AG: Seems like the two rings are no more attached to the Stream through the shingles. They should follow the ring corridor now and hit the shelf break. 
+But it also depend on the Stream meandering northerly or staying flat in 
+the coming days. 
+
+GG: I think the two smaller rings may be reabsorbed in the Gulf Stream or
+else the seasonal cycle is eroding their temperature contrast. Looking at the Rutgers SST, it looks like there may be a possible squid bridge at
+67 Deg W. That bears watching.
+
+AG: That northward meandering is very interesting after 66w. 
+The stream water seems to be reaching the shelf at the middle of the Georges
+Bank. 
+
+
 
 # May
 ***
-
 > Oceanographic conditions for the month of May 2022 
 
 The plots below contain mapped images of Sea Surface Temperature (SST) and
 Chlorophyll A (CHL) and the associated frontal dynamics for both. Additionally, 
 you will find the Jenifer Clark charts for this week. 
 
+
 ## Week 22 (May 29 - June 4)
 ***
 
 ### Oceanographic indicators
 ***
-SST and SST anomaly
+#### SST and SST anomaly
 ```{r, fig.show="hold", out.width="50%"}
 par(mar = c(4, 4, .1, .1))
 
@@ -101,18 +208,8 @@ knitr::include_graphics(here::here(paste0("images/sst/W_", rundate, "-WEEK_22_20
                         
 ```
 
-Sea Level Anomaly and Geostrophic velocity 
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/ssh/W_202222_SLA.png)
-```{r, eval = FALSE}
 
-rundate <- '202222'
-
-knitr::include_graphics(here::here(paste0("images/ssh/W_", rundate, "_SLA.png")))
-                        
-                        
-```
-
-CHL and CHL anomaly
+#### CHL and CHL anomaly
 ```{r, fig.show="hold", out.width="50%"}
 par(mar = c(4, 4, .1, .1))
 
@@ -125,18 +222,52 @@ knitr::include_graphics(here::here(paste0("images/chl/W_", rundate, "-WEEK_22_19
 ```
 *image credit: Kim Hyde*
 
-
-**2 week SST animation**
+#### 2 week SST animation
 
 <video width="500" height="500" controls>
   <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/V2022_ANIMATIONS_SST_DD_20220521_20220603-MUR-V04.1-1KM-NES-SST-FPS_3.webm" type="video/webm">
 </video>
 
 *video credit: Kim Hyde*
+
+#### Sea Level Anomaly and Geostrophic velocity
+
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/ssh/W_202222_SLA.png){width=50%}
+*image credit: Adrienne Silver*
+
+
+```{r, eval = FALSE}
+
+# rundate <- '202222'
+# 
+# knitr::include_graphics(here::here(paste0("images/ssh/W_", rundate, "_SLA.png")))
+#                         
+#                         
+```
+
+
+#### Bottom Temperature from [EMOLT](http://emolt.org/telemetry.html) dataset
+
+
+```{r, fig.show="hold", out.width="50%"}
+
+rundate1 = '202222'
+rundate2 = '202122'
+
+knitr::include_graphics(here::here(paste0("images/bottom_temp/W_", rundate1, 
+"_bt.jpg")))
+                        
+knitr::include_graphics(here::here(paste0("images/bottom_temp/W_", rundate2, "_bt.png")))
+                        
+```
+
+
+
+
 ### Mesoscale features
 ***
 
-**JCC May 30, 2022**
+#### JCC May 30, 2022
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220530.png)
 *image credit: Jenifer Clark*
@@ -201,7 +332,7 @@ GG :
 :::: {class='fluid-row'}
 ::: {class='col-md-6'}
 
-**Sea Surface Temperature**
+#### Sea Surface Temperature
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202221-MUR-V04.1-NES-SST-STATS.png)
 
@@ -209,10 +340,12 @@ GG :
 
 ::: {class='col-md-6'}
 
-**SST Anomaly**
+#### SST Anomaly
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202221-WEEK_21_2003_2021-MUR-V04.1-NES-SST-ANOM.png)
 :::
 ::::
+
+#### CHL and CHL anomaly
 
 ```{r, figures-chlside, fig.show="hold", out.width="50%"}
 par(mar = c(4, 4, .1, .1))
@@ -235,7 +368,7 @@ embed_video(here::here('images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES
 ```
 
 
-**2 week SST animation**
+#### 2 week SST animation
 
 <video width="500" height="500" controls>
   <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/DD_20220514_20220527-MUR-V04.1-1KM-NES-SST-FPS_3.webm" type="video/webm">
@@ -291,21 +424,21 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 
 ::: {class='col-md-6'}
 
-**Sea Surface Temperature**
+#### Sea Surface Temperature
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202220-MUR-V04.1-NES-SST-STATS_WHALE.png)
 :::
 
 ::: {class='col-md-6'}
 
-**Chlorophyll**
+#### Chlorophyll
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202220-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS.png)
 :::
 ::::
 *image credit: Kim Hyde*
 
-**2 week SST animation**
+#### 2 week SST animation
 
 <video width="500" height="500" controls>
   <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/DD_20220507_20220520-MUR-V04.1-1KM-NES-SST-FPS_5.webm" type="video/webm">
@@ -316,12 +449,12 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 ### Mesoscale features
 ***
 
-**JCC May 18, 2022**
+#### JCC May 18, 2022
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220518.png)
 
 
-**JCC May 20, 2022**
+#### JCC May 20, 2022
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220520.png)
 *image credit: Jenifer Clark*
@@ -349,7 +482,8 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 
 ### Oceanographic indicators
 ***
-**Sea Surface Temperature**
+
+#### Sea Surface Temperature
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202219-MUR-V04.1-NES-SST-STATS.png){width=55%}
 *image credit: Kim Hyde*
@@ -391,13 +525,13 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 :::: {class='fluid-row'}
 ::: {class='col-md-6'}
 
-**Sea Surface Temperature**
+#### Sea Surface Temperature
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202218-MUR-V04.1-NES-SST-STATS.png)
 :::
 ::: {class='col-md-6'}
 
-**Chlorophyll**
+#### Chlorophyll
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202218-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS.png)
 :::
@@ -430,20 +564,20 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 
 :::: {class='fluid-row'}
 ::: {class='col-md-6'}
-**Mean Salinity (Pioneer Array, CENTRAL)**
+#### Mean Salinity (Pioneer Array, CENTRAL)
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202218-SAL-CENTRAL.png)
 :::
 ::: {class='col-md-6'}
-**Mean Salinity (Pioneer Array, INSHORE)**
+#### Mean Salinity (Pioneer Array, INSHORE)
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202218-SAL-INSHORE.png)
 :::
 ::::
 
-**Mean Salinity (Pioneer Array, OFFSHORE)**
+#### Mean Salinity (Pioneer Array, OFFSHORE)
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202218-SAL-OFFSHORE.png)
 
 
-**YTD : Mean Salinity (Pioneer Array, w/2021 reference)**
+#### YTD : Mean Salinity (Pioneer Array, w/2021 reference)
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/A_2021-2022-SAL-CENTRAL.png)
 
 
@@ -477,14 +611,14 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 :::: {class='fluid-row'}
 ::: {class='col-md-6'}
 
-**Sea Surface Temperature**
+#### Sea Surface Temperature
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202217-MUR-V04.1-NES-SST-STATS.png)
 :::
 
 ::: {class='col-md-6'}
 
-**Chlorophyll**
+#### Chlorophyll
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202217-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS-.png)
 :::
@@ -518,14 +652,15 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 
 :::: {class='fluid-row'}
 ::: {class='col-md-6'}
-**Sea Surface Temperature**
+
+#### Sea Surface Temperature
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/sst/W_202216-MUR-V04.1-NES-SST-STATS.png)
 :::
 
 ::: {class='col-md-6'}
 
-**Chlorophyll**
+#### Chlorophyll
 
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/chl/W_202216-GLOBCOLOUR-R2019-NES-CHLOR_A-GSM-STATS-.png)
 :::
