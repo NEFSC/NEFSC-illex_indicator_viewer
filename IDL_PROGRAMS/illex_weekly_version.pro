@@ -142,7 +142,7 @@
       CASE SPROD OF
         'CHLOR_A':  BEGIN & DTSET=CHL_DATASET & TPSET=CHL_TEMP & SPROD=SPROD+'-'+CHL_ALG & DWLPROD='CHL1' & PTAG='MED'   & PSCALE='CHLOR_A_0.01_10' & PAL='PAL_NAVY_GOLD'  & ASCALE='RATIO'    & APAL='PAL_BLUEGREEN_ORANGE' & ATITLE='Chlorophyll Anomaly (Ratio)' & END
         'SST':      BEGIN & DTSET=SST_DATASET & TPSET=SST_TEMP & SPROD=SPROD             & DWLPROD='' & PTAG='AMEAN' & PSCALE='SST_0_30'       & PAL='PAL_BLUERED'   & ASCALE='DIF_-5_5' & APAL='PAL_SUNSHINE_DIF' & ATITLE='SST Anomaly ' + UNITS('SST',/NO_NAME) 
-                            MONTH_SCALE = CREATE_STRUCT('MO1', 'SST_0_30',$
+                            MONTH_SCALE = CREATE_STRUCT('M01', 'SST_0_30',$
                                                       'M02', 'SST_0_30',$
                                                       'M03', 'SST_0_30',$
                                                       'M04', 'SST_5_30',$
