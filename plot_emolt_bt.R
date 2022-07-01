@@ -133,7 +133,7 @@ p2 <- ggplot() +
                aes(x=x,y=y,z=-1*z),
                breaks=c(0,50,100,250,500,Inf),
                size=c(0.3),
-               col = 'lightgrey') +
+               col = 'darkgrey') +
   # NAFO subareas
   geom_sf(data=nafo %>% st_as_sf(), fill = NA, colour = 'Black') +
   new_scale_fill() +

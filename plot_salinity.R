@@ -25,6 +25,7 @@ pa_insh_22 <- pa_insh_22 %>%
          pressure = as.numeric(pressure),
          temperature = as.numeric(temperature)) %>%
   as.data.frame()
+
 pa_insh_22 <- pa_insh_22 %>%
   group_by(date) %>%
   mutate(msal = mean(salinity))
@@ -146,6 +147,8 @@ p2 <- pa_offsh_22 %>%
 png(file = here::here('images/salinity/W_202221_SAL_OFFSHORE.png')) ## Change name, also directory
 (plot_spacer() + p2) /  (p1)
 dev.off()
+temperatureColor <- "#69b3a2"
+priceColor <- rgb(0.2, 0.6, 0.9, 1)
 
 # ---- Upstream Offshore ----# 
 up_off_22 <- read.csv('PIONEER_UPSTREAM_OFFSHORE_2022.csv') # updated weekly 
@@ -153,9 +156,9 @@ up_off_22 <- up_off_22[-1,] # remove row of metadata
 up_off_21 <- read.csv('PIONEER_UPSTREAM_OFFSHORE_2021.csv') # updated weekly 
 up_off_21 <- up_off_21[-1,] # remove row of metadata
 # adjust / add columns to create time steps of interest
-# 2022
 up_off_22$date <- ymd_hms(up_off_22$time) # convert to date
 up_off_21$date <- ymd_hms(up_off_21$time) # convert to date
+# 2022
 up_off_22 <- up_off_22 %>% 
   mutate(year = year(date),
          month = month(date),
@@ -201,8 +204,12 @@ uo_100m_21 <- up_off_21_100m %>%
   group_by(week) %>%
   mutate(msal = mean(salinity), 
          mtmp = mean(temperature))
+## Plot ##
+ann_sal_offsh <- up_off_22_100m %>%
+  dplyr::group_by(year) %>%
+  summarise(mean_sal = mean(msal))
 
-ggplot(up_off_22_100m, aes(x = date)) +
+p0 = ggplot(up_off_22_100m, aes(x = date)) +
   
   geom_line(aes(y=msal), size=2, color=priceColor) + 
   geom_line(aes(y=mtmp / coeff), size=2, color=temperatureColor) +
@@ -224,8 +231,60 @@ ggplot(up_off_22_100m, aes(x = date)) +
   ) +
   
   ggtitle("2022 Upstream Offshore Profiler Mooring: 100 M")
+p1 = up_off_22_100m %>%
+  ggplot(aes(x = date, y = msal)) +
+  geom_line(lwd = 1.4, color = 'darkblue') +
+  geom_point(aes(fill = 'darkblue'),pch = 19, size = 1.2,colour = 'darkblue') +
+  geom_hline(yintercept = as.numeric(ann_sal_offsh[1,2]), 
+             lty = 2, col = 'darkblue', lwd = 1) +
+  labs(title = 'Salinity: Upstream Offshore Profiler Mooring: 100 M', 
+       subtitle = paste0('Depth:', round(min(up_off_22_100m$pressure),2),':', 
+                         round(max(up_off_22_100m$pressure),2), ' M, Mean:', 
+                         round(mean(up_off_22_100m$pressure),2), ' M')) +
+  ylab('Mean Salinity') +
+  xlab('Date') +
+  scale_fill_discrete(guide = 'none') +
+  theme_minimal()+
+  theme(axis.title.x = element_text(size = 15),
+        axis.title.y = element_text(size = 15),
+        axis.text = element_text(size = 15)) +
+  ecodata::theme_ts()
+p2 = up_off_22_100m %>%
+  ggplot(aes(x = date, y = msal)) +
+  geom_line(lwd = 1.4, color = 'darkblue') +
+  geom_point(aes(fill = 'darkblue'),pch = 21, size = 3,colour = 'black') +
+  geom_hline(yintercept = as.numeric(ann_sal_offsh[1,2]), 
+             lty = 2, col = 'darkblue', lwd = 1) +
+  labs(title = 'Week 25, 2022', subtitle ='June 19 - June 25') + # Change date 
+  ylab('Mean Salinity') + 
+  xlab('Date') +
+  scale_fill_discrete(guide='none') +
+  scale_x_date(limit=c(as.Date('2022-06-18'), # Change date range
+                       as.Date('2022-06-24'))) +
+  theme_minimal() + 
+  ecodata::theme_ts()
+
+p1 = up_off_22_100m %>%
+  ggplot(aes(x = date, y = msal)) +
+  geom_line(lwd = 1.4, color = 'darkblue') +
+  geom_point(aes(fill = 'darkblue'),pch = 19, size = 1.2,colour = 'darkblue') +
+  geom_hline(yintercept = as.numeric(ann_sal_offsh[1,2]), 
+             lty = 2, col = 'darkblue', lwd = 1) +
+  labs(title = 'Salinity: Upstream Offshore Profiler Mooring: 100 M', 
+       subtitle = paste0('Depth:', round(min(up_off_22_100m$pressure),2),':', 
+                         round(max(up_off_22_100m$pressure),2), ' M, Mean:', 
+                         round(mean(up_off_22_100m$pressure),2), ' M')) +
+  ylab('Mean Salinity') +
+  xlab('Date') +
+  scale_fill_discrete(guide = 'none') +
+  theme_minimal()+
+  theme(axis.title.x = element_text(size = 15),
+        axis.title.y = element_text(size = 15),
+        axis.text = element_text(size = 15)) +
+  ecodata::theme_ts()
 
 
+(plot_spacer() + p2) /  (p1)
 
 
 # ---- Central Offshore ----# 
@@ -243,11 +302,9 @@ c_off_22 <- c_off_22 %>%
          month = month(date),
          week = week(date), 
          day = day(date),
-         date = as.Date(date),
          density = as.numeric(density), 
          pressure = as.numeric(pressure),
-         temperature = as.numeric(temperature), 
-         depth = as.numeric(depth)) %>%
+         temperature = as.numeric(temperature)) %>%
   as.data.frame()
 # 2021
 c_off_21 <- c_off_21 %>% 
@@ -365,7 +422,230 @@ ggplot(c_off_22_100m, aes(x=date)) +
   
   ggtitle("2022 Central Offshore Profiler Mooring: 100 M")
 
-# ------- This one may go on website
+
+## Plot ##
+p1 = ggplot(c_off_22_100m, aes(x = date)) +
+  
+  geom_line(aes(y=msal), size=2, color=priceColor) + 
+  geom_line(aes(y=mtmp / coeff), size=2, color=temperatureColor) +
+  
+  scale_y_continuous(
+    
+    # Features of the first axis
+    name = "Mean Salinity",
+    
+    # Add a second axis and specify its features
+    sec.axis = sec_axis(~.*coeff, name="Mean Temperature (Celsius °)")
+  ) + 
+  
+  theme_classic() +
+  
+  theme(
+    axis.title.y = element_text(color = priceColor, size=13),
+    axis.title.y.right = element_text(color = temperatureColor, size=13)
+  ) +
+  
+  ggtitle("2022 Central Offshore Profiler Mooring: 100 M")
+ann_sal_coffsh <- c_off_22_100m %>%
+  dplyr::group_by(year) %>%
+  summarise(mean_sal = mean(msal))
+p2 = c_off_22_100m %>%
+  ggplot(aes(x = date, y = msal)) +
+  geom_line(lwd = 1.4, color = 'darkblue') +
+  geom_point(aes(fill = 'darkblue'),pch = 21, size = 3,colour = 'black') +
+  geom_hline(yintercept = as.numeric(ann_sal_coffsh[1,2]), 
+             lty = 2, col = 'darkblue', lwd = 1) +
+  labs(title = 'Week 23, 2022', subtitle ='June 05- June 09') + # Change date 
+  ylab('Mean Salinity') + 
+  xlab('Date') +
+  scale_fill_discrete(guide='none') +
+  scale_x_date(limit=c(as.Date('2022-06-05'), # Change date range
+                       as.Date('2022-06-09'))) +
+  theme_minimal() + 
+  ecodata::theme_ts()
+(plot_spacer() + p2) /  (p1)
+
+### -------------- Looking for SMax Intrusions ### -----------------------###
+# Check 2 instruments (upstream inshore, near surface frame 7 m depth)
+# ---- Upstream Inshore ----# 
+up_insh_22 <- read.csv('PIONEER_UPSTREAM_INSHORE_2022.csv') # updated weekly 
+up_insh_22 <- up_insh_22[-1,] # remove row of metadata
+# up_insh_21 <- read.csv('PIONEER_UPSTREAM_INSHORE_20221.csv') # updated weekly 
+# up_insh_21 <- up_off_21[-1,] # remove row of metadata
+# adjust / add columns to create time steps of interest
+up_insh_22$date <- ymd_hms(up_insh_22$time) # convert to date
+up_insh_22$date <- as.Date(up_insh_22$date)
+
+#up_insh_21$date <- ymd_hms(up_off_21$time) # convert to date
+# 2022
+up_insh_22 <- up_insh_22 %>% 
+  mutate(year = year(date),
+         month = month(date),
+         week = week(date), 
+         day = day(date),
+         density = as.numeric(density), 
+         pressure = as.numeric(pressure),
+         temperature = as.numeric(temperature), 
+         depth = as.numeric(depth)) %>%
+  as.data.frame()
+
+# Calculate daily mean at 100 meter depth
+# 2022
+up_insh_22_100m <- up_insh_22 %>% # range is -128 to -26
+  dplyr::filter(depth >= -72 & depth <= -70) %>%
+  group_by(date) %>%
+  mutate(msal = mean(salinity), 
+         mtmp = mean(temperature))
+ui_100m_22 <- up_insh_22_100m %>%
+  group_by(week) %>%
+  mutate(msal = mean(salinity), 
+         mtmp = mean(temperature))
+# # 2021
+# up_insh_21_100m <- up_insh_21 %>%
+#   dplyr::filter(depth >= -72 & depth <= -68 & month == c(1:5)) %>%
+#   group_by(date) %>%
+#   mutate(msal = mean(salinity), 
+#          mtmp = mean(temperature))
+# ui_100m_21 <- up_insh_21_100m %>%
+#   group_by(week) %>%
+#   mutate(msal = mean(salinity), 
+#          mtmp = mean(temperature))
+
+ann_sal_insh <- up_insh_22_100m %>%
+  dplyr::group_by(year) %>%
+  summarise(mean_sal = mean(msal))
+## Plot ##
+
+
+p1 = up_insh_22_100m %>%
+  ggplot(aes(x = date, y = msal)) +
+  geom_line(lwd = 1.4, color = 'darkblue') +
+  geom_point(aes(fill = 'darkblue'),pch = 19, size = 1.2,colour = 'darkblue') +
+  geom_hline(yintercept = as.numeric(ann_sal_offsh[1,2]), 
+             lty = 2, col = 'darkblue', lwd = 1) +
+  labs(title = 'Salinity: Upstream Inshore Profiler Mooring: 70 M', 
+       subtitle = paste0('Depth:', round(min(up_insh_22_100m$depth),2),':', 
+                         round(max(up_insh_22_100m$depth),2), ' M, Mean:', 
+                         round(mean(up_insh_22_100m$depth),2), ' M')) +
+  ylab('Mean Salinity') +
+  xlab('Date') +
+  scale_fill_discrete(guide = 'none') +
+  theme_minimal()+
+  theme(axis.title.x = element_text(size = 15),
+        axis.title.y = element_text(size = 15),
+        axis.text = element_text(size = 15)) +
+  ecodata::theme_ts()
+p2 = up_insh_22_100m %>%
+  ggplot(aes(x = date, y = msal)) +
+  geom_line(lwd = 1.4, color = 'darkblue') +
+  geom_point(aes(fill = 'darkblue'),pch = 21, size = 3,colour = 'black') +
+  geom_hline(yintercept = as.numeric(ann_sal_insh[1,2]), 
+             lty = 2, col = 'darkblue', lwd = 1) +
+  labs(title = 'Week 25, 2022', subtitle ='June 19 - June 25') + # Change date 
+  ylab('Mean Salinity') + 
+  xlab('Date') +
+  scale_fill_discrete(guide='none') +
+  scale_x_date(limit=c(as.Date('2022-06-19'), # Change date range
+                       as.Date('2022-06-25'))) +
+  theme_minimal() + 
+  ecodata::theme_ts()
+
+# ---- Near Surface Frame  ----# 
+insh_surface_22 <- read.csv('PIONEER_INSHORE_SURFACE_FRAME_2022.csv') # updated weekly 
+insh_surface_22 <- insh_surface_22[-1,] # remove row of metadata
+# up_insh_21 <- read.csv('PIONEER_UPSTREAM_INSHORE_20221.csv') # updated weekly 
+# up_insh_21 <- up_off_21[-1,] # remove row of metadata
+# adjust / add columns to create time steps of interest
+insh_surface_22$date <- ymd_hms(insh_surface_22$time) # convert to date
+insh_surface_22$date <- as.Date(insh_surface_22$date)
+#up_insh_21$date <- ymd_hms(up_off_21$time) # convert to date
+# 2022
+insh_surface_22 <- insh_surface_22 %>% 
+  mutate(year = year(date),
+         month = month(date),
+         week = week(date), 
+         day = day(date),
+         density = as.numeric(density), 
+         pressure = as.numeric(pressure),
+         temperature = as.numeric(temperature), 
+         depth = as.numeric(depth)) %>%
+  as.data.frame()
+
+# Calculate daily mean at 100 meter depth
+# 2022
+insh_surface_22_100m <- insh_surface_22 %>% 
+  group_by(date) %>%
+  mutate(msal = mean(salinity), 
+         mtmp = mean(temperature))
+ui_100m_22 <- insh_surface_22_100m %>%
+  group_by(week) %>%
+  mutate(msal = mean(salinity), 
+         mtmp = mean(temperature))
+# # 2021
+# up_insh_21_100m <- up_insh_21 %>%
+#   dplyr::filter(depth >= -72 & depth <= -68 & month == c(1:5)) %>%
+#   group_by(date) %>%
+#   mutate(msal = mean(salinity), 
+#          mtmp = mean(temperature))
+# ui_100m_21 <- up_insh_21_100m %>%
+#   group_by(week) %>%
+#   mutate(msal = mean(salinity), 
+#          mtmp = mean(temperature))
+
+ann_sal_insh_surf <- insh_surface_22_100m %>%
+  dplyr::group_by(year) %>%
+  summarise(mean_sal = mean(msal))
+## Plot ##
+
+
+p3 = insh_surface_22_100m %>%
+  ggplot(aes(x = date, y = msal)) +
+  geom_line(lwd = 1.4, color = 'darkblue') +
+  geom_point(aes(fill = 'darkblue'),pch = 19, size = 1.2,colour = 'darkblue') +
+  geom_hline(yintercept = as.numeric(ann_sal_insh_surf[1,2]), 
+             lty = 2, col = 'darkblue', lwd = 1) +
+  labs(title = 'Salinity: Inshore Near Surface Frame: 7 M', 
+       subtitle = paste0('Depth:', round(min(insh_surface_22_100m$depth),2),':', 
+                         round(max(insh_surface_22_100m$depth),2), ' M, Mean:', 
+                         round(mean(insh_surface_22_100m$depth),2), ' M')) +
+  ylab('Mean Salinity') +
+  xlab('Date') +
+  scale_fill_discrete(guide = 'none') +
+  theme_minimal()+
+  theme(axis.title.x = element_text(size = 15),
+        axis.title.y = element_text(size = 15),
+        axis.text = element_text(size = 15)) +
+  ecodata::theme_ts()
+
+
+p4 = insh_surface_22_100m %>%
+  ggplot(aes(x = date, y = msal)) +
+  geom_line(lwd = 1.4, color = 'darkblue') +
+  geom_point(aes(fill = 'darkblue'),pch = 21, size = 3,colour = 'black') +
+  geom_hline(yintercept = as.numeric(ann_sal_insh[1,2]), 
+             lty = 2, col = 'darkblue', lwd = 1) +
+  labs(title = 'Week 25, 2022', subtitle ='June 19 - June 25') + # Change date 
+  ylab('Mean Salinity') + 
+  xlab('Date') +
+  scale_fill_discrete(guide='none') +
+  scale_x_date(limit=c(as.Date('2022-06-19'), # Change date range
+                       as.Date('2022-06-25'))) +
+  theme_minimal() + 
+  ecodata::theme_ts()
+
+
+(p1 + p2) /  (p3 + p4)
+
+# Save figure to correct folder 
+# png(file = here::here('images/salinity/W_202225_UP_INSH_SURF_SAL.png')) ## Change name, also directory
+# (p1 + p2) /  (p3 + p4)
+# dev.off()
+# pdf(file = here::here('images/salinity/W_202225_UP_INSH_SURF_SAL.pdf', 
+#                       height = 7, width = 10)) ## Change name, also directory
+# (p1 + p2) /  (p3 + p4)
+# dev.off()
+
+# ------- This is Sal + Temp on same plot --------- #
 ggplot(c_off_21_100m, aes(x=date)) +
   
   geom_line(aes(y=msal), size=2, color=priceColor) + 
