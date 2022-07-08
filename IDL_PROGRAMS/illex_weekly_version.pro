@@ -89,7 +89,7 @@
         SHPFILE  = 'NAFO_SHELFBREAK_40KM'                                 ; The shapefile for any data extractions or image outlines
         PRODS = ['CHLOR_A','SST','GRAD_CHL','GRAD_SST','SEALEVEL','OCEAN','MICRO','NANO','PICO',['MICRO','NANO','PICO']+'_PERCENTAGE']
         DOWNLOAD_PRODS = ['CHLOR_A','SST','SEALEVEL','OCEAN']
-        PNG_PRODS = ['CHLOR_A','SST']
+        PNG_PRODS = ['CHLOR_A','SST'];,'GRAD_CHL','GRAD_SST']
         PNG_PERIODS = ['W']
         FRONT_PRODS = ['GRAD_SST','GRAD_CHL']
         EXTRACT_PRODS = ['CHLOR_A','SST','MICRO','NANO','PICO',['MICRO','NANO','PICO']+'_PERCENTAGE']
