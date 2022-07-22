@@ -71,7 +71,7 @@
     ; ===> Make the project directories
     DIR_PRO = !S.ILLEX_INDICATOR_VIEWER
     DIR_VER = DIR_PRO + VER + SL
-    DIRNAMES = ['FILES','EXTRACTS','PNGS','ANIMATIONS','COMPOSITES'] 
+    DIRNAMES = ['FILES','EXTRACTS','EVENTS','PNGS','ANIMATIONS','COMPOSITES'] 
     DNAME = 'DIR_'  + DIRNAMES                                                                      ; The tag name for the directory in the structure
     DIRS  = DIR_VER + DIRNAMES + SL                                                                 ; The actual directory name
     DIR_TEST, DIRS                                                                                  ; Make the output directories if they don't already exist
