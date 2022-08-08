@@ -1,5 +1,5 @@
-; $ID:	ILLEX_WEEKLY_IMAGE.PRO,	2022-06-02-11,	USER-KJWH	$
-  FUNCTION ILLEX_WEEKLY_IMAGE, VERSTR, FILE=FILE, MAPP=MAPP, BUFFER=BUFFER, CURRENT=CURRENT, $
+; $ID:	ILLEX_VIEWER_IMAGE.PRO,	2022-08-08-09,	USER-KJWH	$
+  FUNCTION ILLEX_VIEWER_IMAGE, VERSTR, FILE=FILE, MAPP=MAPP, BUFFER=BUFFER, CURRENT=CURRENT, $
                                ADD_BATHY=ADD_BATHY, BATHY_DEPTH=BATHY_DEPTH, BATHY_COLOR=BATHY_COLOR, BATHY_THICK=BATHY_THICK, $
                                ADD_POINTS=ADD_POINTS, PLONS=PLONS, PLATS=PLATS, PSYM=PSYM, PCOLOR=PCOLOR, PSIZE=PSIZE, $
                                OUTLINE=OUTLINE, OUT_COLOR=OUT_COLOR, OUT_THICK=OUT_THICK, $
@@ -11,7 +11,7 @@
 
 ;+
 ; NAME:
-;   ILLEX_WEEKLY_IMAGE
+;   ILLEX_VIEWER_IMAGE
 ;
 ; PURPOSE:
 ;   This function will return an image to be used in the composites and annimations for the Weekly Illex website
@@ -20,7 +20,7 @@
 ;   illex_indicator_viewer
 ;
 ; CALLING SEQUENCE:
-;   Result = ILLEX_WEEKLY_IMAGE($Parameter1$, $Parameter2$, $Keyword=Keyword$, ...)
+;   Result = ILLEX_VIEWER_IMAGE($Parameter1$, $Parameter2$, $Keyword=Keyword$, ...)
 ;
 ; REQUIRED INPUTS:
 ;   Parm1.......... Describe the positional input parameters here. 
@@ -65,7 +65,7 @@
 ;   Jun 02, 2022 - KJWH: Initial code written
 ;-
 ; ****************************************************************************************************
-  ROUTINE_NAME = 'ILLEX_WEEKLY_IMAGE'
+  ROUTINE_NAME = 'ILLEX_VIEWER_IMAGE'
   COMPILE_OPT IDL2
   SL = PATH_SEP()
 
@@ -196,4 +196,4 @@
   RETURN, IMG
 
 
-END ; ***************** End of ILLEX_WEEKLY_IMAGE *****************
+END ; ***************** End of ILLEX_VIEWER_IMAGE *****************

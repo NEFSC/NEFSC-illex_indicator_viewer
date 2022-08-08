@@ -1,9 +1,9 @@
-; $ID:	ILLEX_WEEKLY_DOWNLOADS.PRO,	2022-05-05-12,	USER-KJWH	$
-  PRO ILLEX_WEEKLY_DOWNLOADS, VERSTRUCT, NDAYS=NDAYS
+; $ID:	ILLEX_VIEWER_DOWNLOADS.PRO,	2022-08-08-09,	USER-KJWH	$
+  PRO ILLEX_VIEWER_DOWNLOADS, VERSTRUCT, NDAYS=NDAYS
 
 ;+
 ; NAME:
-;   ILLEX_WEEKLY_DOWNLOADS
+;   ILLEX_VIEWER_DOWNLOADS
 ;
 ; PURPOSE:
 ;   Program to download files for the weekly Illex images
@@ -12,7 +12,7 @@
 ;   ILLEX_INDICATOR_VIEWER
 ;
 ; CALLING SEQUENCE:
-;   ILLEX_WEEKLY_DOWNLOADS
+;   ILLEX_VIEWER_DOWNLOADS
 ;
 ; REQUIRED INPUTS:
 ;   None 
@@ -57,7 +57,7 @@
 ;   May 05, 2022 - KJWH: Initial code written
 ;-
 ; ****************************************************************************************************
-  ROUTINE_NAME = 'ILLEX_WEEKLY_DOWNLOADS'
+  ROUTINE_NAME = 'ILLEX_VIEWER_DOWNLOADS'
   COMPILE_OPT IDL2
   SL = PATH_SEP()
   
@@ -92,4 +92,4 @@
     ; https://emolt.org/emoltdata/emolt_QCed_telemetry_and_wified.csv - EMOLT data
     
    
-END ; ***************** End of ILLEX_WEEKLY_DOWNLOADS *****************
+END ; ***************** End of ILLEX_VIEWER_DOWNLOADS *****************

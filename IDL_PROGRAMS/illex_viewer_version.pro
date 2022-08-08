@@ -1,18 +1,18 @@
-; $ID:	ILLEX_WEEKLY_INDICATORS_VERSION_INFO.PRO,	2022-05-05-12,	USER-KJWH	$
-  FUNCTION ILLEX_WEEKLY_VERSION, VERSION
+; $ID:	ILLEX_VIEWER_VERSION.PRO,	2022-08-08-09,	USER-KJWH	$
+  FUNCTION ILLEX_VIEWER_VERSION, VERSION
 
 ;+
 ; NAME:
-;   ILLEX_WEEKLY_INDICATORS_VERSION_INFO
+;   ILLEX_VIEWER_INDICATORS_VERSION_INFO
 ;
 ; PURPOSE:
-;   Get the version specific information for the various ILLEX_WEEKLY_INDICATORS functions
+;   Get the version specific information for the various ILLEX_VIEWER_INDICATORS functions
 ;
 ; PROJECT:
 ;   ILLEX_INDICATOR_VIEWER
 ;
 ; CALLING SEQUENCE:
-;   Result = ILLEX_WEEKLY_INDICATORS_VERSION_INFO()
+;   Result = ILLEX_VIEWER_INDICATORS_VERSION_INFO()
 ;
 ; REQUIRED INPUTS:
 ;   None
@@ -57,7 +57,7 @@
 ;   May 05, 2022 - KJWH: Initial code written
 ;-
 ; ****************************************************************************************************
-  ROUTINE_NAME = 'ILLEX_WEEKLY_INDICATORS_VERSION_INFO'
+  ROUTINE_NAME = 'ILLEX_VIEWER_INDICATORS_VERSION_INFO'
   COMPILE_OPT IDL2
   SL = PATH_SEP()
   
@@ -178,4 +178,4 @@
   ENDFOR ; VERSION 
     
 
-END ; ***************** End of ILLEX_WEEKLY_INDICATORS_VERSION_INFO *****************
+END ; ***************** End of ILLEX_VIEWER_INDICATORS_VERSION_INFO *****************
