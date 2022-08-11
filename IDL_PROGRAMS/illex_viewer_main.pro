@@ -74,11 +74,11 @@
 ;   May 05, 2022 - KJWH: Initial code written
 ;-
 ; ****************************************************************************************************
-  ROUTINE_NAME = 'ILLEX_VIEWER_IMAGES_MAIN'
+  ROUTINE_NAME = 'ILLEX_VIEWER_MAIN'
   COMPILE_OPT IDL2
   SL = PATH_SEP()
   
-  DIR_PROJECT = !S.ILLEX_INDICATOR_VIEWER
+  DIR_PROJECT = !S.ILLEX_VIEWER
 
   IF NONE(VERSION)    THEN VERSION = 'V2022'
   IF NONE(BUFFER)     THEN BUFFER  = 1
@@ -87,12 +87,14 @@
   
   ; ===> Manually adjust the SOE program steps as needed
   IF ~N_ELEMENTS(DOWNLOAD_FILES)      THEN DOWNLOAD_FILES   = ''
-  IF ~N_ELEMENTS(PROCESS_FILES)       THEN PROCESS_FILES    = ''
+  IF ~N_ELEMENTS(PROCESS_FILES)       THEN PROCESS_FILES    = 'Y'
   IF ~N_ELEMENTS(SST_ANIMATION)       THEN SST_ANIMATION    = ''
   IF ~N_ELEMENTS(MAKE_COMPOSITES)     THEN MAKE_COMPOSITES  = ''
   IF ~N_ELEMENTS(SUBAREA_EXTRACTS)    THEN SUBAREA_EXTRACTS = ''
   IF ~N_ELEMENTS(EVENTS)              THEN EVENTS           = ''
   IF ~N_ELEMENTS(JC_ANIMATION)        THEN JC_ANIMATION     = ''
+  IF ~N_ELEMENTS(GIT_PUSH)            THEN JC_ANIMATION     = ''
+
 
   
   ; ===> Loop through versions
