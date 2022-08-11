@@ -6,11 +6,12 @@
                          MAKE_COMPOSITES=MAKE_COMPOSITES,$
                          EVENTS=EVENTS,$
                          SUBAREA_EXTRACTS=SUBAREAS_EXTRACTS,$
-                         JC_ANIMATION=JC_ANIMATION
+                         JC_ANIMATION=JC_ANIMATION, $
+                         GIT_PUSH=GIT_PUSH
 
 ;+
 ; NAME:
-;   ILLEX_VIEWER_IMAGES_MAIN
+;   ILLEX_VIEWER_MAIN
 ;
 ; PURPOSE:
 ;   Main program to create weekly images for the Illex indicators project
@@ -72,13 +73,14 @@
 ;    
 ; MODIFICATION HISTORY:
 ;   May 05, 2022 - KJWH: Initial code written
+;   Aug 11, 2022 - KJWH: Added option to GIT commit and push
 ;-
 ; ****************************************************************************************************
-  ROUTINE_NAME = 'ILLEX_VIEWER_IMAGES_MAIN'
+  ROUTINE_NAME = 'ILLEX_VIEWER_MAIN'
   COMPILE_OPT IDL2
   SL = PATH_SEP()
   
-  DIR_PROJECT = !S.ILLEX_INDICATOR_VIEWER
+  DIR_PROJECT = !S.ILLEX_VIEWER
 
   IF NONE(VERSION)    THEN VERSION = 'V2022'
   IF NONE(BUFFER)     THEN BUFFER  = 1
@@ -160,6 +162,34 @@
       ENDFOR
 
       STOP
+    ENDIF
+    
+    IF KEYWORD_SET(GIT_PUSH) THEN BEGIN
+      
+      cd, DIR_PROJECT
+
+      cmd = "git status"
+      spawn, cmd, log, exit_status=es
+      stop
+
+      cmd = "git add 'test_git.pro'"
+      spawn, cmd
+      stop
+
+      cmd = "git commit -m 'new test git pro'"
+      print, cmd
+      spawn, cmd
+      stop
+
+      cmd = "git push"
+      spawn, cmd
+      stop
+
+      cmd = "git status"
+      spawn, cmd
+      stop
+      
+      
     ENDIF
 
     
