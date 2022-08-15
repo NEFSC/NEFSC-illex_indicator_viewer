@@ -6,7 +6,7 @@
 ;   ILLEX_VIEWER_SST_ANIMATION
 ;
 ; PURPOSE:
-;   $PURPOSE$
+;   This program creates an animation of SST images for the Illex Viewer dashboard
 ;
 ; PROJECT:
 ;   ILLEX_INDICATOR_VIEWER
