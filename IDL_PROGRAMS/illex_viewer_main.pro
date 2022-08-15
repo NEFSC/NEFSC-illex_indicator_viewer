@@ -1,5 +1,5 @@
 ; $ID:	ILLEX_VIEWER_MAIN.PRO,	2022-08-08-09,	USER-KJWH	$
-  PRO ILLEX_VIEWER_MAIN, VERSION, BUFFER=BUFFER, OVERWRITE=OVERWRITE, $
+  PRO ILLEX_VIEWER_MAIN, VERSION, BUFFER=BUFFER, OVERWRITE=OVERWRITE, LOGFILE=LOGFILE, $
                          DOWNLOAD_FILES=DOWNLOAD_FILES,$
                          PROCESS_FILES=PROCESS_FILES,$
                          SST_ANIMATION=SST_ANIMATION,$
@@ -27,6 +27,10 @@
 ;
 ; OPTIONAL INPUTS:
 ;   VERSION........... The name of the version
+;   LOGFILE............ The name of the output logfile
+;   
+;
+; KEYWORD PARAMETERS:
 ;   DOWNLOAD_FILES.... Download files
 ;   PROCESS_FILES..... Use BATCH_L3 to process the downloaded files
 ;   SST_ANIMATION..... Create the SST animations
@@ -35,8 +39,7 @@
 ;   SUBAREA_EXTRACTS.. Extract and plot regional data
 ;   JC_ANIMATION...... Create animations of the Jennifer Clark charts (in development)
 ;   MAKE_COMPOSITES...
-;
-; KEYWORD PARAMETERS:
+;   
 ;   BUFFER............ Buffer the plotting steps
 ;   VERBOSE...... Print steps
 ;   OVERWRITE.... Overwrite existing files
@@ -45,7 +48,7 @@
 ;   Images, composites, animations, etc. to be used for the Illex indicators project
 ;
 ; OPTIONAL OUTPUTS:
-;   None
+;   A logfile 
 ;
 ; COMMON BLOCKS: 
 ;   None
@@ -82,27 +85,38 @@
   
   DIR_PROJECT = !S.ILLEX_VIEWER
 
-  IF NONE(VERSION)    THEN VERSION = 'V2022'
-  IF NONE(BUFFER)     THEN BUFFER  = 1
-  IF NONE(VERBSOE)    THEN VERBOSE = 0
-  IF NONE(RESOLUTION) THEN RESOLUTION = 300
+  IF ~N_ELEMENTS(VERSION)    THEN VERSION = 'V2022'
+  IF ~N_ELEMENTS(BUFFER)     THEN BUFFER  = 1
+  IF ~N_ELEMENTS(VERBSOE)    THEN VERBOSE = 0
+  IF ~N_ELEMENTS(RESOLUTION) THEN RESOLUTION = 300
   
   ; ===> Manually adjust the SOE program steps as needed
-  IF ~N_ELEMENTS(DOWNLOAD_FILES)      THEN DOWNLOAD_FILES   = 'Y'
-  IF ~N_ELEMENTS(PROCESS_FILES)       THEN PROCESS_FILES    = 'Y'
-  IF ~N_ELEMENTS(SST_ANIMATION)       THEN SST_ANIMATION    = 'Y'
-  IF ~N_ELEMENTS(MAKE_COMPOSITES)     THEN MAKE_COMPOSITES  = 'Y'
+  IF ~N_ELEMENTS(DOWNLOAD_FILES)      THEN DOWNLOAD_FILES   = ''
+  IF ~N_ELEMENTS(PROCESS_FILES)       THEN PROCESS_FILES    = ''
+  IF ~N_ELEMENTS(SST_ANIMATION)       THEN SST_ANIMATION    = ''
+  IF ~N_ELEMENTS(MAKE_COMPOSITES)     THEN MAKE_COMPOSITES  = ''
   IF ~N_ELEMENTS(SUBAREA_EXTRACTS)    THEN SUBAREA_EXTRACTS = ''
   IF ~N_ELEMENTS(EVENTS)              THEN EVENTS           = ''
   IF ~N_ELEMENTS(JC_ANIMATION)        THEN JC_ANIMATION     = ''
-  IF ~N_ELEMENTS(GIT_PUSH)            THEN JC_ANIMATION     = ''
-
-
+  IF ~N_ELEMENTS(GIT_PUSH)            THEN GIT_PUSH     = 'Y'
   
   ; ===> Loop through versions
   FOR V=0, N_ELEMENTS(VERSION)-1 DO BEGIN
     VER = VERSION[V]
     VERSTR = ILLEX_VIEWER_VERSION(VER)
+    DR = VERSTR.INFO.DATERANGE
+    
+    IF KEYWORD_SET(LOGFILE) THEN BEGIN
+      LOGDIR = VERSTR.DIRS.LOGS
+      IF IDLTYPE(LOGFILE) NE 'STRING' THEN LOGFILE =  LOGDIR + ROUTINE_NAME + DATE_NOW() + '.log'
+      OPENW, LUN, LOGFILE, /APPEND, /GET_LUN, WIDTH=180 ;  ===> Open log file
+    ENDIF ELSE BEGIN
+      LUN = []
+      LOGFILE = ''
+    ENDELSE
+    PLUN, LUN, '******************************************************************************************************************'
+    PLUN, LUN, 'Starting ' + ROUTINE_NAME + ' log file: ' + LOGFILE + ' on: ' + systime() + ' on ' + !S.COMPUTER, 0
+    
     
     CANYONS = ['HUDSON_CANYON','WILMINGTON_CANYON','NORFOLK_CANYON']
     MAB_CANYONS = READ_SHPFILE('MAB_CANYONS',MAPP=VERSTR.INFO.MAP_OUT)
@@ -116,17 +130,17 @@
     IF KEYWORD_SET(DOWNLOAD_FILES) THEN ILLEX_VIEWER_DOWNLOADS, VERSTR
     
     IF KEYWORD_SET(PROCESS_FILES) THEN BEGIN ;ILLEX_WEEKLY_PROCESSING, VERSTR
-      BATCH_L3, DO_GHRSST='Y[MUR;M=L3B2.L3B4]',DO_STATS='Y_2020_2022[MUR;PER=W.M]',DO_ANOMS='Y_2022[MUR;PER=WM]',DO_FRONTS='Y[MUR;M=L3B2]',DO_STAT_FRONTS='Y[MUR;PER=W.M]'
-      BATCH_L3, DO_GLOBCOLOUR='Y',DO_MAKE_PRODS='Y_2020_2022[GLOBCOLOUR]',DO_STATS='Y_2020_2022[GLOBCOLOUR;P=CHLOR_A-GSM;PER=W.M;M=L3B4]',DO_ANOMS='Y_2022[GLOBCOLOUR;P=CHLOR_A-GSM;PER=WM]', DO_FRONTS='Y[GLOBCOLOUR]',DO_STAT_FRONTS='Y[GLOBCOLOUR;PER=W.M]'     
-      BATCH_L3, DO_STATS='Y_2020_2022[GLOBCOLOUR;P=PSIZET.PHYPERT;PER=M;M=L3B4]'
+      BATCH_L3, BATCH_DATERANGE=DR,DO_GHRSST='Y[MUR;M=L3B2.L3B4]',DO_STATS='Y[MUR;PER=W.M]',DO_ANOMS='Y[MUR;PER=WM]',DO_FRONTS='Y[MUR;M=L3B2]',DO_STAT_FRONTS='Y[MUR;PER=W.M]'
+      BATCH_L3, BATCH_DATERANGE=DR,DO_GLOBCOLOUR='Y',DO_MAKE_PRODS='Y[GLOBCOLOUR]',DO_STATS='Y[GLOBCOLOUR;P=CHLOR_A-GSM;PER=W.M;M=L3B4]',DO_ANOMS='Y[GLOBCOLOUR;P=CHLOR_A-GSM;PER=WM]', DO_FRONTS='Y[GLOBCOLOUR]',DO_STAT_FRONTS='Y[GLOBCOLOUR;PER=W.M]'     
+      BATCH_L3, BATCH_DATERANGE=DR,DO_STATS='Y[GLOBCOLOUR;P=PSIZET.PHYPERT;PER=M;M=L3B4]'
       
       ; FOR LOOP ON "FRONT" PRODS
       FOR F=0, N_ELEMENTS(VERSTR.INFO.FRONT_PRODS)-1 DO BEGIN
         FPROD = VERSTR.INFO.FRONT_PRODS[F]
         PSTR = VERSTR.PROD_INFO.(WHERE(TAG_NAMES(VERSTR.PROD_INFO) EQ FPROD))
-        FRONTS_STACKED_FILES, PSTR.DATASET, DATERANGE='2022', PRODS=PSTR.PROD, L3BMAP='NWA', OVERWRITE=OVERWRITE
-        GFILES = GET_FILES(PSTR.DATASET, PRODS=PSTR.PROD, DATERANGE=DR, FILE_TYPE='STACKED', PERIOD='DD')
-        D3HASH_FRONT_INDICATORS, GFILES, /INIT, PERIOD_CODE='W', NC_MAP='NWA', LOGLUN=LUN
+   ;     FRONTS_STACKED_FILES, PSTR.DATASET, PRODS=PSTR.PROD, L3BMAP='NWA', OVERWRITE=OVERWRITE,DATERANGE=DR
+   ;     GFILES = GET_FILES(PSTR.DATASET, PRODS=PSTR.PROD, DATERANGE=DR, FILE_TYPE='STACKED', PERIOD='DD')
+   ;     D3HASH_FRONT_INDICATORS, GFILES, /INIT, PERIOD_CODE='W', NC_MAP='NWA', LOGLUN=LUN,DATERANGE=DR
       ENDFOR
 
     ENDIF
@@ -168,21 +182,34 @@
     
     IF KEYWORD_SET(GIT_PUSH) THEN BEGIN
       
+      COUNTER = 0
+      WHILE COUNTER LT 3 DO BEGIN
+        COUNTER = COUNTER + 1
+      
+      ; ===> Change directory
       cd, DIR_PROJECT
 
-      cmd = "git status"
-      spawn, cmd, log, exit_status=es
-      stop
+      
+      ; ===> Check the version control status
+      CMD = "git status"
+      SPAWN, CMD, LOG, EXIT_STATUS=ES
+      PLUN, LUN, LOG
+      IF ES EQ 1 THEN GOTO, GIT_ERROR
+      IF HAS(LOG, 'nothing to commit') THEN GOTO, GIT_DONE
+      
+      CMD = "git add ."
+      SPAWN, CMD, LOG, EXIT_STATUS=ES
+      PLUN, LUN, LOG
+      IF ES EQ 1 THEN GOTO, GIT_ERROR
+      
+      COMMIT_MSG = ' Illex viewer update - ' + NUM2STR(DATE_NOW(/SHORT))
+      CMD = "git commit -m '" + COMMIT_MSG + "'" 
+      SPAWN, CMD, LOG, EXIT_STATUS=ES
+      PLUN, LUN, LOG
+      IF ES EQ 1 THEN GOTO, GIT_ERROR
 
-      cmd = "git add 'test_git.pro'"
-      spawn, cmd
-      stop
 
-      cmd = "git commit -m 'new test git pro'"
-      print, cmd
-      spawn, cmd
-      stop
-
+stop
       cmd = "git push"
       spawn, cmd
       stop
@@ -191,6 +218,14 @@
       spawn, cmd
       stop
       
+      ENDWHILE
+      
+      GIT_ERROR:
+      IF ES EQ 1 THEN BEGIN
+        MESSAGE, 'ERROR: Unable to complete git steps and upload files'
+      ENDIF
+      
+      GIT_DONE:
       
     ENDIF
 

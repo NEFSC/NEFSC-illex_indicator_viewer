@@ -55,6 +55,7 @@
 ;    
 ; MODIFICATION HISTORY:
 ;   May 05, 2022 - KJWH: Initial code written
+;   Aug 15, 2022 - KJHW: Added LOGS directory
 ;-
 ; ****************************************************************************************************
   ROUTINE_NAME = 'ILLEX_VIEWER_INDICATORS_VERSION_INFO'
@@ -71,7 +72,7 @@
     ; ===> Make the project directories
     DIR_PRO = !S.ILLEX_VIEWER
     DIR_VER = DIR_PRO + 'IDL_OUTPUTS' + SL + VER + SL
-    DIRNAMES = ['FILES','EXTRACTS','EVENTS','PNGS','ANIMATIONS','COMPOSITES'] 
+    DIRNAMES = ['FILES','EXTRACTS','EVENTS','PNGS','ANIMATIONS','COMPOSITES','LOGS'] 
     DNAME = 'DIR_'  + DIRNAMES                                                                      ; The tag name for the directory in the structure
     DIRS  = DIR_VER + DIRNAMES + SL                                                                 ; The actual directory name
     DIR_TEST, DIRS                                                                                  ; Make the output directories if they don't already exist
