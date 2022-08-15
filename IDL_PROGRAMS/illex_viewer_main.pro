@@ -215,7 +215,7 @@
   
         CMD = "git status"
         SPAWN, CMD, LOG, EXIT_STATUS=ES
-        IF LOG[1] EQ "Your branch is up to date with 'origin/main'." AND LOG[4] EQ "nothing to commit, working tree clean" THEN BREAK
+        IF LOG[1] EQ "Your branch is up to date with 'origin/main'." AND LOG[3] EQ "nothing to commit, working tree clean" THEN BREAK
 
       ENDWHILE
       
