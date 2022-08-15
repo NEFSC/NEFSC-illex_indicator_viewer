@@ -186,37 +186,37 @@
       WHILE COUNTER LT 3 DO BEGIN
         COUNTER = COUNTER + 1
       
-      ; ===> Change directory
-      cd, DIR_PROJECT
-
-      
-      ; ===> Check the version control status
-      CMD = "git status"
-      SPAWN, CMD, LOG, EXIT_STATUS=ES
-      PLUN, LUN, LOG
-      IF ES EQ 1 THEN GOTO, GIT_ERROR
-      IF ~HAS(LOG, 'nothing to commit') THEN BEGIN
-        CMD = "git add ."
-        SPAWN, CMD, LOG, EXIT_STATUS=ES
-        PLUN, LUN, LOG
-        IF ES EQ 1 THEN GOTO, GIT_ERROR
+        ; ===> Change directory
+        cd, DIR_PROJECT
+  
         
-        COMMIT_MSG = ' Illex viewer update - ' + NUM2STR(DATE_NOW(/SHORT))
-        CMD = "git commit -m '" + COMMIT_MSG + "'" 
+        ; ===> Check the version control status
+        CMD = "git status"
         SPAWN, CMD, LOG, EXIT_STATUS=ES
         PLUN, LUN, LOG
         IF ES EQ 1 THEN GOTO, GIT_ERROR
-      ENDIF  
+        IF ~HAS(LOG, 'nothing to commit') THEN BEGIN
+          CMD = "git add ."
+          SPAWN, CMD, LOG, EXIT_STATUS=ES
+          PLUN, LUN, LOG
+          IF ES EQ 1 THEN GOTO, GIT_ERROR
+          
+          COMMIT_MSG = ' Illex viewer update - ' + NUM2STR(DATE_NOW(/SHORT))
+          CMD = "git commit -m '" + COMMIT_MSG + "'" 
+          SPAWN, CMD, LOG, EXIT_STATUS=ES
+          PLUN, LUN, LOG
+          IF ES EQ 1 THEN GOTO, GIT_ERROR
+        ENDIF  
+  
+        CMD = "git push"
+        SPAWN, CMD, LOG, EXIT_STATUS=ES
+        PLUN, LUN, LOG
+        IF ES EQ 1 THEN GOTO, GIT_ERROR
+  
+        CMD = "git status"
+        SPAWN, CMD, LOG, EXIT_STATUS=ES
+        IF LOG[1] EQ "Your branch is up to date with 'origin/main'." AND LOG[4] EQ "nothing to commit, working tree clean" THEN BREAK
 
-      CMD = "git push"
-      SPAWN, CMD, LOG, EXIT_STATUS=ES
-      PLUN, LUN, LOG
-      IF ES EQ 1 THEN GOTO, GIT_ERROR
-stop
-      cmd = "git status"
-      spawn, cmd
-      stop
-      
       ENDWHILE
       
       GIT_ERROR:
@@ -224,7 +224,6 @@ stop
         MESSAGE, 'ERROR: Unable to complete git steps and upload files'
       ENDIF
       
-      GIT_DONE:
       
     ENDIF
 
