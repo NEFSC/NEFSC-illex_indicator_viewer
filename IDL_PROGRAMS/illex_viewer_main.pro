@@ -195,25 +195,24 @@
       SPAWN, CMD, LOG, EXIT_STATUS=ES
       PLUN, LUN, LOG
       IF ES EQ 1 THEN GOTO, GIT_ERROR
-      IF HAS(LOG, 'nothing to commit') THEN GOTO, GIT_DONE
-      
-      CMD = "git add ."
+      IF ~HAS(LOG, 'nothing to commit') THEN BEGIN
+        CMD = "git add ."
+        SPAWN, CMD, LOG, EXIT_STATUS=ES
+        PLUN, LUN, LOG
+        IF ES EQ 1 THEN GOTO, GIT_ERROR
+        
+        COMMIT_MSG = ' Illex viewer update - ' + NUM2STR(DATE_NOW(/SHORT))
+        CMD = "git commit -m '" + COMMIT_MSG + "'" 
+        SPAWN, CMD, LOG, EXIT_STATUS=ES
+        PLUN, LUN, LOG
+        IF ES EQ 1 THEN GOTO, GIT_ERROR
+      ENDIF  
+
+      CMD = "git push"
       SPAWN, CMD, LOG, EXIT_STATUS=ES
       PLUN, LUN, LOG
       IF ES EQ 1 THEN GOTO, GIT_ERROR
-      
-      COMMIT_MSG = ' Illex viewer update - ' + NUM2STR(DATE_NOW(/SHORT))
-      CMD = "git commit -m '" + COMMIT_MSG + "'" 
-      SPAWN, CMD, LOG, EXIT_STATUS=ES
-      PLUN, LUN, LOG
-      IF ES EQ 1 THEN GOTO, GIT_ERROR
-
-
 stop
-      cmd = "git push"
-      spawn, cmd
-      stop
-
       cmd = "git status"
       spawn, cmd
       stop
