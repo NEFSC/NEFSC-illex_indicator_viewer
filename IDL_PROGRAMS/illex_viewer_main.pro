@@ -1,5 +1,5 @@
-; $ID:	ILLEX_VIEWER_MAIN.PRO,	2022-08-08-09,	USER-KJWH	$
-  PRO ILLEX_VIEWER_MAIN, VERSION, BUFFER=BUFFER, OVERWRITE=OVERWRITE, LOGFILE=LOGFILE, $
+; $ID:	ILLEX_VIEWER_MAIN.PRO,	2022-08-17-14,	USER-KJWH	$
+  PRO ILLEX_VIEWER_MAIN, VERSION, BUFFER=BUFFER, OVERWRITE=OVERWRITE, LOGFILE=LOGFILE, LOGLUN=LOGLUN, $
                          DOWNLOAD_FILES=DOWNLOAD_FILES,$
                          PROCESS_FILES=PROCESS_FILES,$
                          SST_ANIMATION=SST_ANIMATION,$
@@ -7,7 +7,7 @@
                          EVENTS=EVENTS,$
                          SUBAREA_EXTRACTS=SUBAREAS_EXTRACTS,$
                          JC_ANIMATION=JC_ANIMATION, $
-                         GIT_PUSH=GIT_PUSH
+                         GIT_PUSH=GIT_PUSH, EMAIL=EMAIL
 
 ;+
 ; NAME:
@@ -27,6 +27,7 @@
 ;
 ; OPTIONAL INPUTS:
 ;   VERSION........... The name of the version
+;   LOGLUN.......... If provided, the LUN for the log file
 ;   LOGFILE............ The name of the output logfile
 ;   
 ;
@@ -39,6 +40,8 @@
 ;   SUBAREA_EXTRACTS.. Extract and plot regional data
 ;   JC_ANIMATION...... Create animations of the Jennifer Clark charts (in development)
 ;   MAKE_COMPOSITES...
+;   GIT_PUSH......... Run steps to add, commit and push files to GitHub
+;   EMAIL............... Send email indicating data were pushed to GitHub
 ;   
 ;   BUFFER............ Buffer the plotting steps
 ;   VERBOSE...... Print steps
@@ -89,6 +92,7 @@
   IF ~N_ELEMENTS(BUFFER)     THEN BUFFER  = 1
   IF ~N_ELEMENTS(VERBSOE)    THEN VERBOSE = 0
   IF ~N_ELEMENTS(RESOLUTION) THEN RESOLUTION = 300
+  IF ~N_ELEMENTS(LOGLUN)    THEN LUN   = [] ELSE LUN = LOGLUN
   
   ; ===> Manually adjust the SOE program steps as needed
   IF ~N_ELEMENTS(DOWNLOAD_FILES)      THEN DOWNLOAD_FILES   = ''
@@ -99,6 +103,7 @@
   IF ~N_ELEMENTS(EVENTS)              THEN EVENTS           = ''
   IF ~N_ELEMENTS(JC_ANIMATION)        THEN JC_ANIMATION     = ''
   IF ~N_ELEMENTS(GIT_PUSH)            THEN GIT_PUSH     = 'Y'
+  IF ~N_ELEMENTS(EMAIL)                THEN EMAIL = ''
   
   ; ===> Loop through versions
   FOR V=0, N_ELEMENTS(VERSION)-1 DO BEGIN
@@ -106,9 +111,9 @@
     VERSTR = ILLEX_VIEWER_VERSION(VER)
     DR = VERSTR.INFO.DATERANGE
     
-    IF KEYWORD_SET(LOGFILE) THEN BEGIN
-      LOGDIR = VERSTR.DIRS.LOGS
-      IF IDLTYPE(LOGFILE) NE 'STRING' THEN LOGFILE =  LOGDIR + ROUTINE_NAME + DATE_NOW() + '.log'
+    IF KEYWORD_SET(LOGFILE) AND LUN EQ [] THEN BEGIN
+      LOGDIR = DIR_PROJECT + 'IDL_OUTPUT' + SL + 'LOGS' + SL & DIR_TEST, LOGDIR
+      IF IDLTYPE(LOGFILE) NE 'STRING' THEN LOGFILE =  LOGDIR + ROUTINE_NAME + '-' + DATE_NOW() + '.log'
       OPENW, LUN, LOGFILE, /APPEND, /GET_LUN, WIDTH=180 ;  ===> Open log file
     ENDIF ELSE BEGIN
       LUN = []
@@ -183,36 +188,40 @@
     IF KEYWORD_SET(GIT_PUSH) THEN BEGIN
       
       COUNTER = 0
-      WHILE COUNTER LT 3 DO BEGIN
+      WHILE COUNTER LT 2 DO BEGIN
         COUNTER = COUNTER + 1
       
         ; ===> Change directory
         cd, DIR_PROJECT
   
-        
         ; ===> Check the version control status
         CMD = "git status"
         SPAWN, CMD, LOG, EXIT_STATUS=ES
         PLUN, LUN, LOG
         IF ES EQ 1 THEN GOTO, GIT_ERROR
         IF ~HAS(LOG, 'nothing to commit') THEN BEGIN
+          
+          ; ===> Add the files to git
           CMD = "git add ."
           SPAWN, CMD, LOG, EXIT_STATUS=ES
           PLUN, LUN, LOG
           IF ES EQ 1 THEN GOTO, GIT_ERROR
           
-          COMMIT_MSG = ' Illex viewer update - ' + NUM2STR(DATE_NOW(/SHORT))
+          ; ===> Commit the files to git
+          COMMIT_MSG = ' Illex viewer update - ' + NUM2STR(DATE_NOW(/DATE_ONLY))
           CMD = "git commit -m '" + COMMIT_MSG + "'" 
           SPAWN, CMD, LOG, EXIT_STATUS=ES
           PLUN, LUN, LOG
           IF ES EQ 1 THEN GOTO, GIT_ERROR
         ENDIF  
   
+        ; ===> Push the files to GitHub
         CMD = "git push"
         SPAWN, CMD, LOG, EXIT_STATUS=ES
         PLUN, LUN, LOG
         IF ES EQ 1 THEN GOTO, GIT_ERROR
   
+        ; ===> Double check the Git Status
         CMD = "git status"
         SPAWN, CMD, LOG, EXIT_STATUS=ES
         IF LOG[1] EQ "Your branch is up to date with 'origin/main'." AND LOG[3] EQ "nothing to commit, working tree clean" THEN BREAK
@@ -222,13 +231,14 @@
       GIT_ERROR:
       IF ES EQ 1 THEN BEGIN
         MESSAGE, 'ERROR: Unable to complete git steps and upload files'
-      ENDIF
-      
-      
+      ENDIF ELSE BEGIN
+        MAILTO = 'kimberly.hyde@noaa.gov'
+        CMD = 'echo "Illex Viwer composites and animations uploaded to GitHub ' + SYSTIME() + '" | mailx -s "Illex composites ' + SYSTIME() + '" ' + MAILTO
+        IF KEYWORD_SET(EMAIL) THEN SPAWN, CMD
+      ENDELSE
+            
     ENDIF
-
-    
-    
+      
 ; STOP   
 ;    DT = '20210608' & TITLE='2021-06-08'
 ;    F = GET_FILES('MUR',PRODS='SST',DATERANGE=[DT,DT])
