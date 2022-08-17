@@ -61,8 +61,14 @@
   COMPILE_OPT IDL2
   SL = PATH_SEP()
   DT = DATE_PARSE(DATE_NOW())
+   
+  LOGDIR = !S.ILLEX_VIEWER + 'IDL_OUTPUT' + SL + 'LOGS' + SL & DIR_TEST, LOGDIR
+  LOGFILE = LOGDIR + ROUTINE_NAME + '-' + DATE_NOW() + '.log'
+  OPENW, LUN, LOGFILE, /APPEND, /GET_LUN, WIDTH=180 ;  ===> Open log file
+  PLUN, LUN, '******************************************************************************************************************'
+  PLUN, LUN, 'Starting ' + ROUTINE_NAME + ' log file: ' + LOGFILE + ' on: ' + systime() + ' on ' + !S.COMPUTER, 0
   
-  ILLEX_VIEWER_MAIN, VERSION, /DOWNLOAD_FILES, /PROCESS_FILES, /SST_ANIMATION, /MAKE_COMPOSITES, EVENTS=0, SUBAREA_EXTRACTS=0, JC_ANIMATION=0, GIT_PUSH=0
+  ILLEX_VIEWER_MAIN, VERSION, /LOGFILE, /DOWNLOAD_FILES, /PROCESS_FILES, /SST_ANIMATION, /MAKE_COMPOSITES, EVENTS=0, SUBAREA_EXTRACTS=0, JC_ANIMATION=0, /GIT_PUSH, /EMAIL, LOGLUN=LUN
 
 
 END ; ***************** End of ILLEX_VIEWER_CRONWRAPPER *****************
