@@ -97,12 +97,12 @@
   ; ===> Manually adjust the SOE program steps as needed
   IF ~N_ELEMENTS(DOWNLOAD_FILES)      THEN DOWNLOAD_FILES   = ''
   IF ~N_ELEMENTS(PROCESS_FILES)       THEN PROCESS_FILES    = ''
-  IF ~N_ELEMENTS(SST_ANIMATION)       THEN SST_ANIMATION    = ''
+  IF ~N_ELEMENTS(SST_ANIMATION)       THEN SST_ANIMATION    = 'Y'
   IF ~N_ELEMENTS(MAKE_COMPOSITES)     THEN MAKE_COMPOSITES  = ''
   IF ~N_ELEMENTS(SUBAREA_EXTRACTS)    THEN SUBAREA_EXTRACTS = ''
   IF ~N_ELEMENTS(EVENTS)              THEN EVENTS           = ''
   IF ~N_ELEMENTS(JC_ANIMATION)        THEN JC_ANIMATION     = ''
-  IF ~N_ELEMENTS(GIT_PUSH)            THEN GIT_PUSH     = 'Y'
+  IF ~N_ELEMENTS(GIT_PUSH)            THEN GIT_PUSH     = ''
   IF ~N_ELEMENTS(EMAIL)                THEN EMAIL = ''
   
   ; ===> Loop through versions
