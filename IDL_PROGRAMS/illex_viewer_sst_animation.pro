@@ -72,6 +72,7 @@
   CASE MP OF
     'NES': BEGIN & RESIZE=.85 & END
     'MAB': BEGIN & END  
+    'MAB_GS': BEGIN & RESIZE=.9 & END  
   ENDCASE
   
   DP = DATE_PARSE(DATE_NOW())
