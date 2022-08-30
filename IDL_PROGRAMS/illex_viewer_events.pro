@@ -166,10 +166,10 @@
         MP = 'MAB_GS'
         ADD_PIONEER = 1
         PAL = 'PAL_DEFAULT'
-        PRODS='SST_14_26' & TYPES='STATS'
-        CB_TICKVALUES = [14,17,20,23,26]
+        PRODS='CHLOR_A' & TYPES='STATS' 
+        ; PRODS='SST_14_26' CB_TICKVALUES = [14,17,20,23,26]
         MAKE_COMPOSITE = 0 & MAKE_ANIM_COMP = 0
-        MAKE_ANIM = 1
+        MAKE_ANIM = 0
       END
     ENDCASE
 
