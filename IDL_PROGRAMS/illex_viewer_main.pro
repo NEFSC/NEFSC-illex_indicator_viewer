@@ -104,7 +104,7 @@
   IF ~N_ELEMENTS(JC_ANIMATION)        THEN JC_ANIMATION     = ''
   IF ~N_ELEMENTS(GIT_PUSH)            THEN GIT_PUSH     = 'Y'
   IF ~N_ELEMENTS(EMAIL)                THEN EMAIL = ''
-  
+
   ; ===> Loop through versions
   FOR V=0, N_ELEMENTS(VERSION)-1 DO BEGIN
     VER = VERSION[V]
