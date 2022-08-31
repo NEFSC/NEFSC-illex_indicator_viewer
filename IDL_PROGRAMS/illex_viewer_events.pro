@@ -168,7 +168,7 @@
         PAL = 'PAL_DEFAULT'
         TYPES='STATS' 
         PRODS='CHLOR_A' 
-        PRODS='SST_14_26' & CB_TICKVALUES = [14,17,20,23,26]
+      ;  PRODS='SST_14_26' & CB_TICKVALUES = [14,17,20,23,26]
         MAKE_COMPOSITE = 0 & MAKE_ANIM_COMP = 0
         MAKE_ANIM = 0
       END
