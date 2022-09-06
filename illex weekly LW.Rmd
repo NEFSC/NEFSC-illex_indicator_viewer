@@ -1,0 +1,68 @@
+---
+title: "Illex LW"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+
+#Last week
+ILXSMdata_6.17.22_6.22.22 <- read.csv("C:/Users/andrew.jones/Downloads/ILXSMdata_6-17-22_6-22-22.csv") #will need to change
+
+a <- ILXSMdata_6.17.22_6.22.22 %>% 
+  #NOT SURE IF THIS IS NEEDED OR IF ORGANISM ID SHOULD WORK
+  mutate(pair=rep(1:(nrow(ILXSMdata_6.17.22_6.22.22)/2),each=2)) %>% #adding in a variable to pair up the rows next to each other
+  pivot_wider(values_from=c('PARAM_VALUE_NUM','UNIT_MEASURE','PARAM_DESCR'),names_from=c('PARAM_TYPE')) %>%
+  mutate(pair=as.character(pair))
+
+
+#This week
+ILXSMdata_7.1.22_7.7.22 <- read.csv("C:/Users/andrew.jones/Downloads/ILXSMdata_7-1-22_7-7-22.csv") #Will need to change
+
+#Working with the ones that we have two weights
+b <- ILXSMdata_7.1.22_7.7.22 %>% filter(VESSEL_NAME %in% c('DYRSTEN','JASON & DANIELLE','ENTERPRISE')) %>%
+  mutate(PARAM_TYPE = case_when(UNIT_MEASURE=='MM'~'ML',UNIT_MEASURE=='GM'~'WT')) %>%
+  mutate(PARAM_DESCR = case_when(UNIT_MEASURE=='MM'~'MANTLE LENGTH',UNIT_MEASURE=='GM'~'WEIGHT')) %>%
+  #NOT SURE IF THIS IS NEEDED OR IF ORGANISM ID SHOULD WORK
+  mutate(pair=paste(VESSEL_NAME,LAND_DATE,ORGANISM_ID,SAMPLE_SEQ,TALLY_VESSEL_SEQ)) %>% #adding in a variable to pair up the rows next to each other
+  dplyr::select(-ORGANISM_ID,-SAMPLE_SEQ,-TALLY_VESSEL_SEQ) %>%
+  mutate(pair=rep(1:(nrow(ILXSMdata_7.1.22_7.7.22 %>% filter(VESSEL_NAME %in% c('DYRSTEN','JASON & DANIELLE','ENTERPRISE')))/2),each=2)) %>%
+  pivot_wider(values_from=c('PARAM_VALUE_NUM','UNIT_MEASURE','PARAM_DESCR'),names_from=c('PARAM_TYPE')) %>%
+  unnest() %>%
+  mutate(pair=as.character(pair))
+
+#Working with the ones where we have length and weight recorded
+c <- ILXSMdata_7.1.22_7.7.22 %>% filter(!VESSEL_NAME %in% c('DYRSTEN','JASON & DANIELLE','ENTERPRISE')) %>%
+  mutate(PARAM_TYPE = case_when(UNIT_MEASURE=='MM'~'ML',UNIT_MEASURE=='GM'~'WT')) %>%
+  mutate(PARAM_DESCR = case_when(UNIT_MEASURE=='MM'~'MANTLE LENGTH',UNIT_MEASURE=='GM'~'WEIGHT')) %>%
+  #NOT SURE IF THIS IS NEEDED OR IF ORGANISM ID SHOULD WORK
+  mutate(pair=paste(VESSEL_NAME,LAND_DATE,ORGANISM_ID,SAMPLE_SEQ,TALLY_VESSEL_SEQ)) %>% #adding in a variable to pair up the rows next to each other
+  #dplyr::select(-ORGANISM_ID,-SAMPLE_SEQ,-TALLY_VESSEL_SEQ) %>%
+  #mutate(pair=rep(1:(nrow(ILXSMdata_7.1.22_7.7.22 %>% filter(VESSEL_NAME == 'DYRSTEN'))/2),each=2)) %>%
+  pivot_wider(values_from=c('PARAM_VALUE_NUM','UNIT_MEASURE','PARAM_DESCR'),names_from=c('PARAM_TYPE')) %>%
+  unnest() %>% 
+  mutate(pair=as.character(pair))
+  
+  
+#Putting things together then plotting
+library(gghighlight)
+
+#Vessels and trips
+bind_rows(a,b,c) %>% ggplot(aes(x=PARAM_VALUE_NUM_ML,PARAM_VALUE_NUM_WT,color=VESSEL_NAME)) + geom_point() +
+  facet_wrap(~AREA_CODE + VESSEL_NAME + LAND_DATE) + 
+  gghighlight() + geom_vline(xintercept = 170) + geom_hline(yintercept = 100)
+  #geom_density2d_filled()
+
+#Week and area
+bind_rows(a,b,c) %>% 
+  mutate(LAND_DATE = as.Date(LAND_DATE,format='%d-%b-%y')) %>%
+  mutate(LAND_DATE=as.factor(LAND_DATE)) %>%
+  ggplot(aes(x=PARAM_VALUE_NUM_ML,PARAM_VALUE_NUM_WT,color=LAND_DATE)) + geom_point() +
+  facet_grid(AREA_CODE ~LAND_DATE) + 
+  gghighlight() + geom_vline(xintercept = 170) + geom_hline(yintercept = 100) +
+  labs(x='Length (mm)',y='Weight (gm)',color='Trip\nlanding\ndate')
+
+
+
+```
+
