@@ -1,18 +1,18 @@
-; $ID:	ILLEX_WEEKLY_INDICATORS_VERSION_INFO.PRO,	2022-05-05-12,	USER-KJWH	$
-  FUNCTION ILLEX_WEEKLY_VERSION, VERSION
+; $ID:	ILLEX_VIEWER_VERSION.PRO,	2022-08-08-09,	USER-KJWH	$
+  FUNCTION ILLEX_VIEWER_VERSION, VERSION
 
 ;+
 ; NAME:
-;   ILLEX_WEEKLY_INDICATORS_VERSION_INFO
+;   ILLEX_VIEWER_INDICATORS_VERSION_INFO
 ;
 ; PURPOSE:
-;   Get the version specific information for the various ILLEX_WEEKLY_INDICATORS functions
+;   Get the version specific information for the various ILLEX_VIEWER_INDICATORS functions
 ;
 ; PROJECT:
 ;   ILLEX_INDICATOR_VIEWER
 ;
 ; CALLING SEQUENCE:
-;   Result = ILLEX_WEEKLY_INDICATORS_VERSION_INFO()
+;   Result = ILLEX_VIEWER_INDICATORS_VERSION_INFO()
 ;
 ; REQUIRED INPUTS:
 ;   None
@@ -55,9 +55,10 @@
 ;    
 ; MODIFICATION HISTORY:
 ;   May 05, 2022 - KJWH: Initial code written
+;   Aug 15, 2022 - KJHW: Added LOGS directory
 ;-
 ; ****************************************************************************************************
-  ROUTINE_NAME = 'ILLEX_WEEKLY_INDICATORS_VERSION_INFO'
+  ROUTINE_NAME = 'ILLEX_VIEWER_INDICATORS_VERSION_INFO'
   COMPILE_OPT IDL2
   SL = PATH_SEP()
   
@@ -69,9 +70,9 @@
     VER = VERSION[V]
     
     ; ===> Make the project directories
-    DIR_PRO = !S.ILLEX_INDICATOR_VIEWER
-    DIR_VER = DIR_PRO + VER + SL
-    DIRNAMES = ['FILES','EXTRACTS','EVENTS','PNGS','ANIMATIONS','COMPOSITES'] 
+    DIR_PRO = !S.ILLEX_VIEWER
+    DIR_VER = DIR_PRO + 'IDL_OUTPUTS' + SL + VER + SL
+    DIRNAMES = ['FILES','EXTRACTS','EVENTS','PNGS','ANIMATIONS','COMPOSITES','LOGS','NETCDF'] 
     DNAME = 'DIR_'  + DIRNAMES                                                                      ; The tag name for the directory in the structure
     DIRS  = DIR_VER + DIRNAMES + SL                                                                 ; The actual directory name
     DIR_TEST, DIRS                                                                                  ; Make the output directories if they don't already exist
@@ -178,4 +179,4 @@
   ENDFOR ; VERSION 
     
 
-END ; ***************** End of ILLEX_WEEKLY_INDICATORS_VERSION_INFO *****************
+END ; ***************** End of ILLEX_VIEWER_INDICATORS_VERSION_INFO *****************
