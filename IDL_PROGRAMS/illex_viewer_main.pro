@@ -1,0 +1,305 @@
+; $ID:	ILLEX_VIEWER_MAIN.PRO,	2022-08-17-14,	USER-KJWH	$
+  PRO ILLEX_VIEWER_MAIN, VERSION, BUFFER=BUFFER, OVERWRITE=OVERWRITE, LOGFILE=LOGFILE, LOGLUN=LOGLUN, $
+                         DOWNLOAD_FILES=DOWNLOAD_FILES,$
+                         PROCESS_FILES=PROCESS_FILES,$
+                         SST_ANIMATION=SST_ANIMATION,$
+                         MAKE_COMPOSITES=MAKE_COMPOSITES,$
+                         EVENTS=EVENTS,$
+                         SUBAREA_EXTRACTS=SUBAREAS_EXTRACTS,$
+                         JC_ANIMATION=JC_ANIMATION, $
+                         GIT_PUSH=GIT_PUSH, EMAIL=EMAIL
+
+;+
+; NAME:
+;   ILLEX_VIEWER_MAIN
+;
+; PURPOSE:
+;   Main program to create weekly images for the Illex indicators project
+;
+; PROJECT:
+;   illex_indicator_viewer
+;
+; CALLING SEQUENCE:
+;   ILLEX_VIEWER_IMAGES_MAIN
+;
+; REQUIRED INPUTS:
+;    None
+;
+; OPTIONAL INPUTS:
+;   VERSION........... The name of the version
+;   LOGLUN.......... If provided, the LUN for the log file
+;   LOGFILE............ The name of the output logfile
+;   
+;
+; KEYWORD PARAMETERS:
+;   DOWNLOAD_FILES.... Download files
+;   PROCESS_FILES..... Use BATCH_L3 to process the downloaded files
+;   SST_ANIMATION..... Create the SST animations
+;   MAKE_COMPOSITES... Make composite images
+;   EVENTS............ Run code to create images for specific events
+;   SUBAREA_EXTRACTS.. Extract and plot regional data
+;   JC_ANIMATION...... Create animations of the Jennifer Clark charts (in development)
+;   MAKE_COMPOSITES...
+;   GIT_PUSH......... Run steps to add, commit and push files to GitHub
+;   EMAIL............... Send email indicating data were pushed to GitHub
+;   
+;   BUFFER............ Buffer the plotting steps
+;   VERBOSE...... Print steps
+;   OVERWRITE.... Overwrite existing files
+;
+; OUTPUTS:
+;   Images, composites, animations, etc. to be used for the Illex indicators project
+;
+; OPTIONAL OUTPUTS:
+;   A logfile 
+;
+; COMMON BLOCKS: 
+;   None
+;
+; SIDE EFFECTS:  
+;   None
+;
+; RESTRICTIONS:  
+;   None
+;
+; EXAMPLE:
+; 
+;
+; NOTES:
+;   $Citations or any other useful notes$
+;   
+; COPYRIGHT: 
+; Copyright (C) 2022, Department of Commerce, National Oceanic and Atmospheric Administration, National Marine Fisheries Service,
+;   Northeast Fisheries Science Center, Narragansett Laboratory.
+;   This software may be used, copied, or redistributed as long as it is not sold and this copyright notice is reproduced on each copy made.
+;   This routine is provided AS IS without any express or implied warranties whatsoever.
+;
+; AUTHOR:
+;   This program was written on May 05, 2022 by Kimberly J. W. Hyde, Northeast Fisheries Science Center | NOAA Fisheries | U.S. Department of Commerce, 28 Tarzwell Dr, Narragansett, RI 02882
+;    
+; MODIFICATION HISTORY:
+;   May 05, 2022 - KJWH: Initial code written
+;   Aug 11, 2022 - KJWH: Added option to GIT commit and push
+;-
+; ****************************************************************************************************
+  ROUTINE_NAME = 'ILLEX_VIEWER_MAIN'
+  COMPILE_OPT IDL2
+  SL = PATH_SEP()
+  
+  DIR_PROJECT = !S.ILLEX_VIEWER
+
+  IF ~N_ELEMENTS(VERSION)    THEN VERSION = 'V2022'
+  IF ~N_ELEMENTS(BUFFER)     THEN BUFFER  = 1
+  IF ~N_ELEMENTS(VERBSOE)    THEN VERBOSE = 0
+  IF ~N_ELEMENTS(RESOLUTION) THEN RESOLUTION = 300
+  IF ~N_ELEMENTS(LOGLUN)    THEN LUN   = [] ELSE LUN = LOGLUN
+  
+  ; ===> Manually adjust the SOE program steps as needed
+  IF ~N_ELEMENTS(DOWNLOAD_FILES)      THEN DOWNLOAD_FILES   = ''
+  IF ~N_ELEMENTS(PROCESS_FILES)       THEN PROCESS_FILES    = ''
+  IF ~N_ELEMENTS(SST_ANIMATION)       THEN SST_ANIMATION    = ''
+  IF ~N_ELEMENTS(MAKE_COMPOSITES)     THEN MAKE_COMPOSITES  = ''
+  IF ~N_ELEMENTS(SUBAREA_EXTRACTS)    THEN SUBAREA_EXTRACTS = ''
+  IF ~N_ELEMENTS(EVENTS)              THEN EVENTS           = 'Y'
+  IF ~N_ELEMENTS(JC_ANIMATION)        THEN JC_ANIMATION     = ''
+  IF ~N_ELEMENTS(GIT_PUSH)            THEN GIT_PUSH     = 'Y'
+  IF ~N_ELEMENTS(EMAIL)                THEN EMAIL = ''
+
+  ; ===> Loop through versions
+  FOR V=0, N_ELEMENTS(VERSION)-1 DO BEGIN
+    VER = VERSION[V]
+    VERSTR = ILLEX_VIEWER_VERSION(VER)
+    DR = VERSTR.INFO.DATERANGE
+    
+    IF KEYWORD_SET(LOGFILE) AND LUN EQ [] THEN BEGIN
+      LOGDIR = DIR_PROJECT + 'IDL_OUTPUT' + SL + 'LOGS' + SL & DIR_TEST, LOGDIR
+      IF IDLTYPE(LOGFILE) NE 'STRING' THEN LOGFILE =  LOGDIR + ROUTINE_NAME + '-' + DATE_NOW() + '.log'
+      OPENW, LUN, LOGFILE, /APPEND, /GET_LUN, WIDTH=180 ;  ===> Open log file
+    ENDIF ELSE BEGIN
+      LUN = []
+      LOGFILE = ''
+    ENDELSE
+    PLUN, LUN, '******************************************************************************************************************'
+    PLUN, LUN, 'Starting ' + ROUTINE_NAME + ' log file: ' + LOGFILE + ' on: ' + systime() + ' on ' + !S.COMPUTER, 0
+    
+    
+    CANYONS = ['HUDSON_CANYON','WILMINGTON_CANYON','NORFOLK_CANYON']
+    MAB_CANYONS = READ_SHPFILE('MAB_CANYONS',MAPP=VERSTR.INFO.MAP_OUT)
+    CANYON_OUTLINES = []
+    FOR M=0, N_ELEMENTS(CANYONS)-1 DO BEGIN
+      OK = WHERE(TAG_NAMES(MAB_CANYONS) EQ CANYONS[M],/NULL)
+      IF OK EQ [] THEN STOP
+      CANYON_OUTLINES = [CANYON_OUTLINES,MAB_CANYONS.(OK).OUTLINE]
+    ENDFOR
+    
+    IF KEYWORD_SET(DOWNLOAD_FILES) THEN ILLEX_VIEWER_DOWNLOADS, VERSTR
+    
+    IF KEYWORD_SET(PROCESS_FILES) THEN BEGIN ;ILLEX_WEEKLY_PROCESSING, VERSTR
+      BATCH_L3, BATCH_DATERANGE=DR,DO_GHRSST='Y[MUR;M=L3B2.L3B4]',DO_STATS='Y[MUR;PER=W.M]',DO_ANOMS='Y[MUR;PER=WM]',DO_FRONTS='Y[MUR;M=L3B2]',DO_STAT_FRONTS='Y[MUR;PER=W.M]'
+      BATCH_L3, BATCH_DATERANGE=DR,DO_GLOBCOLOUR='Y',DO_MAKE_PRODS='Y[GLOBCOLOUR]',DO_STATS='Y[GLOBCOLOUR;P=CHLOR_A-GSM;PER=W.M;M=L3B4]',DO_ANOMS='Y[GLOBCOLOUR;P=CHLOR_A-GSM;PER=WM]', DO_FRONTS='Y[GLOBCOLOUR]',DO_STAT_FRONTS='Y[GLOBCOLOUR;PER=W.M]'     
+      BATCH_L3, BATCH_DATERANGE=DR,DO_STATS='Y[GLOBCOLOUR;P=PSIZET.PHYPERT;PER=M;M=L3B4]'
+      
+      ; FOR LOOP ON "FRONT" PRODS
+      FOR F=0, N_ELEMENTS(VERSTR.INFO.FRONT_PRODS)-1 DO BEGIN
+        FPROD = VERSTR.INFO.FRONT_PRODS[F]
+        PSTR = VERSTR.PROD_INFO.(WHERE(TAG_NAMES(VERSTR.PROD_INFO) EQ FPROD))
+   ;     FRONTS_STACKED_FILES, PSTR.DATASET, PRODS=PSTR.PROD, L3BMAP='NWA', OVERWRITE=OVERWRITE,DATERANGE=DR
+   ;     GFILES = GET_FILES(PSTR.DATASET, PRODS=PSTR.PROD, DATERANGE=DR, FILE_TYPE='STACKED', PERIOD='DD')
+   ;     D3HASH_FRONT_INDICATORS, GFILES, /INIT, PERIOD_CODE='W', NC_MAP='NWA', LOGLUN=LUN,DATERANGE=DR
+      ENDFOR
+
+    ENDIF
+       
+    IF KEYWORD_SET(MAKE_COMPOSITES) THEN ILLEX_VIEWER_COMPOSITE, VERSTR, /WEEKS, BUFFER=1,OUTLINE=CANYON_OUTLINES, OUT_COLOR=0, /ADD_BATHY, /ADD_LONLAT, /ADD_COLORBAR, /ADD_PIONEER, /ADD_BOARDER
+      
+    IF KEYWORD_SET(SST_ANIMATION) THEN ILLEX_VIEWER_SST_ANIMATION, VERSTR, MAPP=MAPP, BUFFER=1, /ADD_CONTOURS, /ADD_COLORBAR, /ADD_DATEBAR, /ADD_BATHY, /ADD_LONLAT, /ADD_BOARDER;, OUTCOLOR=0
+    
+    IF KEYWORD_SET(SUBAREA_EXTRACTS) THEN ILLEX_SUBAREA_EXTRACT, VERSTR, PRODUCTS='PHYSIZE',PERIOD=['M','MONTH']
+    
+    IF KEYWORD_SET(EVENTS) THEN BEGIN
+      ILLEX_VIEWER_EVENTS, 'SIRATES_2022', BUFFER=0
+    ;  ILLEX_VIEWER_EVENTS, 'WCR_20210608', BUFFER=0
+    ;  ILLEX_VIEWER_EVENTS, 'UPWELLING_202207', BUFFER=1
+    ;  ILLEX_VIEWER_EVENTS, 'SMALL_SQUID_202207', BUFFER=1
+    ENDIF ; EVENTS
+    
+    
+
+    IF KEYWORD_SET(JC_ANIMATION) THEN BEGIN
+
+      DIR_JC = VERSTR.DIRS.DIR_PROJECT + 'images' + SL + 'jc_charts' + SL
+      FILES = FILE_SEARCH(DIR_JC + 'jc_2022*.png')
+      MFILE = VERSTR.DIRS.DIR_ANIMATIONS + '2022-JENIFER_CLARK_CHARTS'
+      EXT = ['webm'] ; 'mov','mp4',
+      ;      FOR E=0, N_ELEMENTS(EXT)-1 DO BEGIN
+      ;        FPS = 5
+      ;        MOVIE_FILE = MFILE + '-FPS_'+ROUNDS(FPS)+'.'+EXT[E]
+      ;        IF FILE_MAKE(FILES,MOVIE_FILE,OVERWRITE=OVERWRITE) EQ 0 THEN CONTINUE
+      ;        MAKE_MOVIE, FILES, MOVIE_FILE=MOVIE_FILE, FRAME_SEC=FPS
+      ;      ENDFOR
+
+      FOR F=0, N_ELEMENTS(FILES)-1 DO BEGIN
+        IMG = READ_IMAGE(FILES[F])
+        PRINT, SIZE(IMG)
+      ENDFOR
+
+      STOP
+    ENDIF
+    
+    IF KEYWORD_SET(GIT_PUSH) THEN BEGIN
+      
+      COUNTER = 0
+      WHILE COUNTER LT 2 DO BEGIN
+        COUNTER = COUNTER + 1
+      
+        ; ===> Change directory
+        cd, DIR_PROJECT
+  
+        ; ===> Check the version control status
+        CMD = "git status"
+        SPAWN, CMD, LOG, EXIT_STATUS=ES
+        PLUN, LUN, LOG
+        IF ES EQ 1 THEN GOTO, GIT_ERROR
+        IF ~HAS(LOG, 'nothing to commit') THEN BEGIN
+          
+          ; ===> Add the files to git
+          CMD = "git add ."
+          SPAWN, CMD, LOG, EXIT_STATUS=ES
+          PLUN, LUN, LOG
+          IF ES EQ 1 THEN GOTO, GIT_ERROR
+          
+          ; ===> Commit the files to git
+          COMMIT_MSG = ' Illex viewer update - ' + NUM2STR(DATE_NOW(/DATE_ONLY))
+          CMD = "git commit -m '" + COMMIT_MSG + "'" 
+          SPAWN, CMD, LOG, EXIT_STATUS=ES
+          PLUN, LUN, LOG
+          IF ES EQ 1 THEN GOTO, GIT_ERROR
+        ENDIF  
+  
+        ; ===> Push the files to GitHub
+        CMD = "git push"
+        SPAWN, CMD, LOG, EXIT_STATUS=ES
+        PLUN, LUN, LOG
+        IF ES EQ 1 THEN GOTO, GIT_ERROR
+  
+        ; ===> Double check the Git Status
+        CMD = "git status"
+        SPAWN, CMD, LOG, EXIT_STATUS=ES
+        IF LOG[1] EQ "Your branch is up to date with 'origin/main'." AND LOG[3] EQ "nothing to commit, working tree clean" THEN BREAK
+
+      ENDWHILE
+      
+      GIT_ERROR:
+      IF ES EQ 1 THEN BEGIN
+        MESSAGE, 'ERROR: Unable to complete git steps and upload files'
+      ENDIF ELSE BEGIN
+        MAILTO = 'kimberly.hyde@noaa.gov'
+        CMD = 'echo "Illex Viwer composites and animations uploaded to GitHub ' + SYSTIME() + '" | mailx -s "Illex composites ' + SYSTIME() + '" ' + MAILTO
+        IF KEYWORD_SET(EMAIL) THEN SPAWN, CMD
+      ENDELSE
+            
+    ENDIF
+      
+; STOP   
+;    DT = '20210608' & TITLE='2021-06-08'
+;    F = GET_FILES('MUR',PRODS='SST',DATERANGE=[DT,DT])
+;    PNGFILE = VERSTR.DIRS.DIR_PNGS + 'D_'+DT+'-MUR-SST-WCR-FISHING.PNG'
+;    OPROD = 'SST_5_30'
+;    PAL = VERSTR.PROD_INFO.SST.PAL
+;    OVERWRITE = 0
+;    IF FILE_MAKE(F,PNGFILE,OVERWRITE=OVERWRITE) EQ 1 THEN BEGIN
+;
+;      PIONEER = VERSTR.DIRS.DIR_FILES + 'PIONEER_ARRAY_COORDINATES.csv'
+;      PDATA = CSV_READ(PIONEER)
+;      MP = 'NWA'
+;      MR = MAPS_READ(MP)
+;      IMG_DIMS  = FLOAT(STRSPLIT(MR.IMG_DIMS,';',/EXTRACT)) & MX = IMG_DIMS[0] & MY = IMG_DIMS[1]
+;      XX = MX/MR.PX & YY = MY/MR.PY
+;      MAPS_SET, MP
+;      LL = MAP_DEG2IMAGE(MAPS_BLANK(MP),PDATA.LON,PDATA.LAT,X=X,Y=Y)
+;      ZWIN
+;
+;      FISHING = VERSTR.DIRS.DIR_FILES + 'study_fleet_observer_fishing_points_2020.csv'
+;      FDATA = CSV_READ(FISHING)
+;      MAPS_SET, MP
+;      LL = MAP_DEG2IMAGE(MAPS_BLANK(MP),FLOAT(FDATA.LON),FLOAT(FDATA.LAT),X=XF,Y=YF)
+;      ZWIN
+;
+;      RTHICK=2
+;      RCOLOR='BLACK'
+;
+;  ;    W = WINDOW(DIMENSIONS=IMG_DIMS)
+;      PRODS_2PNG, F, PROD=OPROD, MAPP='NWA', CROP=[150,1200,600,1250], /CURRENT, OBJ=IMG, ADD_BATHY=200, C_LEVELS=[20,24], C_COLOR=249, C_THICK=2, C_ANNOTATION=[' ',' ']
+;      TD = TEXT(0.22,0.965, TITLE, FONT_SIZE=20, FONT_STYLE='BOLD', FONT_COLOR='BLACK', ALIGNMENT=0.5)
+;      E1 = ELLIPSE(.22,.27,MAJOR=.025,MINOR=.048,THICK=RTHICK,COLOR=RCOLOR,TARGET=IMG,FILL_BACKGROUND=0)
+;      E2 = ELLIPSE(.28,.31,MAJOR=.025,MINOR=.048,THICK=RTHICK,COLOR=RCOLOR,TARGET=IMG,FILL_BACKGROUND=0)
+;      E3 = ELLIPSE(.40,.40,MAJOR=.050,MINOR=.095,THICK=RTHICK,COLOR=RCOLOR,TARGET=IMG,FILL_BACKGROUND=0)
+;      E4 = ELLIPSE(.48,.46,MAJOR=.028,MINOR=.057,THICK=RTHICK,COLOR=RCOLOR,TARGET=IMG,FILL_BACKGROUND=0)
+;      E5 = ELLIPSE(.59,.46,MAJOR=.072,MINOR=.114,THICK=RTHICK,COLOR=RCOLOR,TARGET=IMG,FILL_BACKGROUND=0)
+;      E6 = ELLIPSE(.64,.62,MAJOR=.025,MINOR=.035,THICK=RTHICK,COLOR=RCOLOR,TARGET=IMG,FILL_BACKGROUND=0)
+;      E7 = ELLIPSE(.70,.64,MAJOR=.025,MINOR=.035,THICK=RTHICK,COLOR=RCOLOR,TARGET=IMG,FILL_BACKGROUND=0)
+;      E8 = ELLIPSE(.78,.52,MAJOR=.040,MINOR=.084,THICK=RTHICK,COLOR=RCOLOR,TARGET=IMG,FILL_BACKGROUND=0,THETA=16)
+;      CBAR, OPROD, OBJ=IMG, FONT_SIZE=14, FONT_STYLE=FONT_STYLE, CB_TYPE=3, CB_POS=[0.02,0.92,0.46,0.96], CB_TITLE=UNITS('SST');, PAL=PAL
+;
+;
+;      SY = SYMBOL((XF-150),(YF-600),SYMBOL='CIRCLE',/DEVICE, /SYM_FILLED, SYM_COLOR='PURPLE', SYM_SIZE=0.75)
+;
+;      A = TEXT(180,200,'Mid-Atlantic',FONT_SIZE=FSZ,FONT_STYLE='BOLD',COLOR=FC,/DEVICE,ORIENTATION=50) ; TM = TEXT(310,540,'MAB',FONT_SIZE=FSZ,FONT_STYLE='BOLD',COLOR=FC,/DEVICE)
+;      B = TEXT(350,350,'Southern!CNew England', FONT_SIZE=FSZ,FONT_STYLE='BOLD',COLOR=FC,/DEVICE,ALIGNMENT=0.5) ; TB = TEXT(650,650,'GB', FONT_SIZE=FSZ,FONT_STYLE='BOLD',COLOR=FC,/DEVICE)
+;      C = TEXT(480,380,'Georges!CBank', FONT_SIZE=FSZ,FONT_STYLE='BOLD',COLOR=FC,/DEVICE,ALIGNMENT=0.5) ; TB = TEXT(650,650,'GB', FONT_SIZE=FSZ,FONT_STYLE='BOLD',COLOR=FC,/DEVICE)
+;      D = TEXT(430,500,'Gulf of!CMaine',FONT_SIZE=FSZ,FONT_STYLE='BOLD',COLOR=FC,/DEVICE,ALIGNMENT=0.5) ; TM = TEXT(590,810,'GOM',FONT_SIZE=FSZ,FONT_STYLE='BOLD',COLOR=FC,/DEVICE)
+;      E = TEXT(220,80, 'Gulf Stream',FONT_SIZE=FSZ,FONT_STYLE='BOLD',COLOR=FC,/DEVICE,ORIENTATION=30) ; TM = TEXT(590,810,'GOM',FONT_SIZE=FSZ,FONT_STYLE='BOLD',COLOR=FC,/DEVICE)
+;      F = TEXT(310,240,'Slope !CSea',FONT_SIZE=FSZ,FONT_STYLE='BOLD',COLOR=FC,/DEVICE,ALIGNMENT=0.5) ; TM = TEXT(590,810,'GOM',FONT_SIZE=FSZ,FONT_STYLE='BOLD',COLOR=FC,/DEVICE)
+;      G = TEXT(625,285,'Warm Core !CRing',FONT_SIZE=FSZ,FONT_STYLE='BOLD',COLOR=FC,/DEVICE,ALIGNMENT=0.5)
+;      stop
+;
+;      IMG.SAVE, PNGFILE
+;      IMG.CLOSE
+;    ENDIF
+    
+    
+  ENDFOR  
+  
+
+
+END ; ***************** End of ILLEX_VIEWER_IMAGES_MAIN *****************
