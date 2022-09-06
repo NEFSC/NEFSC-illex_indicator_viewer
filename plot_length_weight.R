@@ -6,6 +6,24 @@ ml_wt_wks0510_0608 <- read.csv('ILXSMdata_5-10-22_6-8-22.csv')
 ml_wt_wks0609_0616 <- read.csv('ILXSMdata_6-9-22_6-16-22.csv')
 ml_wt_wks0617_0622 <- read.csv('ILXSMdata_6-17-22_6-22-22.csv')
 ml_wt_wks0623_0630 <- read.csv('ILXSMdata_6-23-22_6-30-22.csv')
+ml_wt_wks0701_0707 <- read.csv('ILXSMdata_7-1-22_7-7-22.csv')
+ml_wt_wks0708_0714 <- read.csv('ILXSMdata_7-8-22_7-14-22.csv')
+ml_wt_wks0721_0727 <- read.csv('ILXSMdata_7-21-22_7-27-22.csv')
+ml_wt_wks0728_0803 <- read.csv('ILXSMdata_07-28-22_08-03-22.csv')
+ml_wt_wks0804_0810 <- read.csv('ILXSMdata_08-04-22_08-10-22.csv')
+ml_wt_wks0811_0817 <- read.csv('ILXSMdata_08-11-22_08-17-22.csv')
+ml_wt_wks0818_0824 <- read.csv('ILXSMdata_08-18-22_08-24-22.csv')
+
+
+# get same setup
+
+ml_wt_wks0701_0707 <- ml_wt_wks0701_0707[,-c(3,4)]
+ml_wt_wks0708_0714 <- ml_wt_wks0708_0714[,-c(3,4)]
+ml_wt_wks0721_0727 <- ml_wt_wks0721_0727[,-c(3,4)]
+ml_wt_wks0728_0803 <- ml_wt_wks0728_0803[,-c(3,4)]
+ml_wt_wks0804_0810 <- ml_wt_wks0804_0810[,-c(3,4)]
+ml_wt_wks0811_0817 <- ml_wt_wks0811_0817[,-c(3,4)]
+ml_wt_wks0818_0824 <- ml_wt_wks0818_0824[,-c(3,4)]
 # an alternative way to fix 
 # lwt_wks23_24 <- lwt_wks23_24 %>%
 #   mutate(VTR_SERIAL_NUM = as.numeric(format(VTR_SERIAL_NUM,
@@ -13,7 +31,12 @@ ml_wt_wks0623_0630 <- read.csv('ILXSMdata_6-23-22_6-30-22.csv')
 #                               big.mark = '')))
 
 ml_wt_22 <- rbind(ml_wt_wks0510_0608, ml_wt_wks0609_0616,
-                  ml_wt_wks0617_0622,ml_wt_wks0623_0630)
+                  ml_wt_wks0617_0622,ml_wt_wks0623_0630,
+                  ml_wt_wks0701_0707, ml_wt_wks0708_0714, 
+                  ml_wt_wks0721_0727,ml_wt_wks0728_0803,
+                  ml_wt_wks0804_0810, ml_wt_wks0811_0817,
+                  ml_wt_wks0818_0824)
+
 
 vtr_serial_numbers <-unique(ml_wt_22$VTR_SERIAL_NUM)
 vessel_names <-unique(ml_wt_22$VESSEL_NAME)
@@ -46,6 +69,7 @@ dat <- draft_latlons %>%
                 'lat', 'lon', 'VESSEL_NAME'))
 dat$IMG_DATE <- lubridate::dmy(dat$IMG_DATE)
 dat$DATE_RECV <- lubridate::dmy(dat$DATE_RECV)
+# Add in date info
 ml_wt_22$LAND_DATE <-  lubridate::dmy(ml_wt_22$LAND_DATE)
 
 ml_wt_22 <- ml_wt_22 %>%
@@ -171,3 +195,85 @@ ggplot(wk25, aes(x=length)) +
   geom_density(alpha=.2, fill="#FF6666") + 
   labs(title = 'Length', subtitle = 'Week 25') +
   theme_bw()
+
+## ---- Plot up histograms ---- ##
+library(dbplyr)
+library(dplyr)
+library(lubridate)
+library(ggridges)
+library(ggplot2)
+library(patchwork)
+
+ml_wt_22$LAND_DATE <- as.Date(ml_wt_22$LAND_DATE)
+ml_wt_22$LAND_DATE <-lubridate::dmy(ml_wt_22$LAND_DATE)
+ml_wt_22$week <- lubridate::week(ml_wt_22$LAND_DATE)
+
+write.csv(ml_wt_22, 'ml_wt_22.csv')
+
+
+
+wt_22 <- ml_wt_22 %>%
+  filter(PARAM_TYPE == 'WT') %>%
+  rename(weight = PARAM_VALUE_NUM)
+ml_22 <- ml_wt_22 %>%
+  filter(PARAM_TYPE == 'ML') %>%
+  rename(length = PARAM_VALUE_NUM)
+
+
+
+ggplot(wt_22, 
+       aes(x = weight, y = factor(week), fill =  factor(week))) +
+  geom_density_ridges(alpha = .8, color = 'white',
+                      scale = 2.5, rel_min_height = .01) +
+  labs(title = '2022 Illex Weights', x = 'Weight (gm)', y = 'Week', fill = 'Week') +
+  guides(color = guide_legend(title = 'Week')) +
+  theme_ridges() +
+  theme_classic()
+ggplot(ml_22, 
+       aes(x = length, y = factor(week), fill =  factor(week))) +
+  geom_density_ridges(alpha = .8, color = 'white',
+                      scale = 2.5, rel_min_height = .01) +
+  labs(title = '2022 Illex Lengths', x = 'Length (mm)', y = 'Week', fill = 'Week') +
+  guides(color = guide_legend(title = 'Week')) +
+  theme_ridges() +
+  theme_classic()
+  # ggplot(wt_22, aes(x = weight, y = factor(week), 
+  #                           fill = factor(week))) +
+  #   geom_density_ridges(alpha = .8, color = 'black',
+  #                       scale = 2.5, rel_min_height = .01) +
+  #   labs(title = 'Total Illex catch per unit effort',
+  #        subtitle = 'Study Fleet and Observer Dataset (1998-2021)',
+  #        x = 'Catch per unit effort (lbs/hr)', y = 'Year') +
+  #   theme_ridges() + 
+  #   scale_fill_grey() +
+  #   # guides(fill=FALSE)+
+  #   theme_classic() 
+  # 
+ggplot(ml_22, aes(x = length, y = factor(week),
+                          fill = stat(quantile))) +
+  stat_density_ridges(quantile_lines = FALSE,
+                      calc_ecdf = TRUE, rel_min_height = 0.0001,
+                      geom = "density_ridges_gradient") +
+  labs(title = 'Total Illex catch per unit effort',
+       subtitle = 'Study Fleet and Observer Dataset (2011-2020)',
+       x = 'Catch per unit effort (lbs/hr)', y = 'Year') +
+  scale_fill_brewer(name = '', palette = 'Greys') +
+  ecodata::theme_ts()
+  
+  
+ggplot(wt_22 %>% filter(week == 28), aes(x=weight)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="white")+
+  geom_density(alpha=.2, fill="#FF6666") + 
+  labs(title = 'Weights', subtitle = 'Week 28') +
+  theme_bw()
+ggplot(ml_22 %>% filter(week == 28), aes(x=length)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="white")+
+  geom_density(alpha=.2, fill="#FF6666") + 
+  labs(title = 'Length', subtitle = 'Week 28') +
+  theme_bw()
+
+
+library(ggplot2)
+
+
+
