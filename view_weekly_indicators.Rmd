@@ -26,7 +26,13 @@ library(patchwork)
 library(flexdashboard)
 library(here)
 library(vembedr) # maybe use this if ember does not work 
-library(embedr) # this is for embed_video
+library(embedr) 
+library(dplyr)
+library(tidyverse)
+library(dplyr)
+#library(lubridate)
+library(ggridges)
+# this is for embed_video
 #,fig.path = "/images/" )
 # knitr::opts_knit$set(base.dir = 'C:/Users/sarah.salois/Desktop/github/khyde/SquidSquad/',
 #                    base.url = "/")
@@ -63,6 +69,9 @@ paste0(base.url, fig.path)
 
 library(tidyverse)
 dt2 <-read.csv('C:/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/weight_lengths_22.csv')
+ml_wt_22 <- read.csv('ml_wt_22.csv')
+
+
 ```
 
 
@@ -84,12 +93,1399 @@ oceanographic conditions in the Northwest Atlantic to aid in our understanding
 of the patterns of availability of *Illex*. This page will be updated weekly 
 and weekly observations will be retained and accessible via the table of 
 contents in the upper left hand corner of this page. 
+
 ***
+
+
+# September
+***
+
+## Week 36 (September 4 - September 10)
+
+### Oceanographic indicators
+***
+
+#### CHL and SST weekly means and anomalies
+```{r, fig.show="hold", out.width="100%", eval=FALSE}
+
+knitr::include_graphics(here::here(paste0("images/composites/W_202236-NES-CHLOR_A_SST-STATS_ANOMS-COMPOSITE.png")))
+
+```
+
+
+#### 2 Week Animation
+
+
+#### Sea Level Anomaly and Geostrophic velocity
+
+Entire MAB
+
+```{r, fig.show="hold", out.width="50%", eval = FALSE}
+
+ knitr::include_graphics(here::here(paste0("images/ssh/D_MAB_20220823_SLA.png")))
+                         
+ knitr::include_graphics(here::here(paste0("images/ssh/D_MAB_20220825_SLA.png")))
+
+
+```
+
+
+Shelf
+
+```{r, fig.show="hold", out.width="50%", eval = FALSE}
+
+knitr::include_graphics(here::here(paste0("images/ssh/D_SHF_20220823_SLA.png")))
+                         
+knitr::include_graphics(here::here(paste0("images/ssh/D_SHF_20220825_SLA.png")))
+
+```
+
+*image credit: Adrienne Silver*
+
+
+#### Bottom Temperature from [EMOLT](http://emolt.org/telemetry.html) dataset
+
+```{r, fig.show="hold", out.width="100%", eval=FALSE}
+
+
+rundate1 = '2021202236'
+
+knitr::include_graphics(here::here(paste0("images/bottom_temp/W_", rundate1,
+"_bt.png")))
+                        
+
+```
+
+
+
+#### Salinity and Subsurface Temperature (Pioneer Array)
+
+```{r, fig.show="hold", out.width='100%', eval=FALSE} 
+
+rundate1 = '202236'
+
+knitr::include_graphics(here::here(paste0("images/salinity/W_", rundate1, 
+"_UP_INSH_SAL_TMP.png")))
+```
+
+
+
+```{r, fig.show="hold", out.width='100%', eval=FALSE} 
+
+rundate1 = '202236'
+
+knitr::include_graphics(here::here(paste0("images/salinity/W_", rundate1, 
+"_UP_SURF_SAL_TMP.png")))
+```
+
+
+### Mesoscale features
+***
+
+#### JCC August, 2022
+
+```{r, fig.show="hold", out.width="100%", eval=FALSE}
+
+knitr::include_graphics(here::here(paste0("images/jc_charts/jc_20220905.png")))
+
+```
+
+
+```{r, eval=FALSE}
+knitr::include_graphics(here::here(paste0("images/jc_charts/jc_2022.png")))
+
+```
+
+
+*image credit: Jenifer Clark*
+
+
+
+### Weekly Catch
+***
+```{r, fig.show="hold", out.width="100%", eval=FALSE}
+
+rundate <- '202236'
+
+# knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
+#                                           rundate, "_SF.png")))
+                        
+knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
+                                          rundate, "_QM.png")))
+  
+```
+
+
+*image credit: Daniel Hocking*
+
+#### Lengths and Weights
+
+
+
+### Notes: 
+***
+
+# August
+***
+
+## Week 35 (August 28 - September 3)
+
+### Oceanographic indicators
+***
+
+#### CHL and SST weekly means and anomalies
+```{r, fig.show="hold", out.width="100%"}
+
+knitr::include_graphics(here::here(paste0("images/composites/W_202235-NES-CHLOR_A_SST-STATS_ANOMS-COMPOSITE.png")))
+
+
+```
+
+*image credit: Kim Hyde*
+
+
+#### 2 Week Animation
+<video width="500" height="500" controls>
+  <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/IDL_OUTPUTS_V2022_ANIMATIONS_SST_DD_20220813_20220826-MUR-V04.1-1KM-NES-SST_15_30-FPS_3.webm" type="video/webm">
+</video>
+
+*animation credit: Kim Hyde*
+
+
+#### Sea Level Anomaly and Geostrophic velocity
+
+Entire MAB
+
+```{r, fig.show="hold", out.width="50%", eval = FALSE}
+
+ knitr::include_graphics(here::here(paste0("images/ssh/D_MAB_20220823_SLA.png")))
+                         
+ knitr::include_graphics(here::here(paste0("images/ssh/D_MAB_20220825_SLA.png")))
+
+
+```
+
+
+Shelf
+
+```{r, fig.show="hold", out.width="50%", eval = FALSE}
+
+knitr::include_graphics(here::here(paste0("images/ssh/D_SHF_20220823_SLA.png")))
+                         
+knitr::include_graphics(here::here(paste0("images/ssh/D_SHF_20220825_SLA.png")))
+
+```
+
+*image credit: Adrienne Silver*
+
+
+#### Bottom Temperature from [EMOLT](http://emolt.org/telemetry.html) dataset
+
+```{r, fig.show="hold", out.width="100%"}
+
+
+rundate1 = '2021202235'
+
+knitr::include_graphics(here::here(paste0("images/bottom_temp/W_", rundate1,
+"_bt.png")))
+                        
+
+```
+
+
+
+#### Salinity and Subsurface Temperature (Pioneer Array)
+
+```{r, fig.show="hold", out.width='100%'} 
+
+rundate1 = '202235'
+
+knitr::include_graphics(here::here(paste0("images/salinity/W_", rundate1, 
+"_UP_INSH_SAL_TMP.png")))
+```
+
+
+
+```{r, fig.show="hold", out.width='100%'} 
+
+rundate1 = '202235'
+
+knitr::include_graphics(here::here(paste0("images/salinity/W_", rundate1, 
+"_UP_SURF_SAL_TMP.png")))
+```
+
+
+### Mesoscale features
+***
+
+#### JCC August, 2022
+
+```{r, fig.show="hold", out.width="100%"}
+
+knitr::include_graphics(here::here(paste0("images/jc_charts/jc_20220831.png")))
+
+```
+
+
+```{r, out.width="100%"}
+knitr::include_graphics(here::here(paste0("images/jc_charts/jc_20220902.png")))
+
+
+```
+
+
+*image credit: Jenifer Clark*
+
+
+
+### Weekly Catch
+***
+```{r, fig.show="hold", out.width="100%"}
+
+rundate <- '202235'
+
+knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
+                                          rundate, "_QM.png")))
+
+```
+
+
+*image credit: Daniel Hocking*
+
+
+#### Lengths and Weights
+
+
+
+### Notes: 
+***
+
+SIRATES team cruises begin this week!
+
++ R/V Endeavor: launch AUVs, CTD, VMP to identify and map salinty maximum intrusion (SMax) starting 08/30
++ 70 Deg 45' - 71 Deg 03' W, 40 Deg 20' - 40 Deg 45' N
++ F/V Dyrsten: conduct 20 minute tows using commercial gear on nose, flanks, and core of SMax starting 08/31
+
+TS: Things are slowing down - only two boats for Illex 
+
++ Trip 1: 7,035 lbs 
++ Trip 2: 9,024 lbs
+
+
+
+
+## Week 34 (August 21 - August 27)
+
+### Oceanographic indicators
+***
+
+#### CHL and SST weekly means and anomalies
+```{r, fig.show="hold", out.width="50%"}
+
+knitr::include_graphics(here::here(paste0("images/composites/220825.237.2331.n19.jpg")))
+knitr::include_graphics(here::here(paste0("images/composites/220825.237.1521.n18.jpg")))
+
+```
+
+
+*image credit: Rutgers*
+
+
+#### 2 Week Animation
+
+
+#### Sea Level Anomaly and Geostrophic velocity
+
+Entire MAB
+
+```{r, fig.show="hold", out.width="50%"}
+
+ knitr::include_graphics(here::here(paste0("images/ssh/D_MAB_20220823_SLA.png")))
+                         
+ knitr::include_graphics(here::here(paste0("images/ssh/D_MAB_20220825_SLA.png")))
+
+
+```
+
+
+Shelf
+
+```{r, fig.show="hold", out.width="50%"}
+
+knitr::include_graphics(here::here(paste0("images/ssh/D_SHF_20220823_SLA.png")))
+                         
+knitr::include_graphics(here::here(paste0("images/ssh/D_SHF_20220825_SLA.png")))
+
+```
+
+
+*image credit: Adrienne Silver*
+
+
+
+#### Bottom Temperature from [EMOLT](http://emolt.org/telemetry.html) dataset
+
+```{r, fig.show="hold", out.width="100%"}
+
+
+rundate1 = '2021202234'
+
+knitr::include_graphics(here::here(paste0("images/bottom_temp/W_", rundate1,
+"_bt.png")))
+                        
+
+```
+
+
+#### Salinity and Subsurface Temperature (Pioneer Array)
+
+```{r, fig.show="hold", out.width='100%'} 
+
+rundate1 = '202234'
+
+knitr::include_graphics(here::here(paste0("images/salinity/W_", rundate1, 
+"_UP_INSH_SAL_TMP.png")))
+```
+
+
+```{r, fig.show="hold", out.width='100%'} 
+
+rundate1 = '202234'
+
+knitr::include_graphics(here::here(paste0("images/salinity/W_", rundate1, 
+"_UP_SURF_SAL_TMP.png")))
+```
+
+
+
+### Mesoscale features
+***
+
+#### JCC August, 2022
+
+```{r, fig.show="hold", out.width="50%", eval=FALSE}
+
+knitr::include_graphics(here::here(paste0("images/jc_charts/jc_20220817.png")))
+
+knitr::include_graphics(here::here(paste0("images/jc_charts/jc_20220819.png")))
+
+
+```
+
+
+*image credit: Jenifer Clark*
+
+
+### Weekly Catch
+***
+```{r, fig.show="hold", out.width="100%"}
+
+rundate <- '202234'
+
+# knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
+#                                           rundate, "_SF.png")))
+                        
+knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
+                                          rundate, "_QM.png")))
+  
+```
+
+
+*image credit: Daniel Hocking*
+
+
+
+
+#### Lengths and Weights
+
+
+
+```{r}
+
+ml_22 <- ml_wt_22 %>%
+  filter(PARAM_TYPE == 'ML') %>%
+  rename(length = PARAM_VALUE_NUM)
+
+
+
+ggplot(ml_22, 
+       aes(x = length, y = factor(week), fill =  factor(week))) +
+  geom_density_ridges(alpha = .8, color = 'white',
+                      scale = 2.5, rel_min_height = .01) +
+  labs(title = '2022 Illex Lengths', x = 'Length (mm)', y = 'Week', fill = 'Week') +
+  guides(color = guide_legend(title = 'Week')) +
+  theme_ridges() +
+  theme_classic()
+
+
+```
+
+
+
+```{r}
+wt_22 <- ml_wt_22 %>%
+  filter(PARAM_TYPE == 'WT') %>%
+  rename(weight = PARAM_VALUE_NUM)
+
+ggplot(wt_22, 
+       aes(x = weight, y = factor(week), fill =  factor(week))) +
+  geom_density_ridges(alpha = .8, color = 'white',
+                      scale = 2.5, rel_min_height = .01) +
+  labs(title = '2022 Illex Weights', x = 'Weight (gm)', y = 'Week', fill = 'Week') +
+  guides(color = guide_legend(title = 'Week')) +
+  theme_ridges() +
+  theme_classic()
+
+```
+
+
+### Notes: 
+***
+
+TS: This past week was slow with only a total of five vessels that landed Illex.
+
+Fishing efforts in both the Northern and Southern MAB this week, may 
+contribute to the variation in length and size? 
+
+
+## Week 33 (August 14 - August 20)
+
+### Oceanographic indicators
+***
+
+#### CHL and SST weekly means and anomalies
+```{r, fig.show="hold", out.width="100%"}
+
+
+knitr::include_graphics(here::here("images/composites/W_202233-NES-CHLOR_A_SST-STATS_ANOMS-COMPOSITE.png"))
+
+```
+
+*image credit: Kim Hyde*
+
+
+#### 2 Week Animation
+
+<video width="500" height="500" controls>
+  <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/IDL_OUTPUTS_V2022_ANIMATIONS_SST_DD_20220806_20220819-MUR-V04.1-1KM-NES-SST_15_30-FPS_3.webm" type="video/webm">
+</video>
+
+*animation credit: Kim Hyde*
+
+
+#### Sea Level Anomaly and Geostrophic velocity
+
+
+Entire MAB
+
+```{r, fig.show="hold", out.width="50%"}
+
+ knitr::include_graphics(here::here(paste0("images/ssh/D_MAB_20220816_SLA.png")))
+                         
+ knitr::include_graphics(here::here(paste0("images/ssh/D_MAB_20220818_SLA.png")))
+
+
+```
+
+
+Shelf
+
+```{r, fig.show="hold", out.width="50%"}
+
+knitr::include_graphics(here::here(paste0("images/ssh/D_SHF_20220816_SLA.png")))
+                         
+knitr::include_graphics(here::here(paste0("images/ssh/D_SHF_20220818_SLA.png")))
+
+```
+*image credit: Adrienne Silver*
+
+
+
+#### Bottom Temperature from [EMOLT](http://emolt.org/telemetry.html) dataset
+
+```{r, fig.show="hold", out.width="100%"}
+
+
+rundate1 = '2021202233'
+
+knitr::include_graphics(here::here(paste0("images/bottom_temp/W_", rundate1,
+"_bt.png")))
+                        
+
+```
+
+
+#### Salinity (Pioneer Array)
+
+```{r, fig.show="hold", out.width='100%'} 
+
+rundate1 = '202233'
+
+knitr::include_graphics(here::here(paste0("images/salinity/W_", rundate1, 
+"_UP_INSH_SAL_TMP.png")))
+```
+
+
+
+```{r, fig.show="hold", out.width='100%'} 
+
+rundate1 = '202233'
+
+knitr::include_graphics(here::here(paste0("images/salinity/W_", rundate1, 
+"_UP_SURF_SAL_TMP.png")))
+```
+
+
+
+### Mesoscale features
+***
+
+#### JCC August, 2022
+
+```{r, fig.show="hold", out.width="100%"}
+
+#knitr::include_graphics(here::here(paste0("images/jc_charts/jc_20220817.png")))
+
+knitr::include_graphics(here::here(paste0("images/jc_charts/jc_20220819.png")))
+
+
+```
+
+
+```{r, fig.show="hold", out.width="100%"}
+
+knitr::include_graphics(here::here(paste0("images/jc_charts/jc_20220817.png")))
+
+#knitr::include_graphics(here::here(paste0("images/jc_charts/jc_20220819.png")))
+
+
+```
+
+
+*image credit: Jenifer Clark*
+
+
+### Weekly Catch
+***
+```{r, fig.show="hold", out.width="100%"}
+
+rundate <- '202233'
+
+# knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
+#                                           rundate, "_SF.png")))
+                        
+knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
+                                          rundate, "_QM.png")))
+  
+```
+
+*image credit: Daniel Hocking*
+
+
+
+
+#### Lengths and Weights
+
+```{r}
+
+ml_22 <- ml_wt_22 %>%
+  filter(PARAM_TYPE == 'ML') %>%
+  rename(length = PARAM_VALUE_NUM)
+
+
+
+ggplot(ml_22, 
+       aes(x = length, y = factor(week), fill =  factor(week))) +
+  geom_density_ridges(alpha = .8, color = 'white',
+                      scale = 2.5, rel_min_height = .01) +
+  labs(title = '2022 Illex Lengths', x = 'Length (mm)', y = 'Week', fill = 'Week') +
+  guides(color = guide_legend(title = 'Week')) +
+  theme_ridges() +
+  theme_classic()
+
+
+```
+
+
+
+```{r}
+wt_22 <- ml_wt_22 %>%
+  filter(PARAM_TYPE == 'WT') %>%
+  rename(weight = PARAM_VALUE_NUM)
+
+ggplot(wt_22, 
+       aes(x = weight, y = factor(week), fill =  factor(week))) +
+  geom_density_ridges(alpha = .8, color = 'white',
+                      scale = 2.5, rel_min_height = .01) +
+  labs(title = '2022 Illex Weights', x = 'Weight (gm)', y = 'Week', fill = 'Week') +
+  guides(color = guide_legend(title = 'Week')) +
+  theme_ridges() +
+  theme_classic()
+
+```
+
+
+
+### Notes: 
+***
+
+AG: There is rather large Warm Core Ring at 40N, 70W, today 08/19. 
+
++ There was a smaller ring and there were some warm water filaments to the west of the ring this Wednesday 08/17.
++ Seems like the ring moved and joined with that water and formed an anticyclonic ring with shelf water in its core.
++ We need to know how the velocities are lined up for one-ring or two-rings or a combined system. 
++ The southwestern edge of the larger ring in the Clark Chart is also connected to the Gulf Steam
+
+AG: If this feature holds for the week of 8/22 and 8/29, the opportunity for a new intrusion (it probably is happening right now!) on the shelf might be huge!
+
+## Week 32 (August 7 - August 13)
+
+### Oceanographic indicators
+***
+
+#### CHL and SST weekly means and anomalies
+```{r, fig.show="hold", out.width="100%"}
+
+knitr::include_graphics(here::here("images/composites/W_202232-NES-CHLOR_A_SST-STATS_ANOMS-COMPOSITE.png"))
+
+```
+
+*image credit: Kim Hyde*
+
+#### 2 Week Animation
+
+<video width="500" height="500" controls>
+  <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/IDL_OUTPUTS_V2022_ANIMATIONS_SST_DD_20220723_20220805-MUR-V04.1-1KM-NES-SST_15_30-FPS_3.webm" type="video/webm">
+</video>
+
+*animation credit: Kim Hyde*
+
+
+
+
+#### Sea Level Anomaly and Geostrophic velocity
+
+
+```{r, fig.show="hold", out.width="50%"}
+
+knitr::include_graphics(here::here(paste0("images/ssh/W_202220809_SLA.jpg")))
+                        
+knitr::include_graphics(here::here(paste0("images/ssh/W_202220810_SLA.jpg")))
+
+
+```
+*image credit: Adrienne Silver*
+
+
+
+
+
+
+#### Bottom Temperature from [EMOLT](http://emolt.org/telemetry.html) dataset
+
+```{r, fig.show="hold", out.width="100%"}
+
+
+rundate1 = '2021202232'
+
+knitr::include_graphics(here::here(paste0("images/bottom_temp/W_", rundate1,
+"_bt.png")))
+                        
+
+```
+
+
+#### Salinity
+
+```{r, fig.show="hold", out.width='100%'} 
+
+rundate1 = '202232'
+
+knitr::include_graphics(here::here(paste0("images/salinity/W_", rundate1, 
+"_UP_INSH_SURF_SAL_28.png")))
+
+```
+
+
+### Mesoscale features
+***
+
+#### JCC August, 2022
+
+```{r, fig.show="hold", out.width="50%"}
+
+knitr::include_graphics(here::here(paste0("images/jc_charts/jc_20220808.png")))
+                         
+knitr::include_graphics(here::here(paste0("images/jc_charts/jc_20220810.png")))
+
+
+```
+
+*image credit: Jenifer Clark*
+
+
+### Weekly Catch
+***
+```{r, fig.show="hold", out.width="100%"}
+
+rundate <- '202232'
+
+# knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
+#                                           rundate, "_SF.png")))
+                        
+knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
+                                          rundate, "_QM.png")))
+  
+```
+
+*image credit: Daniel Hocking*
+
+#### Lengths and Weights
+
+```{r}
+
+ml_22 <- ml_wt_22 %>%
+  filter(PARAM_TYPE == 'ML') %>%
+  rename(length = PARAM_VALUE_NUM)
+g1 = ggplot(ml_22 %>% filter(week == 32), aes(x=length)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="white")+
+  geom_density(alpha=.2, fill="#FF6666") + 
+  labs(title = 'Length', subtitle = 'Week 32') +
+  theme_bw()
+
+g1
+
+```
+
+
+
+
+```{r}
+wt_22 <- ml_wt_22 %>%
+  filter(PARAM_TYPE == 'WT') %>%
+  rename(weight = PARAM_VALUE_NUM)
+
+g2 = ggplot(wt_22 %>% filter(week == 32), aes(x=weight)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="white")+
+  geom_density(alpha=.2, fill="#FF6666") + 
+  labs(title = 'Weights', subtitle = 'Week 32') +
+  theme_bw()
+
+print(g2)
+```
+
+
+
+
+
+## Week 31 (July 31 - August 6)
+***
+
+### Oceanographic indicators
+***
+
+#### CHL and SST weekly means and anomalies
+```{r, fig.show="hold", out.width="50%"}
+
+
+knitr::include_graphics(here::here("images/composites/sst2_fix_31.png"))
+
+knitr::include_graphics(here::here("images/composites/sst_fix_31.png"))
+
+```
+
+*image credit: Kim Hyde*
+
+#### 2 Week Animation
+
+<video width="500" height="500" controls>
+  <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/V2022_ANIMATIONS_SST_DD_20220723_20220805-MUR-V04.1-1KM-NES-SST_15_30-FPS_3.webm" type="video/webm">
+</video>
+
+*animation credit: Kim Hyde*
+
+#### Bottom Temperature from [EMOLT](http://emolt.org/telemetry.html) dataset
+
+```{r, fig.show="hold", out.width="100%"}
+
+
+rundate1 = '2021202231'
+
+knitr::include_graphics(here::here(paste0("images/bottom_temp/W_", rundate1,
+"_bt.jpeg")))
+                        
+
+```
+
+
+#### Salinity
+
+```{r, fig.show="hold", out.width='100%'} 
+
+rundate1 = '202231'
+
+knitr::include_graphics(here::here(paste0("images/salinity/W_", rundate1, 
+"_UP_INSH_SURF_SAL_28.jpeg")))
+
+```
+
+
+### Mesoscale features
+***
+
+#### JCC August, 2022
+
+```{r, fig.show="hold", out.width="100%"}
+
+knitr::include_graphics(here::here(paste0("images/jc_charts/jc_20220805.png")))
+                       
+
+
+```
+
+*image credit: Jenifer Clark*
+
+
+### Weekly Catch
+***
+```{r, fig.show="hold", out.width="100%"}
+
+rundate <- '202231'
+
+# knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
+#                                           rundate, "_SF.png")))
+#                         
+knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
+                                          rundate, "_QM.png")))
+  
+```
+
+*image credit: Daniel Hocking*
+
+#### Lengths and Weights
+
+```{r}
+
+ml_22 <- ml_wt_22 %>%
+  filter(PARAM_TYPE == 'ML') %>%
+  rename(length = PARAM_VALUE_NUM)
+g1 = ggplot(ml_22 %>% filter(week == 31), aes(x=length)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="white")+
+  geom_density(alpha=.2, fill="#FF6666") + 
+  labs(title = 'Length', subtitle = 'Week 31') +
+  theme_bw()
+
+g1
+
+```
+
+
+
+```{r}
+wt_22 <- ml_wt_22 %>%
+  filter(PARAM_TYPE == 'WT') %>%
+  rename(weight = PARAM_VALUE_NUM)
+
+g2 = ggplot(wt_22 %>% filter(week == 31), aes(x=weight)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="white")+
+  geom_density(alpha=.2, fill="#FF6666") + 
+  labs(title = 'Weights', subtitle = 'Week 31') +
+  theme_bw()
+
+print(g2)
+```
+
+
+
+# July
+***
+
+
+## Week 30 (July 24 - July 30)
+***
+
+### Oceanographic indicators
+***
+
+#### CHL and SST weekly means and anomalies
+```{r, fig.show="hold"}
+
+rundate <- '202230'
+
+knitr::include_graphics(here::here(paste0("images/composites/W_", rundate, "-NES-CHLOR_A_SST-STATS_ANOMS-COMPOSITE.png")))
+
+```
+*image credit: Kim Hyde*
+
+#### 2 Week Animation
+
+<video width="500" height="500" controls>
+  <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/V2022_ANIMATIONS_SST_DD_20220716_20220729-MUR-V04.1-1KM-NES-SST_10_30-FPS_3.webm" type="video/webm">
+</video>
+
+*animation credit: Kim Hyde*
+
+#### Bottom Temperature from [EMOLT](http://emolt.org/telemetry.html) dataset
+
+```{r, fig.show="hold", out.width="100%"}
+
+
+rundate1 = '2021202230'
+
+knitr::include_graphics(here::here(paste0("images/bottom_temp/W_", rundate1,
+"_bt.png")))
+                        
+
+```
+
+
+#### Salinity
+
+```{r, fig.show="hold", out.width='100%'} 
+
+rundate1 = '202230'
+
+knitr::include_graphics(here::here(paste0("images/salinity/W_", rundate1, 
+"_UP_INSH_SURF_SAL_28.png")))
+
+```
+
+
+### Mesoscale features
+***
+
+#### JCC July, 2022
+
+```{r, fig.show="hold", out.width="50%"}
+
+knitr::include_graphics(here::here(paste0("images/jc_charts/jc_20220725.png")))
+                        
+knitr::include_graphics(here::here(paste0("images/jc_charts/jc_20220729.png")))
+
+
+```
+
+*image credit: Jenifer Clark*
+
+
+### Weekly Catch
+***
+```{r, fig.show="hold", out.width="50%"}
+
+rundate <- '202230'
+
+knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
+                                          rundate, "_SF.png")))
+                        
+knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
+                                          rundate, "_QM.png")))
+  
+```
+
+*image credit: Andrew Jones, Daniel Hocking*
+
+
+#### Lengths and Weights
+
+```{r}
+
+ml_22 <- ml_wt_22 %>%
+  filter(PARAM_TYPE == 'ML') %>%
+  rename(length = PARAM_VALUE_NUM)
+g3 =ggplot(ml_22 %>% filter(week == 30), aes(x=length)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="white")+
+  geom_density(alpha=.2, fill="#FF6666") + 
+  labs(title = 'Length', subtitle = 'Week 30') +
+  theme_bw()
+
+```
+
+
+```{r}
+wt_22 <- ml_wt_22 %>%
+  filter(PARAM_TYPE == 'WT') %>%
+  rename(weight = PARAM_VALUE_NUM)
+
+g4 =ggplot(wt_22 %>% filter(week == 30), aes(x=weight)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="white")+
+  geom_density(alpha=.2, fill="#FF6666") + 
+  labs(title = 'Weights', subtitle = 'Week 30') +
+  theme_bw()
+g4
+```
+
+### Notes
+***
+
+AG : 
+
++ The WCR at 72W is not visible in this analysis. There was no analysis on 7/27. So, the last time we saw it was on 7/25. It does not mean that the ring is not there, it might very well be there at subsurface and interacting with the shelfbreak.
++ The squid bridge connecting the WCR at 68W with the Gulf Stream seems to have been absorbed in part by the WCR itself, which makes the WCR at 68W something more than just a physical ring. It has also moved to the west a bit, now centered closer to 68.5W. Need to watch its evolution.
+
+
+## Week 29 (July 17 - July 23)
+***
+
+### Oceanographic indicators
+***
+
+#### CHL and SST weekly means and anomalies
+```{r, fig.show="hold"}
+
+rundate <- '202229'
+
+knitr::include_graphics(here::here(paste0("images/composites/W_", rundate, "-NES-CHLOR_A_SST-STATS_ANOMS-COMPOSITE.png")))
+
+```
+*image credit: Kim Hyde*
+
+#### 2 Week Animation
+
+<video width="500" height="500" controls>
+  <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/V2022_ANIMATIONS_SST_DD_20220709_20220722-MUR-V04.1-1KM-NES-SST_10_30-FPS_3.webm" type="video/webm">
+</video>
+
+
+#### Bottom Temperature from [EMOLT](http://emolt.org/telemetry.html) dataset
+
+```{r, fig.show="hold", out.width="100%"}
+
+
+rundate1 = '2021202229'
+
+knitr::include_graphics(here::here(paste0("images/bottom_temp/W_", rundate1,
+"_bt.jpeg")))
+                        
+
+```
+
+
+
+#### Salinity
+
+```{r, fig.show="hold", out.width='100%'} 
+
+rundate1 = '202229'
+knitr::include_graphics(here::here(paste0("images/salinity/W_", rundate1, 
+"_UP_INSH_SURF_SAL_28.png")))
+```
+
+### Mesoscale features
+***
+
+#### JCC July, 2022
+
+```{r, fig.show="hold", out.width="50%"}
+
+knitr::include_graphics(here::here(paste0("images/jc_charts/jc_20220718.png")))
+                        
+knitr::include_graphics(here::here(paste0("images/jc_charts/jc_20220720.png")))
+
+
+```
+
+```{r, fig.show="hold", out.width="100%"}
+
+knitr::include_graphics(here::here(paste0("images/jc_charts/jc_20220722.png")))
+                        
+
+```
+
+*image credit: Jenifer Clark*
+
+
+### Weekly Catch
+***
+```{r, fig.show="hold", out.width="100%"}
+
+rundate <- '202229'
+
+# knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
+#                                           rundate, "_SF.png")))
+                        
+knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
+                                          rundate, "_QM.png")))
+  
+```
+
+*image credit: Daniel Hocking*
+
+
+#### Lengths and Weights
+
+```{r}
+
+ml_22 <- ml_wt_22 %>%
+  filter(PARAM_TYPE == 'ML') %>%
+  rename(length = PARAM_VALUE_NUM)
+ggplot(ml_22 %>% filter(week == 27), aes(x=length)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="white")+
+  geom_density(alpha=.2, fill="#FF6666") + 
+  labs(title = 'Length', subtitle = 'Week 27') +
+  theme_bw()
+
+```
+
+
+```{r}
+wt_22 <- ml_wt_22 %>%
+  filter(PARAM_TYPE == 'WT') %>%
+  rename(weight = PARAM_VALUE_NUM)
+
+ggplot(wt_22 %>% filter(week == 27), aes(x=weight)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="white")+
+  geom_density(alpha=.2, fill="#FF6666") + 
+  labs(title = 'Weights', subtitle = 'Week 27') +
+  theme_bw()
+```
+
+### Notes
+***
+
+AG: The MAB shelf from off-Hatteras to Cape Cod has warmed up considerably this week (07/20, 07/21)
+
+GG : Predicts - WCR south of Georges Bank (68 Deg 30' W) would be centered on 71 Deg 00' W on August 26 (36 days from today). 
+
++ Glen used a westward drift of 6 cm/s (thanks Adrienne!) to figure
+out how many days before the center of the WCR is at 71 Deg 00' W. 
+
+## Week 28 (July 10 - July 16)
+***
+
+### Oceanographic indicators
+***
+
+#### CHL and SST weekly means and anomalies
+```{r, fig.show="hold"}
+
+rundate <- '202228'
+
+knitr::include_graphics(here::here(paste0("images/composites/W_", rundate, "-NES-CHLOR_A_SST-STATS_ANOMS-COMPOSITE.png")))
+
+```
+*image credit: Kim Hyde*
+
+
+
+#### 2 Week Animation
+
+<video width="500" height="500" controls>
+  <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/V2022_ANIMATIONS_SST_DD_20220702_20220715-MUR-V04.1-1KM-NES-SST-FPS_3.webm" type="video/webm">
+</video>
+
+
+#### Bottom Temperature from [EMOLT](http://emolt.org/telemetry.html) dataset
+
+```{r, fig.show="hold", out.width="100%"}
+
+
+rundate1 = '2021202228'
+
+knitr::include_graphics(here::here(paste0("images/bottom_temp/W_", rundate1,
+"_bt.jpeg")))
+                        
+
+```
+
+
+#### Salinity
+
+```{r, fig.show="hold", out.width='100%'} 
+
+rundate1 = '202228'
+
+knitr::include_graphics(here::here(paste0("images/salinity/W_", rundate1, 
+"_UP_INSH_SURF_SAL_28.png")))
+
+
+```
+
+### Mesoscale features
+***
+
+#### JCC July, 2022
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220713.png)
+
+
+### Weekly Catch
+***
+```{r, fig.show="hold", out.width="100%"}
+
+rundate <- '202228'
+
+# knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
+#                                           rundate, "_SF.png")))
+                        
+knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
+                                          rundate, "_QM.png")))
+  
+```
+
+#### Lengths and Weights
+
+```{r}
+
+ml_22 <- ml_wt_22 %>%
+  filter(PARAM_TYPE == 'ML') %>%
+  rename(length = PARAM_VALUE_NUM)
+ggplot(ml_22 %>% filter(week == 28), aes(x=length)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="white")+
+  geom_density(alpha=.2, fill="#FF6666") + 
+  labs(title = 'Length', subtitle = 'Week 28') +
+  theme_bw()
+
+```
+
+
+
+```{r}
+wt_22 <- ml_wt_22 %>%
+  filter(PARAM_TYPE == 'WT') %>%
+  rename(weight = PARAM_VALUE_NUM)
+
+ggplot(wt_22 %>% filter(week == 28), aes(x=weight)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="white")+
+  geom_density(alpha=.2, fill="#FF6666") + 
+  labs(title = 'Weights', subtitle = 'Week 28') +
+  theme_bw()
+```
+
+
+### Notes
+***
+
+
+## Week 27 (July 03 - July 09)
+***
+
+### Oceanographic indicators
+***
+
+#### CHL and SST weekly means and anomalies
+```{r, fig.show="hold"}
+
+rundate <- '202227'
+
+knitr::include_graphics(here::here(paste0("images/composites/W_", rundate, "-NES-CHLOR_A_SST-STATS_ANOMS-COMPOSITE.png")))
+
+```
+*image credit: Kim Hyde*
+
+
+#### 2 Week Animation
+
+<video width="500" height="500" controls>
+  <source src="/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/animations/V2022_ANIMATIONS_SST_DD_20220625_20220708-MUR-V04.1-1KM-NES-SST-FPS_3.webm" type="video/webm">
+</video>
+
+
+
+#### Sea Level Anomaly and Geostrophic velocity
+
+
+```{r, fig.show="hold", out.width="50%"}
+
+knitr::include_graphics(here::here(paste0("images/ssh/W_20220704_SLA.jpg")))
+                        
+knitr::include_graphics(here::here(paste0("images/ssh/W_20220707_SLA.jpg")))
+
+
+```
+
+*image credit: Adrienne Silver*
+
+
+
+#### Bottom Temperature from [EMOLT](http://emolt.org/telemetry.html) dataset
+
+```{r, fig.show="hold", out.width="100%"}
+
+# rundate1 = '202227'
+# rundate2 = '202127'
+ rundate1 = '2021202227'
+
+
+knitr::include_graphics(here::here(paste0("images/bottom_temp/W_", rundate1,
+"_bt.png")))
+                        
+# knitr::include_graphics(here::here(paste0("images/bottom_temp/W_", rundate2, "_bt.png")))
+
+```
+
+
+#### Salinity
+
+```{r, fig.show="hold", out.width='100%'} 
+
+rundate1 = '202227'
+
+knitr::include_graphics(here::here(paste0("images/salinity/W_", rundate1, 
+"_UP_INSH_SURF_SAL_28.png")))
+
+
+```
+
+### Mesoscale features
+***
+#### JCC July, 2022
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/jc_charts/jc_20220629.png)
+
+
+### Weekly Catch
+***
+```{r, fig.show="hold", out.width="100%"}
+
+rundate <- '202227'
+
+# knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
+#                                           rundate, "_SF.png")))
+                        
+knitr::include_graphics(here::here(paste0("images/study_fleet/W_", 
+                                          rundate, "_QM.png")))
+  
+```
+
+*image credit: Daniel Hocking*
+
+#### Lengths and Weights
+
+
+```{r}
+
+ml_22 <- ml_wt_22 %>%
+  filter(PARAM_TYPE == 'ML') %>%
+  rename(length = PARAM_VALUE_NUM)
+ggplot(ml_22 %>% filter(week == 27), aes(x=length)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="white")+
+  geom_density(alpha=.2, fill="#FF6666") + 
+  labs(title = 'Length', subtitle = 'Week 27') +
+  theme_bw()
+
+```
+
+
+```{r}
+wt_22 <- ml_wt_22 %>%
+  filter(PARAM_TYPE == 'WT') %>%
+  rename(weight = PARAM_VALUE_NUM)
+
+ggplot(wt_22 %>% filter(week == 27), aes(x=weight)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="white")+
+  geom_density(alpha=.2, fill="#FF6666") + 
+  labs(title = 'Weights', subtitle = 'Week 27') +
+  theme_bw()
+```
+
+
+### Notes
+***
+
 
 # June
 ***
 
-## Week 26 (June26 - July 2)
+
+## Week 26 (June 26 - July 2)
 ***
 
 ### Oceanographic indicators
@@ -147,12 +1543,12 @@ knitr::include_graphics(here::here(paste0("images/bottom_temp/W_", rundate1,
 
 #### Salinity
 
-```{r, fig.show="hold", out.width='100%', eval=FALSE} 
+```{r, fig.show="hold", out.width='100%'} 
 
 rundate1 = '202226'
 
 knitr::include_graphics(here::here(paste0("images/salinity/W_", rundate1, 
-"_SAL_UO.png")))
+"_UP_INSH_SURF_SAL_28.png")))
 
 
 ```
@@ -202,7 +1598,8 @@ ggplot(wk26, aes(x=weight)) +
   theme_bw()
 ```
 
-
+### Notes
+***
 
 ## Week 25 (June 12 - June 18)
 ***
@@ -241,6 +1638,16 @@ knitr::include_graphics(here::here(paste0("images/bottom_temp/W_", rundate2, "_b
 
 
 #### Salinity
+
+```{r, fig.show="hold", out.width='100%'} 
+
+rundate1 = '202225'
+
+knitr::include_graphics(here::here(paste0("images/salinity/W_", rundate1, 
+"_UP_INSH_SURF_SAL_28.png")))
+
+
+```
 
 ```{r, fig.show="hold", out.width='100%'} 
 
@@ -424,14 +1831,15 @@ ggplot(wk24, aes(x=weight)) +
 
 ### Notes 
 ***
+
 AG: The region between 70W and 65W is very much full of eddy activities.
+
 + The WCR at 66W/40N has now an elongated extension along the shelf break. 
 + There are signatures of intrusions (yellow within green waters) 
 from the WCR at 71W/39N. 
 
 AG: The trough at 67W is connected to a set of CCRs through multiple limbs.  
-Curiously, there are FOUR warm eddies to the SOUTH of the GS between 70W and
-65W, and two CCRs (68W/35N and 65W/36N). The WCR-CCR pair (67-65W/36N) is a 
+Curiously, there are FOUR warm eddies to the SOUTH of the GS between 70W and 65W, and two CCRs (68W/35N and 65W/36N). The WCR-CCR pair (67-65W/36N) is a 
 robust double vortex (mushroom-like) and we have seen such pairs
 in many years while creating the CCR census. So, this region is indeed 
 very eddy-active right now, and might lead to interesting GS meadring 
@@ -529,7 +1937,7 @@ knitr::include_graphics(here::here(paste0("images/salinity/W_", rundate2, "_sal_
 
 ### Weekly Catch
 ***
-```{r, fig.show="hold", out.width="50%"}
+```{r, fig.show="hold", out.width="100%"}
 par(mar = c(4, 4, .1, .1))
 
 rundate <- '202223'
@@ -542,6 +1950,28 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
   
 ```
 
+
+#### Lengths and Weights
+
+
+```{r}
+wk23 = dt2 %>% filter(week == 23)
+
+ggplot(wk23, aes(x=length)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="white")+
+  geom_density(alpha=.2, fill="#FF6666") + 
+  labs(title = 'Length', subtitle = 'Week 23, 2022') +
+  theme_bw()
+```
+
+
+```{r}
+ggplot(wk23, aes(x=weight)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="white")+
+  geom_density(alpha=.2, fill="#FF6666") + 
+  labs(title = 'Weight', subtitle = 'Week 23, 2022') +
+  theme_bw()
+```
 
 
 ### Notes 
@@ -611,7 +2041,7 @@ knitr::include_graphics(here::here(paste0("images/chl/W_", rundate, "-WEEK_22_19
 
 #### Sea Level Anomaly and Geostrophic velocity
 
-![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/ssh/W_202222_SLA.png){width=50%}
+![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/ssh/W_202222_SLA.png){width=100%}
 *image credit: Adrienne Silver*
 
 
@@ -677,6 +2107,32 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
   
 ```
 *image credit: Andy Jones, Daniel Hocking*
+
+
+#### Lengths and Weights
+
+
+```{r}
+wk22 = dt2 %>% filter(week == 22)
+
+ggplot(wk22, aes(x=length)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="white")+
+  geom_density(alpha=.2, fill="#FF6666") + 
+  labs(title = 'Length', subtitle = 'Week 22, 2022') +
+  theme_bw()
+```
+
+
+```{r}
+ggplot(wk22, aes(x=weight)) + 
+  geom_histogram(aes(y=..density..), colour="black", fill="white")+
+  geom_density(alpha=.2, fill="#FF6666") + 
+  labs(title = 'Weight', subtitle = 'Week 22, 2022') +
+  theme_bw()
+```
+
+
+
 
 
 ### Salinity 
@@ -788,10 +2244,11 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 
 
 ### Notes
+***
 
 + GG & AS: Shingle starting to wrap around WCR - possible squid bridge connection 
-+ AM: Some boats went looking for Illex around the eddies at 65W and 72W last week,
-  but didn’t find much
+
++ AM: Some boats went looking for Illex around the eddies at 65W and 72W last week, but didn’t find much
 
 ## Week 20 (May 15 - May 21)
 ***
@@ -844,8 +2301,10 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 ![](/Users/sarah.salois/Documents/github/ssalois1/NEFSC-illex_indicator_viewer/images/salinity/W_202220-SAL-OFFSHORE.png)
 
 ### Notes 
+***
 
-+ AS: May be another shingle forming, keep an eye in coming weeks 
+AS: May be another shingle forming, keep an eye in coming weeks 
+
 + Many North Atlantic Right whales located On the NE edge of Grand Banks 
 (on the GOM side)
 + Whales not expected in that region
@@ -888,10 +2347,11 @@ knitr::include_graphics(here::here(paste0("images/study_fleet/W_",
 
 ### Salinity
 ***
+
 ### Notes
 ***
 
-+ AG: Two WCRs in our region -- both connected to the Gulf Stream with individual Squid bridges or streamers.
+AG: Two WCRs in our region -- both connected to the Gulf Stream with individual Squid bridges or streamers.
 
 ***
 
@@ -1021,8 +2481,11 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 *image credit: Jenifer Clark*
 
 ### Salinity
+***
 
 ### Notes
+***
+
 
 ## Week 16 (April 17 - April 23)
 ***
@@ -1049,8 +2512,11 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 ### Mesoscale features
 
 ### Salinity
+***
+
 
 ### Notes
+***
 
 
 ## Week 15 (April 10 - April 16)
@@ -1078,6 +2544,8 @@ knitr::include_graphics(here::here(c("images/jc_charts/jc_0425.jpg", 'images/jc_
 ### Salinity
 
 ### Notes
+***
+
 AG: Things are heating up with really warm GS water closing in on the shelf 
 break near 67W! 
 
@@ -1119,6 +2587,8 @@ offshore
 ### Salinity
 
 ### Notes
+***
+
 AG: (4/6/22) There is one WCR on the shelf break and a large streamer along the
 MAB shelf. A lot of activity to the east of the Ring-meander set up at 65W. 
 
