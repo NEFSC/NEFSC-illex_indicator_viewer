@@ -71,53 +71,72 @@
     
     ; ===> Make the project directories
     DIR_PRO = !S.ILLEX_VIEWER
+    DIR_FILES = DIR_PRO + 'FILES' + SL
     DIR_VER = DIR_PRO + 'IDL_OUTPUTS' + SL + VER + SL
-    DIRNAMES = ['FILES','EXTRACTS','EVENTS','PNGS','ANIMATIONS','COMPOSITES','LOGS','NETCDF'] 
+    DIRNAMES = ['EXTRACTS','EVENTS','PNGS','ANIMATIONS','COMPOSITES','LOGS','NETCDF'] 
     DNAME = 'DIR_'  + DIRNAMES                                                                      ; The tag name for the directory in the structure
     DIRS  = DIR_VER + DIRNAMES + SL                                                                 ; The actual directory name
     DIR_TEST, DIRS                                                                                  ; Make the output directories if they don't already exist
-    DSTR = CREATE_STRUCT('DIR_PROJECT',DIR_PRO,'DIR_VERSION',DIR_VER)                               ; Create the directory structure
+    DSTR = CREATE_STRUCT('DIR_PROJECT',DIR_PRO,'DIR_FILES',DIR_FILES,'DIR_VERSION',DIR_VER)                               ; Create the directory structure
     FOR D=0, N_ELEMENTS(DIRS)-1 DO DSTR=CREATE_STRUCT(DSTR,DNAME[D],DIRS[D])                        ; Add each directory to the structure
 
-    ; ===> Get the VERSION specific product information
+    ; ===> Default product information
+    DOWNLOAD_PRODS = ['CHLOR_A','SST','SEALEVEL','OCEAN']
+    PROCESS_PRODS = ['CHLOR_A','SST'] ; ,'SEALEVEL','OCEAN'
+
+    CHL_DATASET = 'GLOBCOLOUR' & CHL_ALG = 'GSM' & CHL_TEMP = 'GLOBCOLOUR'
+    SST_DATASET  = 'MUR' & SST_TEMP = 'MUR'
+    MAP_OUT  = 'NES'                                                                            ; The map to be used for any plots
+    SHPFILE  = 'NAFO_SHELFBREAK_40KM'                                 ; The shapefile for any data extractions or image outlines
+    PRODS = ['CHLOR_A','SST','GRAD_CHL','GRAD_SST','SEALEVEL','OCEAN','MICRO','NANO','PICO',['MICRO','NANO','PICO']+'_PERCENTAGE']
+    STAT_PERIODS = ['W','WEEK','M','MONTH']
+    ANOM_PERIODS=['W','M']
+    PNG_PRODS = ['CHLOR_A','SST'];,'GRAD_CHL','GRAD_SST']
+    PNG_PERIODS = ['W']
+    NETCDF_PRODS = PNG_PRODS
+    NETCDF_PERIODS = PNG_PERIODS
+    FRONT_PRODS = ['GRAD_SST','GRAD_CHL']
+    EXTRACT_PRODS = ['CHLOR_A','SST','MICRO','NANO','PICO',['MICRO','NANO','PICO']+'_PERCENTAGE']
+    EXTRACT_PERIODS = ['W','WEEK','M','MONTH']
+    CHL_DATASET = 'GLOBCOLOUR' & CHL_ALG = 'GSM' & CHL_TEMP = 'GLOBCOLOUR'
+    SLA_DATASET = 'CMES' & SLA_TEMP = 'CMES'
+    OCN_DATASET = 'CMES' & OCN_TEMP = 'CMES'
+    GRADCHL_DATASET = 'GLOBCOLOUR' & GC_TEMP='GLOBCOLOUR' & GCHL_ALG = 'BOA'
+    GRADSST_DATASET = 'MUR' & GS_TEMP='MUR' & GSST_ALG = 'BOA'
+    PSZ_DATASET = 'OCCCI' & PSZ_TEMP = ''
+    TEMP_PRODS = ['CHLOR_A','MICRO','NANO','PICO',['MICRO','NANO','PICO']+'_PERCENTAGE']
+    PSZ_DATASET = 'OCCCI' & PSZ_TEMP = 'GLOBCOLOUR' & PSZ_ALG = 'TURNER'
+    GRID_PERIOD = 'W'
+
+   
+   
+   
+    ; ===> Change the specific product information based on the version
     CASE VER OF
+     'V2023': BEGIN
+        ILLEX_YR = '2023'
+        SST_DATASET  = 'ACSPONRT'
+        SST_TEMP = 'ACSPONRT'
+        GRADSST_DATASET = 'ACSPONRT'  & GS_TEMP='ACSPONRT'
+
+        
+        
+      
+      END
       'V2022': BEGIN                                                                                ; V2022 specific information
         ILLEX_YR = '2022'                                                                           ; The current year
-        DATERANGE = ['20220101','20221231']                                                         ; The full date range of the current year
-        PREVIOUS_DATERANGE = ['202100101','20211231']                                               ; The date range of the previous year
-        FULL_DATERANGE = ['1998','2022']
-        MAP_OUT  = 'NES'                                                                            ; The map to be used for any plots
-        SHPFILE  = 'NAFO_SHELFBREAK_40KM'                                 ; The shapefile for any data extractions or image outlines
-        PRODS = ['CHLOR_A','SST','GRAD_CHL','GRAD_SST','SEALEVEL','OCEAN','MICRO','NANO','PICO',['MICRO','NANO','PICO']+'_PERCENTAGE']
-        DOWNLOAD_PRODS = ['CHLOR_A','SST','SEALEVEL','OCEAN']
-        PNG_PRODS = ['CHLOR_A','SST'];,'GRAD_CHL','GRAD_SST']
-        PNG_PERIODS = ['W']
-        FRONT_PRODS = ['GRAD_SST','GRAD_CHL']
-        EXTRACT_PRODS = ['CHLOR_A','SST','MICRO','NANO','PICO',['MICRO','NANO','PICO']+'_PERCENTAGE']
-        EXTRACT_PERIODS = ['W','WEEK','M','MONTH']
-        CHL_DATASET = 'GLOBCOLOUR' & CHL_ALG = 'GSM' & CHL_TEMP = 'GLOBCOLOUR'
-        SST_DATASET  = 'MUR' 
-        SLA_DATASET = 'CMES' & SLA_TEMP = 'CMES'
-        OCN_DATASET = 'CMES' & OCN_TEMP = 'CMES'
-        GRADCHL_DATASET = 'GLOBCOLOUR' & GC_TEMP='GLOBCOLOUR' & GCHL_ALG = 'BOA'
-        GRADSST_DATASET = 'MUR' & GS_TEMP='GLOBCOLOUR' & GSST_ALG = 'BOA'
-        PSZ_DATASET = 'OCCCI' & PSZ_TEMP = ''
         
         
-        TEMP_PRODS = ['CHLOR_A','MICRO','NANO','PICO',['MICRO','NANO','PICO']+'_PERCENTAGE']
-       ; STACKED_PRODS = LIST(['CHLOR_A','PPD'],['CHLOR_A','MICRO','PPD'],['CHLOR_A','MICRO_PERCENTAGE','PPD'],['MICRO','NANO','PICO'],['MICRO','NANO','PICO']+'_PERCENTAGE')
-       ; COMPOSITE_PRODS = LIST([['MICRO','NANO','PICO']],[['MICRO','NANO','PICO']+'_PERCENTAGE'])
-       ; COMPOSITE_PERIODS = ['ANNUAL','MONTH','WEEK','A','W','M']
-       ; MOVIE_PERIODS = ['WEEK','MONTH']
-       ; CHL_DATASET = 'OCCCI' & CHL_TEMP = 'GLOBCOLOUR' & CHL_ALG = 'CCI' & CTEMP_ALG = 'GSM'
-       ; PP_DATASET  = 'OCCCI' & PP_TEMP  = 'GLOBCOLOUR' & PP_ALG  = 'VGPM2'
-        PSZ_DATASET = 'OCCCI' & PSZ_TEMP = 'GLOBCOLOUR' & PSZ_ALG = 'TURNER'
-        SST_DATASET = 'MUR' & SST_TEMP = 'MUR'
-        DATFILE = DSTR.DIR_EXTRACTS + VER + '-' + SHPFILE + '-COMPILED_DATA_FILE.SAV'
-        GRID_PERIOD = 'W'
         
       END
     ENDCASE ; VER
+    
+    DATFILE = DSTR.DIR_EXTRACTS + VER + '-' + SHPFILE + '-COMPILED_DATA_FILE.SAV'
+
+    FULL_DATERANGE = GET_DATERANGE(['1998',ILLEX_YR])
+    DATERANGE = GET_DATERANGE(ILLEX_YR)                                                     ; The full date range of the current year
+    PREVIOUS_DATERANGE = GET_DATERANGE(ILLEX_YR-1)                                                  ; The date range of the previous year
+
     
     SHPS = READ_SHPFILE(SHPFILE, MAPP=MAP_OUT)
     SUBAREAS = TAG_NAMES(SHPS) & SUBAREAS = SUBAREAS[WHERE(SUBAREAS NE 'OUTLINE' AND SUBAREAS NE 'MAPPED_IMAGE')]
@@ -134,7 +153,7 @@
     
     ISTR = CREATE_STRUCT('DATAFILE',DATFILE,'ILLEX_YEAR',ILLEX_YR,'DATERANGE',DATERANGE,'PREVIOUS_DATERANGE',PREVIOUS_DATERANGE,'FULL_DATERANGE',FULL_DATERANGE,$
       'MAP_OUT',MAP_OUT,'SHAPEFILE',SHPFILE, 'SUBAREA_NAMES',SUBAREAS,'SUBAREA_TITLES',SUBAREA_TITLES,'SUBAREA_OUTLINE',OUTLINE,'RESOLUTION',RESOLUTION, $
-      'PNG_PRODS',PNG_PRODS,'PNG_PERIODS',PNG_PERIODS,'DOWNLOAD_PRODS',DOWNLOAD_PRODS,'TEMP_PRODS',TEMP_PRODS,'FRONT_PRODS',FRONT_PRODS,'EXTRACT_PRODS',EXTRACT_PRODS,'EXTRACT_PERIODS',EXTRACT_PERIODS,'GRID_PERIOD',GRID_PERIOD)
+      'STAT_PERIODS',STAT_PERIODS,'ANOM_PERIODS',ANOM_PERIODS,'PNG_PRODS',PNG_PRODS,'PNG_PERIODS',PNG_PERIODS,'NETCDF_PRODS',NETCDF_PRODS,'NETCDF_PERIODS',NETCDF_PERIODS,'DOWNLOAD_PRODS',DOWNLOAD_PRODS,'PROCESS_PRODS',PROCESS_PRODS,'TEMP_PRODS',TEMP_PRODS,'FRONT_PRODS',FRONT_PRODS,'EXTRACT_PRODS',EXTRACT_PRODS,'EXTRACT_PERIODS',EXTRACT_PERIODS,'GRID_PERIOD',GRID_PERIOD)
 
     PSTR = []
     FOR P=0, N_ELEMENTS(PRODS)-1 DO BEGIN
@@ -149,7 +168,7 @@
                                                       'M03', 'SST_0_30',$
                                                       'M04', 'SST_5_30',$
                                                       'M05', 'SST_5_30',$
-                                                      'M06', 'SST_10_30',$
+                                                      'M06', 'SST_5_30',$
                                                       'M07', 'SST_10_30',$
                                                       'M08', 'SST_15_30',$
                                                       'M09', 'SST_15_30',$
