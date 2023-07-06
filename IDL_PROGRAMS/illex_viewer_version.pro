@@ -3,7 +3,7 @@
 
 ;+
 ; NAME:
-;   ILLEX_VIEWER_INDICATORS_VERSION_INFO
+;   ILLEX_VIEWER_VERSION
 ;
 ; PURPOSE:
 ;   Get the version specific information for the various ILLEX_VIEWER_INDICATORS functions
@@ -12,7 +12,7 @@
 ;   ILLEX_INDICATOR_VIEWER
 ;
 ; CALLING SEQUENCE:
-;   Result = ILLEX_VIEWER_INDICATORS_VERSION_INFO()
+;   Result = ILLEX_VIEWER_VERSION()
 ;
 ; REQUIRED INPUTS:
 ;   None
@@ -58,7 +58,7 @@
 ;   Aug 15, 2022 - KJHW: Added LOGS directory
 ;-
 ; ****************************************************************************************************
-  ROUTINE_NAME = 'ILLEX_VIEWER_INDICATORS_VERSION_INFO'
+  ROUTINE_NAME = 'ILLEX_VIEWER_VERSION'
   COMPILE_OPT IDL2
   SL = PATH_SEP()
   
