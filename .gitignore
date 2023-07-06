@@ -1,4 +1,5 @@
 # .* need to be more specific 
+.DS_Store
 _*
 # R project stuff
 .Rproj.user
@@ -17,5 +18,7 @@ V2022/Screen Shot 2022-05-31 at 12.59.12 PM.png
 *.LOG
 *.png
 *.jpeg
-!/ANIMATIONS/*
+!**/ANIMATIONS/*
 
+IDL_OUTPUTS/V2022/ANIMATIONS/.DS_Store
+IDL_OUTPUTS/V2023/ANIMATIONS/.DS_Store
