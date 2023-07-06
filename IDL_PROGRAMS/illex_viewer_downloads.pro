@@ -64,8 +64,8 @@
   VSTR = VERSTRUCT
   VER = VSTR.VERSION
   
-  ; Get list of dates from the last ten days
-  IF ~N_ELEMENTS(NDAYS) THEN NDAYS = 10
+  ; Get list of dates from the last thirty days
+  IF ~N_ELEMENTS(NDAYS) THEN NDAYS = 30
   TODAY = DATE_NOW() & JDAY = DATE_2JD(TODAY)
   DTR = GET_DATERANGE(TODAY,JD_2DATE(JD_ADD(JDAY,-NDAYS,/DAY)))
   
