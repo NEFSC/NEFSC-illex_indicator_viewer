@@ -209,59 +209,59 @@
 ;      STOP
 ;    ENDIF
 ;    
-;    IF KEYWORD_SET(GIT_PUSH) THEN BEGIN
-;      
-;      COUNTER = 0
-;      WHILE COUNTER LT 2 DO BEGIN
-;        COUNTER = COUNTER + 1
-;      
-;        ; ===> Change directory
-;        cd, DIR_PROJECT
-;  
-;        ; ===> Check the version control status
-;        CMD = "git status"
-;        SPAWN, CMD, LOG, EXIT_STATUS=ES
-;        PLUN, LUN, LOG
-;        IF ES EQ 1 THEN GOTO, GIT_ERROR
-;        IF ~HAS(LOG, 'nothing to commit') THEN BEGIN
-;          
-;          ; ===> Add the files to git
-;          CMD = "git add ."
-;          SPAWN, CMD, LOG, EXIT_STATUS=ES
-;          PLUN, LUN, LOG
-;          IF ES EQ 1 THEN GOTO, GIT_ERROR
-;          
-;          ; ===> Commit the files to git
-;          COMMIT_MSG = ' Illex viewer update - ' + NUM2STR(DATE_NOW(/DATE_ONLY))
-;          CMD = "git commit -m '" + COMMIT_MSG + "'" 
-;          SPAWN, CMD, LOG, EXIT_STATUS=ES
-;          PLUN, LUN, LOG
-;          IF ES EQ 1 THEN GOTO, GIT_ERROR
-;        ENDIF  
-;  
-;        ; ===> Push the files to GitHub
-;        CMD = "git push"
-;        SPAWN, CMD, LOG, EXIT_STATUS=ES
-;        PLUN, LUN, LOG
-;        IF ES EQ 1 THEN GOTO, GIT_ERROR
-;  
-;        ; ===> Double check the Git Status
-;        CMD = "git status"
-;        SPAWN, CMD, LOG, EXIT_STATUS=ES
-;        IF LOG[1] EQ "Your branch is up to date with 'origin/main'." AND LOG[3] EQ "nothing to commit, working tree clean" THEN BREAK
-;
-;      ENDWHILE
-;      
-;      GIT_ERROR:
-;      IF ES EQ 1 THEN BEGIN
-;        MESSAGE, 'ERROR: Unable to complete git steps and upload files'
-;      ENDIF ELSE BEGIN
-;        MAILTO = 'kimberly.hyde@noaa.gov'
-;        CMD = 'echo "Illex Viwer composites and animations uploaded to GitHub ' + SYSTIME() + '" | mailx -s "Illex composites ' + SYSTIME() + '" ' + MAILTO
-;        IF KEYWORD_SET(EMAIL) THEN SPAWN, CMD
-;      ENDELSE
-;            
-;    ENDIF
+    IF KEYWORD_SET(GIT_PUSH) THEN BEGIN
+      
+      COUNTER = 0
+      WHILE COUNTER LT 2 DO BEGIN
+        COUNTER = COUNTER + 1
+      
+        ; ===> Change directory
+        cd, DIR_PROJECT
+  
+        ; ===> Check the version control status
+        CMD = "git status"
+        SPAWN, CMD, LOG, EXIT_STATUS=ES
+        PLUN, LUN, LOG
+        IF ES EQ 1 THEN GOTO, GIT_ERROR
+        IF ~HAS(LOG, 'nothing to commit') THEN BEGIN
+          
+          ; ===> Add the files to git
+          CMD = "git add ."
+          SPAWN, CMD, LOG, EXIT_STATUS=ES
+          PLUN, LUN, LOG
+          IF ES EQ 1 THEN GOTO, GIT_ERROR
+          
+          ; ===> Commit the files to git
+          COMMIT_MSG = ' Illex viewer update - ' + NUM2STR(DATE_NOW(/DATE_ONLY))
+          CMD = "git commit -m '" + COMMIT_MSG + "'" 
+          SPAWN, CMD, LOG, EXIT_STATUS=ES
+          PLUN, LUN, LOG
+          IF ES EQ 1 THEN GOTO, GIT_ERROR
+        ENDIF  
+  
+        ; ===> Push the files to GitHub
+        CMD = "git push"
+        SPAWN, CMD, LOG, EXIT_STATUS=ES
+        PLUN, LUN, LOG
+        IF ES EQ 1 THEN GOTO, GIT_ERROR
+  
+        ; ===> Double check the Git Status
+        CMD = "git status"
+        SPAWN, CMD, LOG, EXIT_STATUS=ES
+        IF LOG[1] EQ "Your branch is up to date with 'origin/main'." AND LOG[3] EQ "nothing to commit, working tree clean" THEN BREAK
+
+      ENDWHILE
+      
+      GIT_ERROR:
+      IF ES EQ 1 THEN BEGIN
+        MESSAGE, 'ERROR: Unable to complete git steps and upload files'
+      ENDIF ELSE BEGIN
+        MAILTO = 'kimberly.hyde@noaa.gov'
+        CMD = 'echo "Illex Viwer composites and animations uploaded to GitHub ' + SYSTIME() + '" | mailx -s "Illex composites ' + SYSTIME() + '" ' + MAILTO
+        IF KEYWORD_SET(EMAIL) THEN SPAWN, CMD
+      ENDELSE
+            
+    ENDIF
       
 ; STOP   
 ;    DT = '20210608' & TITLE='2021-06-08'
