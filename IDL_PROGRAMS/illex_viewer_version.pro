@@ -62,7 +62,7 @@
   COMPILE_OPT IDL2
   SL = PATH_SEP()
   
-  IF NONE(VERSION) THEN VERSION = ['V2022']                       ; Each year, add the next version
+  IF NONE(VERSION) THEN VERSION = ['V2023']                       ; Each year, add the next version
 
   VSTR = []                                                       ; Create a null variable for the version structure
   ; ===> Loop throug the version
@@ -94,7 +94,7 @@
     PNG_PRODS = ['CHLOR_A','SST'];,'GRAD_CHL','GRAD_SST']
     PNG_PERIODS = ['W']
     NETCDF_PRODS = PNG_PRODS
-    NETCDF_PERIODS = PNG_PERIODS
+    NETCDF_PERIODS = ['W']
     ANIMATION_PRODS = ['SST','CHLOR_A']
     FRONT_PRODS = ['GRAD_SST','GRAD_CHL']
     EXTRACT_PRODS = ['CHLOR_A','SST','MICRO','NANO','PICO',['MICRO','NANO','PICO']+'_PERCENTAGE']
@@ -119,6 +119,7 @@
         SST_DATASET  = 'ACSPONRT'
         SST_TEMP = 'ACSPONRT'
         GRADSST_DATASET = 'ACSPONRT'  & GS_TEMP='ACSPONRT'
+        PROCESS_PRODS = ['CHLOR_A','SST','GRAD_SST'] ; ,'SEALEVEL','OCEAN'
         EXTRACT_PRODS = ['CHLOR_A','SST']
         SHPFILE  = ['NAFO_SHELFBREAK_40KM','NAFO_SHELFBREAK','SHELFBREAK_20KM','SHELFBREAK_40KM']                                 ; The shapefile for any data extractions or image outlines
         
