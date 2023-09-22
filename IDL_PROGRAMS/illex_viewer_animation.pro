@@ -93,7 +93,7 @@
       FOR W=0, N_ELEMENTS(WEEKS)-1 DO BEGIN
         WPER = PERIOD_2STRUCT(WEEKS[W])
         IF HAS(PSTR,'MONTH_SCALE')  THEN PSCL = PSTR.MONTH_SCALE.(WHERE(TAG_NAMES(PSTR.MONTH_SCALE) EQ 'M'+WPER.MONTH_END)) $
-                                               ELSE PSCL = PSTR.PROD_SCALE
+                                                            ELSE PSCL = PSTR.PROD_SCALE
         
         IF DATE_2JD(WPER.DATE_END) - DATE_NOW(/JD) GT 7 THEN CONTINUE
         DR = [JD_2DATE(JD_ADD(DATE_2JD(WPER.DATE_END),-MDATE,/DAY)),WPER.DATE_END]
