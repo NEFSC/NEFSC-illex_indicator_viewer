@@ -1,4 +1,4 @@
-; $ID:	ILLEX_VIEWER_DOWNLOADS.PRO,	2022-08-08-09,	USER-KJWH	$
+; $ID:	ILLEX_VIEWER_DOWNLOADS.PRO,	2023-09-19-09,	USER-KJWH	$
   PRO ILLEX_VIEWER_DOWNLOADS, VERSTRUCT, NDAYS=NDAYS
 
 ;+
@@ -24,7 +24,7 @@
 ;   KEY1........... Document keyword parameters like this. Note that the keyword is shown in ALL CAPS!
 ;
 ; OUTPUTS:
-;   OUTPUT.......... Decribe the output of this program or function
+;   OUTPUT.......... Describe the output of this program or function
 ;
 ; OPTIONAL OUTPUTS:
 ;   None

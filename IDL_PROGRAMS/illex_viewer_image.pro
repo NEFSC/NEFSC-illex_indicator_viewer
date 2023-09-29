@@ -1,4 +1,4 @@
-; $ID:	ILLEX_VIEWER_IMAGE.PRO,	2022-08-08-09,	USER-KJWH	$
+; $ID:	ILLEX_VIEWER_IMAGE.PRO,	2023-09-19-09,	USER-KJWH	$
   FUNCTION ILLEX_VIEWER_IMAGE, VERSTR, FILE=FILE, DATERANGE=DATERANGE,MAPP=MAPP, BUFFER=BUFFER, CURRENT=CURRENT, $
                                ADD_BATHY=ADD_BATHY, BATHY_DEPTH=BATHY_DEPTH, BATHY_COLOR=BATHY_COLOR, BATHY_THICK=BATHY_THICK, $
                                ADD_POINTS=ADD_POINTS, PLONS=PLONS, PLATS=PLATS, PSYM=PSYM, PCOLOR=PCOLOR, PSIZE=PSIZE, $
@@ -32,7 +32,7 @@
 ;   KEY1........... Document keyword parameters like this. Note that the keyword is shown in ALL CAPS!
 ;
 ; OUTPUTS:
-;   OUTPUT.......... Decribe the output of this program or function
+;   OUTPUT.......... Describe the output of this program or function
 ;
 ; OPTIONAL OUTPUTS:
 ;   None
