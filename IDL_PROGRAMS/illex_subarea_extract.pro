@@ -1,4 +1,4 @@
-; $ID:	ILLEX_SUBAREA_EXTRACT.PRO,	2022-05-10-16,	USER-KJWH	$
+; $ID:	ILLEX_SUBAREA_EXTRACT.PRO,	2023-09-19-09,	USER-KJWH	$
   PRO ILLEX_SUBAREA_EXTRACT, VERSTR, PRODS=PRODS, DATASETS=DATASETS, MAP_IN=MAP_IN, SHAPEFILE=SHAPEFILE, SUBAREAS=SUBAREAS, DATERANGE=DATERANGE, $
   PERIOD=PERIOD, FILETYPE=FILETYPE, OUTSTATS=OUTSTATS, DATFILE=DATFILE, DIR_DATA=DIR_DATA, DIR_OUT=DIR_OUT, VERBOSE=VERBOSE
 
@@ -25,7 +25,7 @@
 ;   KEY1........... Document keyword parameters like this. Note that the keyword is shown in ALL CAPS!
 ;
 ; OUTPUTS:
-;   OUTPUT.......... Decribe the output of this program or function
+;   OUTPUT.......... Describe the output of this program or function
 ;
 ; OPTIONAL OUTPUTS:
 ;   None
