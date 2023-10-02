@@ -1,4 +1,4 @@
-; $ID:	ILLEX_VIEWER_ANIMATION.PRO,	2022-08-08-09,	USER-KJWH	$
+; $ID:	ILLEX_VIEWER_ANIMATION.PRO,	2023-09-19-09,	USER-KJWH	$
   PRO ILLEX_VIEWER_ANIMATION, VERSTRUCT, PRODS=PRODS, NDAYS=NDAYS, WEEKS=WEEKS, MAPP=MAPP, PROD_SCALE=PROD_SCALE, BUFFER=BUFFER, DIR_OUT=DIR_OUT, _REF_EXTRA=EXTRA
 
 ;+
@@ -24,7 +24,7 @@
 ;   KEY1........... Document keyword parameters like this. Note that the keyword is shown in ALL CAPS!
 ;
 ; OUTPUTS:
-;   OUTPUT.......... Decribe the output of this program or function
+;   OUTPUT.......... Describe the output of this program or function
 ;
 ; OPTIONAL OUTPUTS:
 ;   None
