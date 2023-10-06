@@ -81,8 +81,8 @@
     FOR D=0, N_ELEMENTS(DIRS)-1 DO DSTR=CREATE_STRUCT(DSTR,DNAME[D],DIRS[D])                        ; Add each directory to the structure
 
     ; ===> Default product information
-    DOWNLOAD_PRODS = ['CHLOR_A','SST','SEALEVEL','OCEAN']
-    PROCESS_PRODS = ['CHLOR_A','SST'] ; ,'SEALEVEL','OCEAN'
+    DOWNLOAD_PRODS = ['SST','CHLOR_A'];,'SEALEVEL','OCEAN']
+    PROCESS_PRODS = ['SST','CHLOR_A'] ; ,'SEALEVEL','OCEAN'
 
     CHL_DATASET = 'GLOBCOLOUR' & CHL_ALG = 'GSM' & CHL_TEMP = 'GLOBCOLOUR'
     SST_DATASET  = 'MUR' & SST_TEMP = 'MUR'
@@ -119,7 +119,7 @@
         SST_DATASET  = 'ACSPONRT'
         SST_TEMP = 'ACSPONRT'
         GRADSST_DATASET = 'ACSPONRT'  & GS_TEMP='ACSPONRT'
-        PROCESS_PRODS = ['CHLOR_A','SST','GRAD_SST'] ; ,'SEALEVEL','OCEAN'
+        PROCESS_PRODS = ['SST','CHLOR_A','GRAD_SST'] ; ,'SEALEVEL','OCEAN'
         EXTRACT_PRODS = ['CHLOR_A','SST']
         SHPFILE  = ['NAFO_SHELFBREAK_40KM','NAFO_SHELFBREAK','SHELFBREAK_20KM','SHELFBREAK_40KM']                                 ; The shapefile for any data extractions or image outlines
         
