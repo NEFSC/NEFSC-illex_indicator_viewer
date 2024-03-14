@@ -63,7 +63,7 @@
   SL = PATH_SEP()
   
   IF NONE(VERSION) THEN VERSION = ['V2023']                       ; Each year, add the next version
-
+  YEAR = DATE_NOW(/YEAR)
   VSTR = []                                                       ; Create a null variable for the version structure
   ; ===> Loop throug the version
   FOR V=0, N_ELEMENTS(VERSION)-1 DO BEGIN
@@ -114,6 +114,7 @@
    
     ; ===> Change the specific product information based on the version
     CASE VER OF
+     
      'V2023': BEGIN
         ILLEX_YR = '2023'
         SST_DATASET  = 'ACSPO
@@ -127,7 +128,7 @@
       
       END
       'V2022': BEGIN                                                                                ; V2022 specific information
-        ILLEX_YR = '2022'                                                                           ; The current year
+        YEAR = '2022'                                                                           ; The current year
         
         
         
@@ -136,8 +137,8 @@
     
     DATFILE = DSTR.DIR_EXTRACTS + VER + '-' + SHPFILE + '-COMPILED_DATA_FILE.SAV'
 
-    FULL_DATERANGE = GET_DATERANGE(['1998',ILLEX_YR])
-    DATERANGE = GET_DATERANGE(ILLEX_YR,DATE_NOW(/YEAR))                                                     ; The full date range of the current year
+    FULL_DATERANGE = GET_DATERANGE(['1998',YEAR])
+    DATERANGE = GET_DATERANGE('2022',DATE_NOW(/YEAR))                                                     ; The full date range of the current year
     PREVIOUS_DATERANGE = GET_DATERANGE(ILLEX_YR-1)                                                  ; The date range of the previous year
 
     HSTR = []
