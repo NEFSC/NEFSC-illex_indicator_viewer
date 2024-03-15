@@ -116,7 +116,7 @@
     CASE VER OF
      
      'V2023': BEGIN
-        ILLEX_YR = '2023'
+        ILLEX_YR = '2024'
         SST_DATASET  = 'ACSPO
         SST_TEMP = 'ACSPONRT'
         GRADSST_DATASET = 'ACSPO'  & GS_TEMP='ACSPONRT'
@@ -138,7 +138,7 @@
     DATFILE = DSTR.DIR_EXTRACTS + VER + '-' + SHPFILE + '-COMPILED_DATA_FILE.SAV'
 
     FULL_DATERANGE = GET_DATERANGE(['1998',YEAR])
-    DATERANGE = GET_DATERANGE('2022',DATE_NOW(/YEAR))                                                     ; The full date range of the current year
+    DATERANGE = GET_DATERANGE('2023',DATE_NOW(/YEAR))                                                     ; The full date range of the current year
     PREVIOUS_DATERANGE = GET_DATERANGE(ILLEX_YR-1)                                                  ; The date range of the previous year
 
     HSTR = []
