@@ -73,7 +73,7 @@
     DIR_PRO = !S.ILLEX_VIEWER
     DIR_FILES = DIR_PRO + 'FILES' + SL
     DIR_VER = DIR_PRO + 'IDL_OUTPUTS' + SL + VER + SL
-    DIRNAMES = ['EXTRACTS','EVENTS','PNGS','ANIMATIONS','COMPOSITES','LOGS','NETCDF','DIR_COMP_ANIMATIONS'] 
+    DIRNAMES = ['EXTRACTS','EVENTS','PNGS','ANIMATIONS','COMPOSITES','LOGS','NETCDF','COMP_ANIMATIONS'] 
     DNAME = 'DIR_'  + DIRNAMES                                                                      ; The tag name for the directory in the structure
     DIRS  = DIR_VER + DIRNAMES + SL                                                                 ; The actual directory name
     DIR_TEST, DIRS                                                                                  ; Make the output directories if they don't already exist
