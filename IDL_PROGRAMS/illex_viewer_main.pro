@@ -90,6 +90,19 @@
 
   
   DIR_PROJECT = !S.ILLEX_VIEWER
+  
+  IF KEYWORD_SET(GIT_PUSH) THEN BEGIN
+    cd, DIR_PROJECT ; Change directory
+    CMD = "git status" ; Check the version control status
+    SPAWN, CMD, LOG, EXIT_STATUS=ES
+    PLUN, LUN, LOG
+    IF ~HAS(LOG, 'nothing to commit') THEN BEGIN
+      CMD = "git pull ." ; Pull any "new" files
+      SPAWN, CMD, LOG, EXIT_STATUS=ES
+      PLUN, LUN, LOG
+      IF ES EQ 1 THEN MESSAGE, 'ERROR: Unable to complete git pull '
+    ENDIF
+  ENDIF    
 
   IF ~N_ELEMENTS(VERSION)    THEN VERSION = 'V2023'
   IF ~N_ELEMENTS(BUFFER)     THEN BUFFER  = 1
