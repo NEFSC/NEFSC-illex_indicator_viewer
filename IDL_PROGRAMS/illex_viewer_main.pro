@@ -96,7 +96,7 @@
     CMD = "git status" ; Check the version control status
     SPAWN, CMD, LOG, EXIT_STATUS=ES
     PLUN, LUN, LOG
-    IF ~HAS(LOG, 'nothing to commit') THEN BEGIN
+    IF HAS(LOG, 'Your branch is up to date') THEN BEGIN
       CMD = "git pull ." ; Pull any "new" files
       SPAWN, CMD, LOG, EXIT_STATUS=ES
       PLUN, LUN, LOG
