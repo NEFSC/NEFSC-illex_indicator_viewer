@@ -24,3 +24,6 @@ IDL_OUTPUTS/V2022/**/ANIMATION_PNGS/
 #IDL_OUTPUTS/V2022/ANIMATIONS/SST/ANIMATION_PNGS/
 view_weekly_indicators_23.html
 view_weekly_indicators copy.html
+
+#NRT data files 
+*.cnv
