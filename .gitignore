@@ -27,3 +27,4 @@ view_weekly_indicators copy.html
 
 #NRT data files 
 *.cnv
+NEFSC-illex_indicator_viewer.Rproj
