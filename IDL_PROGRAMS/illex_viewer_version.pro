@@ -87,7 +87,7 @@
     CHL_DATASET = 'GLOBCOLOUR' & CHL_ALG = 'GSM' & CHL_TEMP = 'GLOBCOLOUR'
     SST_DATASET  = 'MUR' & SST_TEMP = 'MUR'
     MAP_OUT  = 'NES'                                                                            ; The map to be used for any plots
-    SHPFILE  = 'NAFO_SHELFBREAK_40KM'                                 ; The shapefile for any data extractions or image outlines
+    SHPFILE  = [];'NAFO_SHELFBREAK_40KM'                                 ; The shapefile for any data extractions or image outlines
     PRODS = ['CHLOR_A','SST','GRAD_CHL','GRAD_SST','SEALEVEL','OCEAN','MICRO','NANO','PICO',['MICRO','NANO','PICO']+'_PERCENTAGE']
     STAT_PERIODS = ['W','WEEK','M','MONTH']
     STAT_TEMP_PERIODS = ['W','M']
@@ -123,7 +123,7 @@
         GRADSST_DATASET = 'ACSPO'  & GS_TEMP='ACSPONRT'
         PROCESS_PRODS = ['SST','CHLOR_A'] ; ,'SEALEVEL','OCEAN'
         EXTRACT_PRODS = ['CHLOR_A','SST']
-        SHPFILE  = ['ECOMON4','NES_EPU_NOESTUARIES','NAFO_SHELFBREAK_40KM','NAFO_SHELFBREAK','SHELFBREAK_20KM','SHELFBREAK_40KM']                                 ; The shapefile for any data extractions or image outlines
+        ;SHPFILE  = ['ECOMON4','NES_EPU_NOESTUARIES','NAFO_SHELFBREAK_40KM','NAFO_SHELFBREAK','SHELFBREAK_20KM','SHELFBREAK_40KM']                                 ; The shapefile for any data extractions or image outlines
         COMP_ANIMATION_PRODS = LIST(['SST','CHLOR_A'],'CHLOR_A','SST')
         
       
@@ -136,7 +136,7 @@
       END
     ENDCASE ; VER
     
-    DATFILE = DSTR.DIR_EXTRACTS + VER + '-' + SHPFILE + '-COMPILED_DATA_FILE.SAV'
+    DATFILE = '';DSTR.DIR_EXTRACTS + VER + '-' + SHPFILE + '-COMPILED_DATA_FILE.SAV'
 
     FULL_DATERANGE = GET_DATERANGE(['1998',YEAR])
     DATERANGE = GET_DATERANGE('2022',DATE_NOW(/YEAR))                                                     ; The full date range of the current year
@@ -201,7 +201,7 @@
       IF MONTH_SCALE NE [] THEN STR = CREATE_STRUCT(STR,'MONTH_SCALE',MONTH_SCALE)
       PSTR = CREATE_STRUCT(PSTR,PRODS[P],STR) 
     ENDFOR ; PRODS
-    STR = CREATE_STRUCT('VERSION',VER,'INFO',ISTR,'DIRS',DSTR,'PROD_INFO',PSTR,'SHAPEFILES',HSTR)
+    STR = CREATE_STRUCT('VERSION',VER,'INFO',ISTR,'DIRS',DSTR,'PROD_INFO',PSTR);,'SHAPEFILES',HSTR)
     IF N_ELEMENTS(VERSION) EQ 1 THEN RETURN, STR
     VSTR = CREATE_STRUCT(VSTR,VER,STR)
   ENDFOR ; VERSION 
