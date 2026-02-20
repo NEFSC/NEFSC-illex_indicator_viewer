@@ -87,7 +87,7 @@
     MAP_OUT  = 'NES'                                                                            ; The map to be used for any plots
     SHPFILE  = [];'NAFO_SHELFBREAK_40KM'                                 ; The shapefile for any data extractions or image outlines
     PRODS = ['CHLOR_A','SST','GRAD_CHL','GRAD_SST','SEALEVEL','OCEAN','MICRO','NANO','PICO',['MICRO','NANO','PICO']+'_PERCENTAGE']
-    STAT_PERIODS = ['W','WEEK','M','MONTH']
+    STAT_PERIODS = ['W','M']
     STAT_TEMP_PERIODS = ['W','M']
     ANOM_PERIODS=['W','M']
     PNG_PRODS = ['CHLOR_A','SST'];,'GRAD_CHL','GRAD_SST']
