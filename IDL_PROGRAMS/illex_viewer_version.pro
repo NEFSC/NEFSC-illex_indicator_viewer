@@ -119,7 +119,7 @@
         SST_DATASET  = 'ACSPO
         SST_TEMP = 'ACSPONRT'
         GRADSST_DATASET = 'ACSPO'  & GS_TEMP='ACSPONRT'
-        PROCESS_PRODS = ['SST','CHLOR_A'] ; ,'SEALEVEL','OCEAN'
+        PROCESS_PRODS = ['CHLOR_A','SST'] ; ,'SEALEVEL','OCEAN'
         EXTRACT_PRODS = ['CHLOR_A','SST']
         ;SHPFILE  = ['ECOMON4','NES_EPU_NOESTUARIES','NAFO_SHELFBREAK_40KM','NAFO_SHELFBREAK','SHELFBREAK_20KM','SHELFBREAK_40KM']                                 ; The shapefile for any data extractions or image outlines
         COMP_ANIMATION_PRODS = LIST(['SST','CHLOR_A'],'CHLOR_A','SST')
